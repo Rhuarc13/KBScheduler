@@ -38,6 +38,5 @@ public class MainActivity extends AppCompatActivity {
 
     public void doSomethingCrazy() {
         Toast.makeText(this, "Hello There", Toast.LENGTH_SHORT).show();
-        //Why didn't this work?
     }
 }
