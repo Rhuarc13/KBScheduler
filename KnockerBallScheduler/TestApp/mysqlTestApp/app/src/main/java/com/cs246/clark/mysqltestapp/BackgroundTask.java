@@ -70,7 +70,7 @@ public class BackgroundTask extends AsyncTask<String, String, String> {
                 //This will name and set our vars to send to the php file. It is formatted this way to be read by php
                 String data = URLEncoder.encode("user_name", "UTF-8")     + "=" + URLEncoder.encode(user_name, "UTF-8")+"&"+
                               URLEncoder.encode("user_password", "UTF-8") + "=" + URLEncoder.encode(user_password, "UTF-8");//+"&"+
-                              //URLEncoder.encode("user_email", "UTF-8")    + "=" + URLEncoder.encode(user_email, "UTF-8");
+                              //URLEncoder.encode("user_email", "UTF-8")  + "=" + URLEncoder.encode(user_email, "UTF-8");
 
                 //write the data, flush the buffer, and close up shop
                 bufferedWriter.write(data);

@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">mysqlTestApp</string>
+    <string name="login_button">Log In</string>
+    <string name="register_button">Create New Account</string>
+    <string name="user_hint">User Name</string>
+    <string name="password_hint">Password</string>
+    <string name="passwordConfirm_hint">Confirm Password</string>
+    <string name="email_hint">Email Address</string>
+    <string name="register_title">Enter your information</string>
+    <string name="loginActivity_register_button">Register</string>
+    <string name="mainTitle">KnockerBall Test App</string>
+</resources>
