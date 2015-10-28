@@ -44,11 +44,8 @@ public class MainActivity extends AppCompatActivity {
     /*********************************************************************
     * Register 'button' connects to and sends data to the MySQL DB
     **********************************************************************/
-    public void registerNewUser(){
-
-        status = (TextView) findViewById(R.id.status);
-        status.setText("Connecting...");
-
+    public void registerNewUser(View view){
+        
         //set the TextViews
         nameView     = (EditText) findViewById(R.id.name);
         passwordView = (EditText) findViewById(R.id.password);
@@ -70,9 +67,7 @@ public class MainActivity extends AppCompatActivity {
         //start a background thread to connect and communicate w/ the DB
         BackgroundTask backgroundTask = new BackgroundTask(this);
         backgroundTask.execute(method, name, password, email);
-        //finish...when it's finished...
-        status.setText("");
-        finish();
+
     }
 
     /*********************************************************************
