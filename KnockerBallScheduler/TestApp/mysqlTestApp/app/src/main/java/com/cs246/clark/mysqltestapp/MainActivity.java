@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 /***********************************************************************
  *
- *                  ~~KnockerBall Schedule App~~
+ *                  ~~ KnockerBall Schedule App ~~
  *
  * This application is intended to serve as an interface to communicate
  * with a MySQL Database to create and store scheduling information for
