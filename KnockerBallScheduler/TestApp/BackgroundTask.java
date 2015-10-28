@@ -41,7 +41,7 @@ public class BackgroundTask extends AsyncTask<String, String, String> {
     protected String doInBackground(String...params) {
 
         //we can store the ip and each php file we want to run here
-        String address = "http://96.18.168.42/home/app/login.php:5432";
+        String login = "http://96.18.168.42:5432/home/app/login.php";
 
         //set up the strings so we can send them to the php files
         String user_name = params[1];
@@ -56,7 +56,7 @@ public class BackgroundTask extends AsyncTask<String, String, String> {
             try {
 
                 //open the connection with the correct url from our strings above...
-                URL url = new URL(address);
+                URL url = new URL(login);
                 HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
 
                 //This method, "POST"(we can call it what we want), will be used in the php file to pull each variable we pass in
@@ -69,8 +69,8 @@ public class BackgroundTask extends AsyncTask<String, String, String> {
 
                 //This will name and set our vars to send to the php file. It is formatted this way to be read by php
                 String data = URLEncoder.encode("user_name", "UTF-8")     + "=" + URLEncoder.encode(user_name, "UTF-8")+"&"+
-                              URLEncoder.encode("user_password", "UTF-8") + "=" + URLEncoder.encode(user_password, "UTF-8")+"&"+
-                              URLEncoder.encode("user_email", "UTF-8")    + "=" + URLEncoder.encode(user_email, "UTF-8");
+                              URLEncoder.encode("user_password", "UTF-8") + "=" + URLEncoder.encode(user_password, "UTF-8");//+"&"+
+                              //URLEncoder.encode("user_email", "UTF-8")    + "=" + URLEncoder.encode(user_email, "UTF-8");
 
                 //write the data, flush the buffer, and close up shop
                 bufferedWriter.write(data);
