@@ -41,8 +41,7 @@ public class BackgroundTask extends AsyncTask<String, String, String> {
     protected String doInBackground(String...params) {
 
         //we can store the ip and each php file we want to run here
-        String register_url = "http://000.000.000.000.register.php";
-        String login_url    = "http://000.000.000.000.login.php";
+        String address = "http://96.18.168.42/home/app/login.php:5432";
 
         //set up the strings so we can send them to the php files
         String user_name = params[1];
@@ -57,7 +56,7 @@ public class BackgroundTask extends AsyncTask<String, String, String> {
             try {
 
                 //open the connection with the correct url from our strings above...
-                URL url = new URL(register_url);
+                URL url = new URL(address);
                 HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
 
                 //This method, "POST"(we can call it what we want), will be used in the php file to pull each variable we pass in
