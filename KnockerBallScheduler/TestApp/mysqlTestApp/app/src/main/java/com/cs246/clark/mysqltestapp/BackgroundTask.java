@@ -1,22 +1,26 @@
 package com.cs246.clark.mysqltestapp;
 import android.os.AsyncTask;
 import android.content.Context;
+import android.util.Log;
 import android.widget.Toast;
+
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.util.ArrayList;
+
+import javax.net.ssl.HttpsURLConnection;
 
 /***********************************************************************
- * Activity to demonstrate using background threads and updating UI views
  *
- * This activity has three buttons. One generates a file and fills it with ints,
- * one reads that file into a list and sets the list to a ListView, and one
- * is set to clear the ListView and reset the UI progress bar
  *
  * 10/26/2015
  *
@@ -41,12 +45,12 @@ public class BackgroundTask extends AsyncTask<String, String, String> {
     protected String doInBackground(String...params) {
 
         //we can store the ip and each php file we want to run here
-        String login = "http://96.18.168.42:5432/home/app/login.php";
+        String login = "http://96.18.168.42:80/home/app/";
 
         //set up the strings so we can send them to the php files
-        String user_name = params[1];
+        String user_name     = params[1];
         String user_password = params[2];
-        String user_email = params[3];
+        String user_email    = params[3];
 
         //check the method to see if we will register or login
         String method = params[0];
@@ -55,45 +59,44 @@ public class BackgroundTask extends AsyncTask<String, String, String> {
             //try opening the connection to the ip/php file...
             try {
 
-                //open the connection with the correct url from our strings above...
                 URL url = new URL(login);
-                HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+                connection.setReadTimeout(10000);
+                connection.setConnectTimeout(15000);
+                connection.setRequestMethod("POST");
+                //connection.setDoInput(true);
+                connection.setDoOutput(true);
 
-                //This method, "POST"(we can call it what we want), will be used in the php file to pull each variable we pass in
-                httpURLConnection.setRequestMethod("POST");
-                httpURLConnection.setDoOutput(true);
-
-                //open the OutputStream and BufferedReader to write the data
-                OutputStream out = httpURLConnection.getOutputStream();
-                BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(out, "UTF-8"));
-
-                //This will name and set our vars to send to the php file. It is formatted this way to be read by php
                 String data = URLEncoder.encode("user_name", "UTF-8")     + "=" + URLEncoder.encode(user_name, "UTF-8")+"&"+
-                              URLEncoder.encode("user_password", "UTF-8") + "=" + URLEncoder.encode(user_password, "UTF-8");//+"&"+
-                              //URLEncoder.encode("user_email", "UTF-8")  + "=" + URLEncoder.encode(user_email, "UTF-8");
+                              URLEncoder.encode("user_password", "UTF-8") + "=" + URLEncoder.encode(user_password, "UTF-8") +"&"+
+                              URLEncoder.encode("value", "UTF-8")         + "=" + URLEncoder.encode("89 Charlotte St.", "UTF-8");
 
-                //write the data, flush the buffer, and close up shop
-                bufferedWriter.write(data);
-                bufferedWriter.flush();
-                bufferedWriter.close();
+                OutputStream out = connection.getOutputStream();
+                BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(out, "UTF-8"));
+                writer.write(data);
+                writer.flush();
+                writer.close();
                 out.close();
 
-                //this will be sent to 'onPostExecute' and show as Toast
-                return "Registration Complete!";
+                connection.connect();
 
-            //catch everything that might have gone wrong...
-            } catch (MalformedURLException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
+                int responseCode = connection.getResponseCode();
+                System.out.println("POST Response Code :: " + responseCode);
+
+                return "Success!";
+
+            } catch (Exception e) {
+                Log.e("log_tag", "Error in http connection " + e.toString());
             }
         }
-        //this should never happen. If it does...please hang up and call 911
-        return null;
+    return null;
     }
 
     @Override
     protected void onPostExecute(String result){
+        //if(!result.equals("Connected Successfully")){
+         //   result = "Something went wrong...";
+       // }
         //display a confirmation message as Toast when we're done
         Toast.makeText(context, result, Toast.LENGTH_LONG).show();
     }

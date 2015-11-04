@@ -44,14 +44,14 @@ public class LoginActivity extends AppCompatActivity {
 
         String method = "register";
 
-        if(!password.equals(passwordConfirm)){
-            Toast.makeText(this, "Passwords do not match!", Toast.LENGTH_LONG).show();
-        } else {
+       // if(!password.equals(passwordConfirm)){
+        //    Toast.makeText(this, "Passwords do not match!", Toast.LENGTH_LONG).show();
+        //} else {
             //start a background thread to connect and communicate w/ the DB
             BackgroundTask backgroundTask = new BackgroundTask(this);
             backgroundTask.execute(method, name, password, email);
             finish();
-        }
+       // }
      }
     /*********************************************************************
     * User Data - stores and sets the user information
