@@ -21,7 +21,6 @@ import javax.net.ssl.HttpsURLConnection;
 
 /***********************************************************************
  *
- *
  * 10/26/2015
  *
  * @author Weston Clark, Shem Sedrick, Jared Mefford
