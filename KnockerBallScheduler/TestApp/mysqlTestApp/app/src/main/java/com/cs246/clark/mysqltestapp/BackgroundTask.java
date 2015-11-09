@@ -44,7 +44,7 @@ public class BackgroundTask extends AsyncTask<String, String, String> {
     protected String doInBackground(String...params) {
 
         //we can store the ip and each php file we want to run here
-        String login = "http://96.18.168.42:80/home/app/";
+        String login = "http://96.18.168.42:80/query.php";
 
         //set up the strings so we can send them to the php files
         String user_name     = params[1];
@@ -63,7 +63,7 @@ public class BackgroundTask extends AsyncTask<String, String, String> {
                 connection.setReadTimeout(10000);
                 connection.setConnectTimeout(15000);
                 connection.setRequestMethod("POST");
-                //connection.setDoInput(true);
+                connection.setDoInput(true);
                 connection.setDoOutput(true);
 
                 String data = URLEncoder.encode("user_name", "UTF-8")     + "=" + URLEncoder.encode(user_name, "UTF-8")+"&"+
