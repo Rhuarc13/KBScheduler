@@ -1,0 +1,13 @@
+package com.Test;
+
+import android.test.InstrumentationTestCase;
+
+/**
+ * Created by Jared on 11/4/2015.
+ */
+public class ExampleTest extends InstrumentationTestCase {
+    public void test() throws Exception {
+        final int expected = 5;
+        assertEquals(expected, 12 - 7);
+    }
+}
