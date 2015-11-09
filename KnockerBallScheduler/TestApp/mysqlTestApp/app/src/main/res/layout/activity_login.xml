@@ -7,12 +7,19 @@
     android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context="com.cs246.clark.mysqltestapp.LoginActivity">
 
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/scrollView"
+        android:layout_centerHorizontal="true">
+
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_centerVertical="true"
-        android:layout_alignParentEnd="true">
+        android:layout_alignParentEnd="true"
+        android:id="@+id/linearLayout2">
 
 
         <TextView
@@ -28,32 +35,52 @@
             android:layout_height="30dp"
             android:layout_gravity="center_horizontal" />
 
-        <EditText android:id="@+id/name"
+        <EditText android:id="@+id/firstName"
             android:padding="20dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/user_hint"
-            android:typeface="normal" />
+            android:hint="@string/firstNameHint"
+            android:typeface="normal"
+            android:singleLine="true"/>
+
+        <EditText android:id="@+id/lastName"
+            android:padding="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/lastNameHint"
+            android:typeface="normal"
+            android:singleLine="true"/>
 
         <EditText android:id="@+id/password"
             android:padding="20dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/password_hint"
-            android:inputType="textPassword"/>
+            android:inputType="textPassword"
+            android:singleLine="true"/>
 
         <EditText android:id="@+id/passwordConfirm"
             android:padding="20dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/passwordConfirm_hint"
-            android:inputType="textPassword"/>
+            android:inputType="textPassword"
+            android:singleLine="true"/>
 
         <EditText android:id="@+id/email"
             android:padding="20dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/email_hint" />
+            android:hint="@string/email_hint"
+            android:singleLine="true"/>
+
+        <EditText android:id="@+id/phone"
+            android:padding="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/phone_hint"
+            android:singleLine="true"
+            android:inputType="phone"/>
 
         <Space
             android:layout_width="match_parent"
@@ -66,5 +93,14 @@
             android:layout_gravity="center"
             android:text="@string/loginActivity_register_button"
             android:onClick="registerNewUser"/>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_gravity="center_horizontal" />
+
     </LinearLayout>
+    </ScrollView>
+
+
 </RelativeLayout>

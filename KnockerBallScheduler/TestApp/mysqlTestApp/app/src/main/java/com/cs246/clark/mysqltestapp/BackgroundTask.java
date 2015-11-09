@@ -47,9 +47,11 @@ public class BackgroundTask extends AsyncTask<String, String, String> {
         String login = "http://96.18.168.42:80/query.php";
 
         //set up the strings so we can send them to the php files
-        String user_name     = params[1];
-        String user_password = params[2];
-        String user_email    = params[3];
+        String user_firstName = params[1];
+        String user_lastName  = params[2];
+        String user_password  = params[3];
+        String user_email     = params[4];
+        String user_phone     = params[5];
 
         //check the method to see if we will register or login
         String method = params[0];
@@ -58,6 +60,7 @@ public class BackgroundTask extends AsyncTask<String, String, String> {
             //try opening the connection to the ip/php file...
             try {
 
+                //set up the connection
                 URL url = new URL(login);
                 HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                 connection.setReadTimeout(10000);
@@ -66,10 +69,14 @@ public class BackgroundTask extends AsyncTask<String, String, String> {
                 connection.setDoInput(true);
                 connection.setDoOutput(true);
 
-                String data = URLEncoder.encode("user_name", "UTF-8")     + "=" + URLEncoder.encode(user_name, "UTF-8")+"&"+
+                //write & encode the data to be sent via the "POST" method
+                String data = URLEncoder.encode("user_firstName","UTF-8") + "=" + URLEncoder.encode(user_firstName,"UTF-8")+"&"+
+                              URLEncoder.encode("user_lastName", "UTF-8") + "=" + URLEncoder.encode(user_lastName, "UTF-8")+"&"+
                               URLEncoder.encode("user_password", "UTF-8") + "=" + URLEncoder.encode(user_password, "UTF-8") +"&"+
-                              URLEncoder.encode("value", "UTF-8")         + "=" + URLEncoder.encode("89 Charlotte St.", "UTF-8");
+                              URLEncoder.encode("user_email",    "UTF-8") + "=" + URLEncoder.encode(user_email,    "UTF-8")+"&"+
+                              URLEncoder.encode("user_phone",    "UTF-8") + "=" + URLEncoder.encode(user_phone,    "UTF-8");
 
+                //write the data to the stream and close up shop
                 OutputStream out = connection.getOutputStream();
                 BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(out, "UTF-8"));
                 writer.write(data);
@@ -79,8 +86,12 @@ public class BackgroundTask extends AsyncTask<String, String, String> {
 
                 connection.connect();
 
+                //used to verify we got the right response back from the server
                 int responseCode = connection.getResponseCode();
-                System.out.println("POST Response Code :: " + responseCode);
+                System.out.println(responseCode);
+                if(responseCode != 200){
+                    return "Failed to connect to the server...";
+                }
 
                 return "Success!";
 
@@ -88,14 +99,12 @@ public class BackgroundTask extends AsyncTask<String, String, String> {
                 Log.e("log_tag", "Error in http connection " + e.toString());
             }
         }
+    //this should never ever happen, so if it does..something went terribly wrong
     return null;
     }
 
     @Override
     protected void onPostExecute(String result){
-        //if(!result.equals("Connected Successfully")){
-         //   result = "Something went wrong...";
-       // }
         //display a confirmation message as Toast when we're done
         Toast.makeText(context, result, Toast.LENGTH_LONG).show();
     }
