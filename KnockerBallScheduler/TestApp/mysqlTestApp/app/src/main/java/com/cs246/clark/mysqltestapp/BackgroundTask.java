@@ -44,7 +44,7 @@ public class BackgroundTask extends AsyncTask<String, String, String> {
     protected String doInBackground(String...params) {
 
         //we can store the ip and each php file we want to run here
-        String login = "http://96.18.168.42:80/query.php";
+        String login = "http://96.18.168.42:80/register_user.php";
 
         //set up the strings so we can send them to the php files
         String user_firstName = params[1];
@@ -70,11 +70,11 @@ public class BackgroundTask extends AsyncTask<String, String, String> {
                 connection.setDoOutput(true);
 
                 //write & encode the data to be sent via the "POST" method
-                String data = URLEncoder.encode("user_firstName","UTF-8") + "=" + URLEncoder.encode(user_firstName,"UTF-8")+"&"+
-                              URLEncoder.encode("user_lastName", "UTF-8") + "=" + URLEncoder.encode(user_lastName, "UTF-8")+"&"+
-                              URLEncoder.encode("user_password", "UTF-8") + "=" + URLEncoder.encode(user_password, "UTF-8") +"&"+
-                              URLEncoder.encode("user_email",    "UTF-8") + "=" + URLEncoder.encode(user_email,    "UTF-8")+"&"+
-                              URLEncoder.encode("user_phone",    "UTF-8") + "=" + URLEncoder.encode(user_phone,    "UTF-8");
+                String data = URLEncoder.encode("first_name","UTF-8")+ "=" + URLEncoder.encode(user_firstName,"UTF-8")+"&"+
+                              URLEncoder.encode("last_name", "UTF-8")+ "=" + URLEncoder.encode(user_lastName, "UTF-8")+"&"+
+                              URLEncoder.encode("password", "UTF-8") + "=" + URLEncoder.encode(user_password, "UTF-8") +"&"+
+                              URLEncoder.encode("email",    "UTF-8") + "=" + URLEncoder.encode(user_email,    "UTF-8")+"&"+
+                              URLEncoder.encode("phone",    "UTF-8") + "=" + URLEncoder.encode(user_phone,    "UTF-8");
 
                 //write the data to the stream and close up shop
                 OutputStream out = connection.getOutputStream();
@@ -98,6 +98,12 @@ public class BackgroundTask extends AsyncTask<String, String, String> {
             } catch (Exception e) {
                 Log.e("log_tag", "Error in http connection " + e.toString());
             }
+        }
+
+        else if(method.equals("login")){
+            
+
+
         }
     //this should never ever happen, so if it does..something went terribly wrong
     return null;

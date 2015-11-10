@@ -11,4 +11,11 @@
     <string name="loginActivity_register_button">Register</string>
     <string name="mainTitle">KnockerBall Test App</string>
     <string name="phone_hint">Phone Number (include area code)</string>
+    <string name="title_activity_sign_in">Sign in</string>
+
+    <!-- Strings related to login -->
+    <string name="signInEmail">Enter your email address and password</string>
+    <string name="signInButton">Sign In</string>
+        completions."
+
 </resources>

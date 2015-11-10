@@ -16,9 +16,7 @@
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_centerVertical="true"
-        android:layout_alignParentEnd="true"
+        android:layout_height="wrap_content"
         android:id="@+id/linearLayout2">
 
 
@@ -92,7 +90,7 @@
             android:layout_height="80dp"
             android:layout_gravity="center"
             android:text="@string/loginActivity_register_button"
-            android:onClick="registerNewUser"/>
+            android:onClick="registerButtonPress"/>
 
         <Space
             android:layout_width="match_parent"

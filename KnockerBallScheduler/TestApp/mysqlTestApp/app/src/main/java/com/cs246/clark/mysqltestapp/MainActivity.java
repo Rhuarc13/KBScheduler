@@ -39,7 +39,16 @@ public class MainActivity extends AppCompatActivity {
     **********************************************************************/
     public void registerButton(View view){
 
-        Intent intent = new Intent(this, LoginActivity.class);
+        Intent intent = new Intent(this, RegisterNewUser.class);
+        startActivity(intent);
+    }
+
+    /*********************************************************************
+     * Register 'button' takes you to the register activity
+     **********************************************************************/
+    public void signInButton(View view){
+
+        Intent intent = new Intent(this, SignIn.class);
         startActivity(intent);
     }
 }

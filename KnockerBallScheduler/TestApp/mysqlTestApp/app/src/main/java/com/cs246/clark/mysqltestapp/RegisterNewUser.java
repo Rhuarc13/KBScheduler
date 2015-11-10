@@ -4,10 +4,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
-public class LoginActivity extends AppCompatActivity {
+public class RegisterNewUser extends AppCompatActivity {
 
     EditText firstNameView;
     EditText lastNameView;
@@ -19,13 +18,13 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.register_activity);
     }
 
     /*********************************************************************
     * This will run the background task to communicate with the MySQL DB
     **********************************************************************/
-    public void registerNewUser(View view) {
+    public void registerButtonPress(View view) {
         //set the TextViews
         firstNameView       = (EditText) findViewById(R.id.firstName);
         lastNameView        = (EditText) findViewById(R.id.lastName);
