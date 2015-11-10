@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">mysqlTestApp</string>
+    <string name="app_name">Knockerball Scheduler</string>
     <string name="login_button">Log In</string>
     <string name="register_button">Register</string>
     <string name="firstNameHint">First Name</string>
@@ -9,7 +9,7 @@
     <string name="email_hint">Email Address</string>
     <string name="register_title">Enter your information</string>
     <string name="loginActivity_register_button">Register</string>
-    <string name="mainTitle">KnockerBall Test App</string>
+    <string name="mainTitle">Welcome!</string>
     <string name="phone_hint">Phone Number (include area code)</string>
     <string name="title_activity_sign_in">Sign in</string>
 
