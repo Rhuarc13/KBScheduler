@@ -12,6 +12,7 @@
     <string name="mainTitle">Welcome!</string>
     <string name="phone_hint">Phone Number (include area code)</string>
     <string name="title_activity_sign_in">Sign in</string>
+    <string name="selectDate">Select a date</string>
 
     <!-- Strings related to login -->
     <string name="signInEmail">Enter your email address and password</string>
