@@ -29,15 +29,17 @@ public class SignIn extends Activity {
 
         //needs to verify if the username/pass are valid
         emailLogin = (TextView) findViewById(R.id.email);
-        passLogin =  (TextView) findViewById(R.id.passwordLogin);
+        passLogin  = (TextView) findViewById(R.id.passwordLogin);
 
-        String email = emailLogin.getText().toString();
-        String password = passLogin.getText().toString();
+        User user = new User();
+
+        user.setEmail(emailLogin.getText().toString());
+        user.setPassword(passLogin.getText().toString());
 
         String method = "login";
 
-        BackgroundTask backgroundTask = new BackgroundTask(this);
-        backgroundTask.execute(method, email, password);
+        BackgroundTask backgroundTask = new BackgroundTask(user, method);
+        backgroundTask.execute();
 
         if( true /*we need some validation that the login was successful*/) {
             Intent intent = new Intent(this, Calendar.class);
