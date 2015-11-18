@@ -1,4 +1,6 @@
 package com.cs246.clark.mysqltestapp;
+import android.app.Activity;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.content.Context;
 import android.util.Log;
@@ -23,10 +25,12 @@ import java.net.URLEncoder;
  **********************************************************************/
 public class BackgroundTask extends AsyncTask<String, String, String> {
 
-    Context context;
+    User user;
+    String method;
 
-    BackgroundTask(Context context){
-        this.context = context;
+    BackgroundTask(User _user, String _method){
+        user   = _user;
+        method = _method;
     }
 
     @Override
@@ -38,120 +42,82 @@ public class BackgroundTask extends AsyncTask<String, String, String> {
     @Override
     protected String doInBackground(String...params) {
 
-        //check the method to see if we will register or login
+        //directs to the register php file
         String login = "";
-        String data = "";
-        String response = "";
-        String line = "";
-        //set up the strings so we can send them to the php files
-        String user_firstName = "";
-        String user_lastName = "";
-        String user_password = "";
-        String user_email = "";
-        String user_phone = "";
+        String data  = "";
 
-
-        String method = params[0];
-
-
-        if (method.equals("register")) {
-            //directs to the register php file
+        if(method.equals("register")) {
             login = "http://96.18.168.42:80/register_user.php";
-
-            //set up the strings so we can send them to the php files
-            user_firstName = params[1];
-            user_lastName  = params[2];
-            user_password  = params[3];
-            user_email     = params[4];
-            user_phone     = params[5];
-
-        } else if(method.equals("login")) {
-            //directs to the login php file
+        } else if(method.equals("login")){
             login = "http://96.18.168.42:80/verify_login.php";
-
-            user_email    = params[1];
-            user_password = params[2];
         }
 
-            //try opening the connection to the ip/php file...
-            try {
+        //try opening the connection to the server
+        try {
+            //set up the connection
+            URL url = new URL(login);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setReadTimeout(10000);
+            connection.setConnectTimeout(15000);
+            connection.setRequestMethod("POST");
+            connection.setDoInput (true);
+            connection.setDoOutput(true);
 
-                //set up the connection
-                URL url = new URL(login);
-                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-                connection.setReadTimeout(10000);
-                connection.setConnectTimeout(15000);
-                connection.setRequestMethod("POST");
-                connection.setDoInput(true);
-                connection.setDoOutput(true);
-
-                if(method.equals("register")) {
-                    //write & encode the data to be sent via the "POST" method
-                    data = URLEncoder.encode("first_name", "UTF-8")+ "=" + URLEncoder.encode(user_firstName, "UTF-8")+ "&" +
-                           URLEncoder.encode("last_name", "UTF-8") + "=" + URLEncoder.encode(user_lastName, "UTF-8") + "&" +
-                           URLEncoder.encode("password", "UTF-8")  + "=" + URLEncoder.encode(user_password, "UTF-8") + "&" +
-                           URLEncoder.encode("email", "UTF-8")     + "=" + URLEncoder.encode(user_email, "UTF-8")    + "&" +
-                           URLEncoder.encode("phone", "UTF-8")     + "=" + URLEncoder.encode(user_phone, "UTF-8");
-                } else if(method.equals("login")){
-                    data = URLEncoder.encode("email", "UTF-8") + "=" + URLEncoder.encode(user_email, "UTF-8") + "&" +
-                           URLEncoder.encode("password", "UTF-8") + "=" + URLEncoder.encode(user_password, "UTF-8");
-                    System.out.println(user_email);
-                    System.out.println(user_password);
-                }
-
-                //write the data to the stream and close up shop
-                OutputStream out = connection.getOutputStream();
-                BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(out, "UTF-8"));
-                writer.write(data);
-                writer.flush();
-                writer.close();
-                out.close();
-
-                connection.connect();
-
-                //used to verify we got the right response back from the server
-                int responseCode = connection.getResponseCode();
-                System.out.println(responseCode);
-                if(responseCode != 200){
-                    return "Failed to connect to the server...";
-                }
-
-                InputStream in = connection.getInputStream();
-                BufferedReader reader = new BufferedReader(new InputStreamReader(in, "iso-8859-1"));
-
-                while((line = reader.readLine()) != null){
-                    response+= line;
-                }
-                reader.close();
-                in.close();
-                connection.disconnect();
-
-                System.out.println(response);
-
-                if(method.equals("register")) {
-                    return "Registration Complete";
-                } else if(method.equals("login")){
-                    if(response.equals("Success")) {
-                        return "Welcome";
-                    } else{
-                        return "Error: Check your information and try again";
-                    }
-                }
-
-            } catch (Exception e) {
-                Log.e("log_tag", "Error in http connection " + e.toString());
+            if(method.equals("register")) {
+                //write & encode the data to be sent via the "POST" method
+                 data = URLEncoder.encode("first_name", "UTF-8")+ "=" + URLEncoder.encode(user.getFirstName(), "UTF-8")+ "&" +
+                        URLEncoder.encode("last_name", "UTF-8") + "=" + URLEncoder.encode(user.getLastName(), "UTF-8") + "&" +
+                        URLEncoder.encode("password", "UTF-8")  + "=" + URLEncoder.encode(user.getPassword(), "UTF-8") + "&" +
+                        URLEncoder.encode("email", "UTF-8")     + "=" + URLEncoder.encode(user.getEmail(), "UTF-8")    + "&" +
+                        URLEncoder.encode("phone", "UTF-8")     + "=" + URLEncoder.encode(user.getPhone(), "UTF-8");
+            } else if(method.equals("login")){
+                 data = URLEncoder.encode("email","UTF-8")      + "=" + URLEncoder.encode(user.getEmail(), "UTF-8")    + "&" +
+                        URLEncoder.encode("password", "UTF-8")  + "=" + URLEncoder.encode(user.getPassword(), "UTF-8");
             }
 
+            //write the data to the stream and close up shop
+            OutputStream out = connection.getOutputStream();
+            BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(out, "UTF-8"));
+            writer.write(data);
+            writer.flush();
+            writer.close();
+            out.close();
 
-    //this should never ever happen, so if it does..something went terribly wrong
-    return null;
+            connection.connect();
+
+            //used to verify we got the right response back from the server
+            int responseCode = connection.getResponseCode();
+            System.out.println(responseCode);
+            if(responseCode != 200){
+                return "Failed to connect to the server...";
+            }
+
+            InputStream in = connection.getInputStream();
+            BufferedReader reader = new BufferedReader(new InputStreamReader(in, "iso-8859-1"));
+
+            String line;
+            String response = "";
+            while((line = reader.readLine()) != null){
+                response+= line;
+            }
+            reader.close();
+            in.close();
+            connection.disconnect();
+
+            System.out.println(response);
+
+        } catch (Exception e) {
+            Log.e("log_tag", "Error in http connection " + e.toString());
+        }
+
+        //this should never ever happen, so if it does..please alert the local authorities
+        return null;
     }
+
 
     @Override
     protected void onPostExecute(String result){
         //display a confirmation message as Toast when we're done
-        Toast toast = Toast.makeText(context, result, Toast.LENGTH_LONG);
-        toast.setGravity(Gravity.CENTER, 0, 25);
-        toast.show();
+
     }
 }
