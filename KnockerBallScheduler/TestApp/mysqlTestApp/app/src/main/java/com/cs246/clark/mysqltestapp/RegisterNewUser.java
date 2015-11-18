@@ -1,7 +1,8 @@
 package com.cs246.clark.mysqltestapp;
-
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.EditText;
@@ -15,6 +16,7 @@ public class RegisterNewUser extends AppCompatActivity {
     EditText passwordConfirmView;
     EditText emailView;
     EditText phoneView;
+    private static final String TAG = "REGISTER";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,8 +57,13 @@ public class RegisterNewUser extends AppCompatActivity {
         } else {
             //Create a server class and run it to send the info to the DB
             String method = "register";
+            boolean validated = false;
+
             BackgroundTask backgroundTask = new BackgroundTask(user, method);
             backgroundTask.execute();
+            Log.i(TAG, "All your info are belong to us!");
+
+            finish();
         }
      }
 }

@@ -3,6 +3,7 @@ package com.cs246.clark.mysqltestapp;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -11,6 +12,7 @@ public class SignIn extends Activity {
 
     TextView emailLogin;
     TextView passLogin;
+    private static final String TAG = "SIGN_IN";
 
 
     /*********************************************************************
@@ -40,11 +42,10 @@ public class SignIn extends Activity {
 
         BackgroundTask backgroundTask = new BackgroundTask(user, method);
         backgroundTask.execute();
+        Log.i(TAG, "Once your a jet your a jet all the way");
+        finish();
 
-        if( true /*we need some validation that the login was successful*/) {
-            Intent intent = new Intent(this, Calendar.class);
-            startActivity(intent);
         }
     }
 
-}
+

@@ -1,5 +1,6 @@
 package com.cs246.clark.mysqltestapp;
 import android.app.Activity;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.content.Context;
 import android.util.Log;
@@ -23,7 +24,7 @@ import java.net.URLEncoder;
  * @version 1.0
  **********************************************************************/
 public class BackgroundTask extends AsyncTask<String, String, String> {
-    
+
     User user;
     String method;
 
@@ -104,9 +105,6 @@ public class BackgroundTask extends AsyncTask<String, String, String> {
             connection.disconnect();
 
             System.out.println(response);
-            if(method.equals("register")){
-
-            }
 
         } catch (Exception e) {
             Log.e("log_tag", "Error in http connection " + e.toString());
@@ -115,6 +113,7 @@ public class BackgroundTask extends AsyncTask<String, String, String> {
         //this should never ever happen, so if it does..please alert the local authorities
         return null;
     }
+
 
     @Override
     protected void onPostExecute(String result){
