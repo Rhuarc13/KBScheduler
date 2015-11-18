@@ -50,6 +50,7 @@ public class RegisterNewUser extends AppCompatActivity {
         //ensure they have matching passwords
         if(!user.getPassword().equals(passwordConfirmView.getText().toString())){
             Toast toast = Toast.makeText(this, "Passwords do not match!", Toast.LENGTH_LONG);
+            Log.i(TAG, "User typed in mismatched passwords");
             toast.setGravity(Gravity.CENTER, 0, 25);
             toast.show();
             passwordView.setFocusable(true);
