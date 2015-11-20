@@ -43,6 +43,8 @@ public class SignIn extends Activity {
         BackgroundTask backgroundTask = new BackgroundTask(user, method);
         backgroundTask.execute();
         Log.i(TAG, "Once your a jet your a jet all the way");
+        Intent intent = new Intent(this, Calendar.class);
+        startActivity(intent);
         finish();
 
         }
