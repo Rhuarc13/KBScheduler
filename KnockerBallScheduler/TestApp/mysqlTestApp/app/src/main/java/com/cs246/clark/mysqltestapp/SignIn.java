@@ -44,6 +44,8 @@ public class SignIn extends Activity {
         backgroundTask.execute();
         Log.i(TAG, "Once your a jet your a jet all the way");
         finish();
+        Intent intent = new Intent(this, Calendar.class);
+        startActivity(intent);
 
         }
     }

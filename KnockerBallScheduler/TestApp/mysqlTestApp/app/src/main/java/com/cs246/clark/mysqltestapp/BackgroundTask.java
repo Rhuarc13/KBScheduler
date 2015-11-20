@@ -15,6 +15,8 @@ import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.util.Observable;
+import java.util.Observer;
 
 /***********************************************************************
  *
@@ -23,7 +25,7 @@ import java.net.URLEncoder;
  * @author Weston Clark, Shem Sedrick, Jared Mefford
  * @version 1.0
  **********************************************************************/
-public class BackgroundTask extends AsyncTask<String, String, String> {
+public class BackgroundTask extends AsyncTask<String, String, String> implements Observer {
 
     User user;
     String method;
@@ -31,6 +33,11 @@ public class BackgroundTask extends AsyncTask<String, String, String> {
     BackgroundTask(User _user, String _method){
         user   = _user;
         method = _method;
+    }
+
+    @Override
+    public void update(Observable observable, Object data){
+
     }
 
     @Override
