@@ -29,6 +29,7 @@ public class BackgroundTask extends AsyncTask<String, String, String> implements
 
     User user;
     String method;
+    private static final String TAG = "Background Task";
 
     BackgroundTask(User _user, String _method){
         user   = _user;
@@ -55,6 +56,7 @@ public class BackgroundTask extends AsyncTask<String, String, String> implements
 
         if(method.equals("register")) {
             login = "http://96.18.168.42:80/register_user.php";
+            Log.i(TAG, "Trying to register a new user");
         } else if(method.equals("login")){
             login = "http://96.18.168.42:80/verify_login.php";
         }
@@ -96,6 +98,7 @@ public class BackgroundTask extends AsyncTask<String, String, String> implements
             int responseCode = connection.getResponseCode();
             System.out.println(responseCode);
             if(responseCode != 200){
+                Log.e(TAG, "Received bad response code: " + responseCode);
                 return "Failed to connect to the server...";
             }
 
