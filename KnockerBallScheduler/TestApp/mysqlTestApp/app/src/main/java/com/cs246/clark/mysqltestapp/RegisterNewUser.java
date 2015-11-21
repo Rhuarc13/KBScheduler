@@ -1,4 +1,5 @@
 package com.cs246.clark.mysqltestapp;
+import android.content.Intent;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -8,6 +9,9 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
+
 public class RegisterNewUser extends AppCompatActivity {
 
     EditText firstNameView;
@@ -16,12 +20,16 @@ public class RegisterNewUser extends AppCompatActivity {
     EditText passwordConfirmView;
     EditText emailView;
     EditText phoneView;
+    volatile Response response;
     private static final String TAG = "REGISTER";
+    private static final String SUCCESS = "SUCCESS: Customer creation complete";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.register_activity);
+
+        response = new Response();
     }
 
     /*********************************************************************
@@ -60,11 +68,35 @@ public class RegisterNewUser extends AppCompatActivity {
             String method = "register";
             boolean validated = false;
 
-            BackgroundTask backgroundTask = new BackgroundTask(user, method);
+            BackgroundTask backgroundTask = new BackgroundTask(user, method, response);
             backgroundTask.execute();
             Log.i(TAG, "All your info are belong to us!");
 
-            finish();
+            Lock lock = new ReentrantLock();
+            synchronized (lock) {
+                while (response.getCode() == 0) {
+                    try {
+                        lock.wait(100);
+                    } catch (InterruptedException e) {
+                        Log.e(TAG, "Ran into an InterruptedException");
+                    }
+                }
+            }
+
+            if (response.getCode() == 200) {
+                if (response.getText().equals(SUCCESS)) {
+                    Intent intent = new Intent(this, Calendar.class);
+                    startActivity(intent);
+                } else {
+                    Log.e(TAG, "Incorrect response string: " + response.getText());
+                    emailView.setText("");
+                    passwordView.setText("");
+                    passwordConfirmView.setText("");
+                    Toast.makeText(this, "Invalid email", Toast.LENGTH_LONG).show();
+                }
+            } else {
+                Toast.makeText(this, "Error occurred connecting to the database", Toast.LENGTH_LONG).show();
+            }
         }
      }
 }

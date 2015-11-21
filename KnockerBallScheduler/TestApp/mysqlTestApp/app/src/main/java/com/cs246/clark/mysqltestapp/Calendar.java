@@ -17,8 +17,4 @@ public class Calendar extends Activity {
 
 
     }
-
-    Log.e(TAG, "You made a booboo");
-    Log.i(TAG, "You have selected a date");
-    Log.i(TAG, "You have selected a time");
 }

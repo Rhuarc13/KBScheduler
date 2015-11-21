@@ -12,6 +12,7 @@ public class SignIn extends Activity {
 
     TextView emailLogin;
     TextView passLogin;
+    Response response;
     private static final String TAG = "SIGN_IN";
 
 
@@ -22,6 +23,8 @@ public class SignIn extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.signin_activity);
+
+        response = new Response();
     }
 
     /*********************************************************************
@@ -40,7 +43,7 @@ public class SignIn extends Activity {
 
         String method = "login";
 
-        BackgroundTask backgroundTask = new BackgroundTask(user, method);
+        BackgroundTask backgroundTask = new BackgroundTask(user, method, response);
         backgroundTask.execute();
         Log.i(TAG, "Once your a jet your a jet all the way");
         finish();
