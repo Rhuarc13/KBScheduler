@@ -1,11 +1,7 @@
 package com.cs246.clark.mysqltestapp;
-import android.app.Activity;
-import android.content.Intent;
+
 import android.os.AsyncTask;
-import android.content.Context;
 import android.util.Log;
-import android.view.Gravity;
-import android.widget.Toast;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.InputStream;
@@ -29,11 +25,13 @@ public class BackgroundTask extends AsyncTask<String, String, String> implements
 
     User user;
     String method;
+    Response responseClass;
     private static final String TAG = "Background Task";
 
-    BackgroundTask(User _user, String _method){
+    BackgroundTask(User _user, String _method, Response _response){
         user   = _user;
         method = _method;
+        responseClass = _response;
     }
 
     @Override
@@ -96,9 +94,10 @@ public class BackgroundTask extends AsyncTask<String, String, String> implements
 
             //used to verify we got the right response back from the server
             int responseCode = connection.getResponseCode();
-            System.out.println(responseCode);
+            responseClass.setCode(responseCode);
             if(responseCode != 200){
                 Log.e(TAG, "Received bad response code: " + responseCode);
+
                 return "Failed to connect to the server...";
             }
 
@@ -114,6 +113,7 @@ public class BackgroundTask extends AsyncTask<String, String, String> implements
             in.close();
             connection.disconnect();
 
+            responseClass.setText(response);
             System.out.println(response);
 
         } catch (Exception e) {
