@@ -1,4 +1,5 @@
 package com.cs246.clark.mysqltestapp;
+import android.content.Intent;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -7,6 +8,9 @@ import android.view.Gravity;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
 public class RegisterNewUser extends AppCompatActivity {
 
@@ -63,8 +67,32 @@ public class RegisterNewUser extends AppCompatActivity {
             BackgroundTask backgroundTask = new BackgroundTask(user, method);
             backgroundTask.execute();
             Log.i(TAG, "All your info are belong to us!");
-
-            finish();
+            Lock lock = new ReentrantLock();
+            while (backgroundTask.isAlive()) {
+                try {
+                    lock.lock();
+                    wait(100);
+                    lock.unlock();
+                } catch (InterruptedException e) {
+                    Log.e(TAG, "Wait was interrupted: " + e.toString());
+                }
+            }
+            stopLockTask();
+            Log.i(TAG, "Background Task is dead");
+            String response = backgroundTask.getStatusString();
+            if (response.equals("Success")) {
+                Intent intent = new Intent(this, Calendar.class);
+                Log.i(TAG, "Starting Calendar Activity");
+                startActivity(intent);
+                finish();
+            } else {
+                System.out.println(response);
+                Toast.makeText(this, "Invalid username", Toast.LENGTH_LONG).show();
+                Log.i(TAG, "Error creating the user");
+                emailView.setText("");
+                passwordView.setText("");
+                passwordConfirmView.setText("");
+            }
         }
      }
 }

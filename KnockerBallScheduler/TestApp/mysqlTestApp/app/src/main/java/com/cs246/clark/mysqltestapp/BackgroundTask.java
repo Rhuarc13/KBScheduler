@@ -29,6 +29,8 @@ public class BackgroundTask extends AsyncTask<String, String, String> implements
 
     User user;
     String method;
+    String status;
+    boolean alive;
     private static final String TAG = "Background Task";
 
     BackgroundTask(User _user, String _method){
@@ -45,6 +47,8 @@ public class BackgroundTask extends AsyncTask<String, String, String> implements
     protected void onPreExecute(){
         //we don't need to do anything here...
         super.onPreExecute();
+        alive = true;
+        status = "";
     }
 
     @Override
@@ -99,7 +103,7 @@ public class BackgroundTask extends AsyncTask<String, String, String> implements
             System.out.println(responseCode);
             if(responseCode != 200){
                 Log.e(TAG, "Received bad response code: " + responseCode);
-                return "Failed to connect to the server...";
+                status = Integer.toString(responseCode);
             }
 
             InputStream in = connection.getInputStream();
@@ -115,6 +119,7 @@ public class BackgroundTask extends AsyncTask<String, String, String> implements
             connection.disconnect();
 
             System.out.println(response);
+            status = "Success";
 
         } catch (Exception e) {
             Log.e("log_tag", "Error in http connection " + e.toString());
@@ -128,6 +133,14 @@ public class BackgroundTask extends AsyncTask<String, String, String> implements
     @Override
     protected void onPostExecute(String result){
         //display a confirmation message as Toast when we're done
+        alive = false;
+    }
 
+    public boolean isAlive() {
+        return alive;
+    }
+
+    public String getStatusString() {
+        return status;
     }
 }
