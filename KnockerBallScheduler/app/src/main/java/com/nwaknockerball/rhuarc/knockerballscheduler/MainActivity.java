@@ -301,7 +301,7 @@ public class MainActivity extends Activity {
                 output.add(0, "Data retrieved using the Google Calendar API:");
                 mOutputText.setText(TextUtils.join("\n", output));
             }
-        }
+        }ec
 
         @Override
         protected void onCancelled() {
