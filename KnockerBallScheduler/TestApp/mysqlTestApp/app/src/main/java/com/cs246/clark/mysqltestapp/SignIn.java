@@ -8,6 +8,9 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
+
 
 public class SignIn extends Activity {
 
@@ -15,7 +18,7 @@ public class SignIn extends Activity {
     TextView passLogin;
     Response response;
     private static final String TAG = "SIGN_IN";
-    private static final String SUCCESS = "SUCCESS: Customer creation complete";
+    private static final String SUCCESS = "Success";
 
 
     /*********************************************************************
@@ -49,6 +52,17 @@ public class SignIn extends Activity {
         backgroundTask.execute();
         Log.i(TAG, "Once your a jet your a jet all the way");
 
+        Lock lock = new ReentrantLock();
+        synchronized (lock) {
+            while (response.getCode() == 0) {
+                try {
+                    lock.wait(100);
+                } catch (InterruptedException e) {
+                    Log.e(TAG, "Ran into an InterruptedException");
+                }
+            }
+        }
+
         if (response.getCode() == 200) {
             if (response.getText().equals(SUCCESS)) {
                 Intent intent = new Intent(this, Calendar.class);
@@ -60,10 +74,11 @@ public class SignIn extends Activity {
                     Toast.makeText(this, "Invalid Credentials", Toast.LENGTH_LONG).show();
                     emailLogin.setText("");
                     passLogin.setText("");
+                    emailLogin.requestFocus();
                 }
             }
         } else {
-            Toast.makeText(this, "Error occurred connecting to the database", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Error occurred connecting to the database" + response.getCode(), Toast.LENGTH_LONG).show();
         }
 
     }
