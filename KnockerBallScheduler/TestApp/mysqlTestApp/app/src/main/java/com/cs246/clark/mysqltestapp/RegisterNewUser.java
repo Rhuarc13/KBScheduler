@@ -87,6 +87,7 @@ public class RegisterNewUser extends AppCompatActivity {
                 if (response.getText().equals(SUCCESS)) {
                     Intent intent = new Intent(this, Calendar.class);
                     startActivity(intent);
+                    finish();
                 } else {
                     Log.e(TAG, "Incorrect response string: " + response.getText());
                     emailView.setText("");

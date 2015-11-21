@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 public class SignIn extends Activity {
@@ -14,6 +15,7 @@ public class SignIn extends Activity {
     TextView passLogin;
     Response response;
     private static final String TAG = "SIGN_IN";
+    private static final String SUCCESS = "SUCCESS: Customer creation complete";
 
 
     /*********************************************************************
@@ -46,11 +48,25 @@ public class SignIn extends Activity {
         BackgroundTask backgroundTask = new BackgroundTask(user, method, response);
         backgroundTask.execute();
         Log.i(TAG, "Once your a jet your a jet all the way");
-        finish();
-        Intent intent = new Intent(this, Calendar.class);
-        startActivity(intent);
 
+        if (response.getCode() == 200) {
+            if (response.getText().equals(SUCCESS)) {
+                Intent intent = new Intent(this, Calendar.class);
+                startActivity(intent);
+                finish();
+            } else {
+                Log.e(TAG, "Incorrect response string: " + response.getText());
+                if (response.getText().equals("email") || response.getText().equals("password")) {
+                    Toast.makeText(this, "Invalid Credentials", Toast.LENGTH_LONG).show();
+                    emailLogin.setText("");
+                    passLogin.setText("");
+                }
+            }
+        } else {
+            Toast.makeText(this, "Error occurred connecting to the database", Toast.LENGTH_LONG).show();
         }
+
     }
+}
 
 
