@@ -75,7 +75,7 @@ public class RegisterNewUser extends AppCompatActivity {
             Lock lock = new ReentrantLock();
             int waitTime = 0;
             synchronized (lock) {
-                while (response.getCode() == 0 && waitTime < 16) {
+                while (response.getCode() == 0 && waitTime < 26) {
                     try {
                         lock.wait(100);
                         waitTime++;
