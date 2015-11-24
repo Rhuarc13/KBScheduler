@@ -73,10 +73,12 @@ public class RegisterNewUser extends AppCompatActivity {
             Log.i(TAG, "All your info are belong to us!");
 
             Lock lock = new ReentrantLock();
+            int waitTime = 0;
             synchronized (lock) {
-                while (response.getCode() == 0) {
+                while (response.getCode() == 0 && waitTime < 16) {
                     try {
                         lock.wait(100);
+                        waitTime++;
                     } catch (InterruptedException e) {
                         Log.e(TAG, "Ran into an InterruptedException");
                     }

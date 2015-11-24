@@ -53,10 +53,12 @@ public class SignIn extends Activity {
         Log.i(TAG, "Once your a jet your a jet all the way");
 
         Lock lock = new ReentrantLock();
+        int waitTime = 0;
         synchronized (lock) {
-            while (response.getCode() == 0) {
+            while (response.getCode() == 0 && waitTime < 16) {
                 try {
                     lock.wait(100);
+                    waitTime++;
                 } catch (InterruptedException e) {
                     Log.e(TAG, "Ran into an InterruptedException");
                 }
@@ -78,7 +80,7 @@ public class SignIn extends Activity {
                 }
             }
         } else {
-            Toast.makeText(this, "Error occurred connecting to the database" + response.getCode(), Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Error occurred connecting to the database: code " + response.getCode(), Toast.LENGTH_LONG).show();
         }
 
     }

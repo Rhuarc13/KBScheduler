@@ -117,7 +117,7 @@ public class BackgroundTask extends AsyncTask<String, String, String> implements
             System.out.println(response);
 
         } catch (Exception e) {
-            Log.e("log_tag", "Error in http connection " + e.toString());
+            Log.e(TAG, "Error in http connection " + e.toString());
         }
 
         //this should never ever happen, so if it does..please alert the local authorities
