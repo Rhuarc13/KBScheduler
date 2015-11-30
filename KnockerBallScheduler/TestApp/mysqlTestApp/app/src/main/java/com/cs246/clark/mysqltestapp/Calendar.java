@@ -14,11 +14,11 @@ public class Calendar extends Activity {
         setContentView(R.layout.calendar_activity);
 
 
-
+        Log.e(TAG, "You made a booboo");
+        Log.i(TAG, "You have selected a date");
+        Log.i(TAG, "You have selected a time");
 
     }
 
-    Log.e(TAG, "You made a booboo");
-    Log.i(TAG, "You have selected a date");
-    Log.i(TAG, "You have selected a time");
+
 }
