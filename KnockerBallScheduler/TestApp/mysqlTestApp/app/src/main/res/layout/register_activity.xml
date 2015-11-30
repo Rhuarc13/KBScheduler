@@ -5,7 +5,8 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context="com.cs246.clark.mysqltestapp.LoginActivity">
+    tools:context="com.cs246.clark.mysqltestapp.LoginActivity"
+    android:background="@color/background">
 
     <ScrollView
         android:layout_width="fill_parent"
@@ -90,7 +91,8 @@
             android:layout_height="80dp"
             android:layout_gravity="center"
             android:text="@string/loginActivity_register_button"
-            android:onClick="registerButtonPress"/>
+            android:onClick="registerButtonPress"
+            android:background="@color/accent" />
 
         <Space
             android:layout_width="match_parent"

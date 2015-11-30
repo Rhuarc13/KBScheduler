@@ -5,7 +5,8 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context="com.cs246.clark.mysqltestapp.SignInActivity">
+    tools:context="com.cs246.clark.mysqltestapp.SignInActivity"
+    android:background="@color/background">
 
     <LinearLayout
         android:orientation="vertical"
@@ -55,7 +56,8 @@
             android:layout_height="80dp"
             android:layout_gravity="center"
             android:text="@string/signInButton"
-            android:onClick="signInButton"/>
+            android:onClick="signInButton"
+            android:background="@color/accent" />
 
 
     </LinearLayout>
