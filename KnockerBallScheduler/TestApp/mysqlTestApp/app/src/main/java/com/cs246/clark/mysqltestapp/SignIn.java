@@ -6,13 +6,19 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
 
 public class SignIn extends Activity {
 
     TextView emailLogin;
     TextView passLogin;
+    Response response;
     private static final String TAG = "SIGN_IN";
+    private static final String SUCCESS = "Success";
 
 
     /*********************************************************************
@@ -22,6 +28,8 @@ public class SignIn extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.signin_activity);
+
+        response = new Response();
     }
 
     /*********************************************************************
@@ -40,14 +48,42 @@ public class SignIn extends Activity {
 
         String method = "login";
 
-        BackgroundTask backgroundTask = new BackgroundTask(user, method);
+        BackgroundTask backgroundTask = new BackgroundTask(user, method, response);
         backgroundTask.execute();
         Log.i(TAG, "Once your a jet your a jet all the way");
-        finish();
-        Intent intent = new Intent(this, Calendar.class);
-        startActivity(intent);
 
+        Lock lock = new ReentrantLock();
+        int waitTime = 0;
+        synchronized (lock) {
+            while (response.getCode() == 0 && waitTime < 26) {
+                try {
+                    lock.wait(100);
+                    waitTime++;
+                } catch (InterruptedException e) {
+                    Log.e(TAG, "Ran into an InterruptedException");
+                }
+            }
         }
+
+        if (response.getCode() == 200) {
+            if (response.getText().equals(SUCCESS)) {
+                Intent intent = new Intent(this, Calendar.class);
+                startActivity(intent);
+                finish();
+            } else {
+                Log.e(TAG, "Incorrect response string: " + response.getText());
+                if (response.getText().equals("email") || response.getText().equals("password")) {
+                    Toast.makeText(this, "Invalid Credentials", Toast.LENGTH_LONG).show();
+                    emailLogin.setText("");
+                    passLogin.setText("");
+                    emailLogin.requestFocus();
+                }
+            }
+        } else {
+            Toast.makeText(this, "Error occurred connecting to the database: code " + response.getCode(), Toast.LENGTH_LONG).show();
+        }
+
     }
+}
 
 
