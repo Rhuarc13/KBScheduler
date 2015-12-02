@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "/home/rhuarc/Documents/Programming/Java/assign1/TestApp/KBScheduler/KnockerBallScheduler/TestApp/ExtendedCalendarView/app/build/intermediates/res/merged/androidTest/debug/layout/day_of_week.xml",
+        "source": "/home/rhuarc/Documents/Programming/Java/assign1/TestApp/KBScheduler/KnockerBallScheduler/TestApp/ExtendedCalendarView/app/build/intermediates/bundles/debug/res/layout/day_of_week.xml"
+    },
+    {
+        "merged": "/home/rhuarc/Documents/Programming/Java/assign1/TestApp/KBScheduler/KnockerBallScheduler/TestApp/ExtendedCalendarView/app/build/intermediates/res/merged/androidTest/debug/layout/day_view.xml",
+        "source": "/home/rhuarc/Documents/Programming/Java/assign1/TestApp/KBScheduler/KnockerBallScheduler/TestApp/ExtendedCalendarView/app/build/intermediates/bundles/debug/res/layout/day_view.xml"
+    }
+]

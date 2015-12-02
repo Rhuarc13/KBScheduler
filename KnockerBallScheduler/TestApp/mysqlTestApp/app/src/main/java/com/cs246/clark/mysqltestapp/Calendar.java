@@ -7,10 +7,12 @@ import android.util.Log;
 import android.view.View;
 import android.widget.CalendarView;
 
+import com.tyczj.extendedcalendarview.ExtendedCalendarView;
+
 import java.util.Date;
 
 public class Calendar extends Activity {
-    CalendarView calendarView;
+    ExtendedCalendarView calendarView;
     private static final String TAG = "Calendar Activity";
 
     @Override
@@ -18,18 +20,18 @@ public class Calendar extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.calendar_activity);
 
-        calendarView = (CalendarView) findViewById(R.id.calendarView);
-        calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
+        calendarView = (ExtendedCalendarView) findViewById(R.id.calendar);
+        /*calendarView.setOnDayClickListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(CalendarView view, int year, int month, int dayOfMonth) {
-                Date selected = new Date(calendarView.getDate());
+                Date selected = new Date(calendarView.getDay());
                 Log.v(TAG, "Date selected is " + selected.toString());
             }
-        });
+        });*/
 
     }
     public void onClick(View v) {
-        Date selected = new Date(calendarView.getDate());
-        Log.v(TAG, "Date selected is " + selected.toString());
+        /*Date selected = new Date(calendarView.getDate());
+        Log.v(TAG, "Date selected is " + selected.toString());*/
     }
 }

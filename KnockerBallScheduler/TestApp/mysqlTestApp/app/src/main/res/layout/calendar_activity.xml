@@ -8,14 +8,11 @@
     tools:context="com.cs246.clark.mysqltestapp.calendar"
     android:clickable="false">
 
-    <CalendarView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/calendarView"
-        android:layout_centerVertical="true"
-        android:layout_alignParentStart="true"
-        android:clickable="true"
-        android:onClick="onClick" />
+    <com.tyczj.extendedcalendarview.ExtendedCalendarView
+        android:id="@+id/calendar"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        />
 
     <TextView
         android:layout_width="wrap_content"
@@ -23,7 +20,7 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="@string/selectDate"
         android:id="@+id/selectDate"
-        android:layout_above="@+id/calendarView"
+        android:layout_above="@+id/calendar"
         android:layout_centerHorizontal="true" />
 
     <Space
