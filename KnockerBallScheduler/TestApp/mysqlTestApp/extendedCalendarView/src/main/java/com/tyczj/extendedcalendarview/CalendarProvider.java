@@ -51,7 +51,7 @@ public class CalendarProvider extends ContentProvider {
         @Override
         public void onCreate(SQLiteDatabase db) 
         {
-            createTables(db);
+			createTables(db);
         }
         
 
@@ -112,6 +112,9 @@ public class CalendarProvider extends ContentProvider {
 	public boolean onCreate() {
 		Context context = getContext();
 		DBHelper = new DatabaseHelper(context);
+		if (DBHelper == null) {
+			Log.i("CalendarProvider", "DBHelper is null");
+		}
 		db = DBHelper.getWritableDatabase();
 		return (db == null)? false:true;
 	}
