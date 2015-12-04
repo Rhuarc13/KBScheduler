@@ -66,7 +66,6 @@ public class RegisterNewUser extends AppCompatActivity {
         } else {
             //Create a server class and run it to send the info to the DB
             String method = "register";
-            boolean validated = false;
 
             BackgroundTask backgroundTask = new BackgroundTask(user, method, response);
             backgroundTask.execute();
@@ -95,7 +94,7 @@ public class RegisterNewUser extends AppCompatActivity {
                     emailView.setText("");
                     passwordView.setText("");
                     passwordConfirmView.setText("");
-                    Toast.makeText(this, "Invalid email", Toast.LENGTH_LONG).show();
+                    Toast.makeText(this, "Account exists with this email", Toast.LENGTH_LONG).show();
                 }
             } else {
                 Toast.makeText(this, "Error occurred connecting to the database", Toast.LENGTH_LONG).show();
