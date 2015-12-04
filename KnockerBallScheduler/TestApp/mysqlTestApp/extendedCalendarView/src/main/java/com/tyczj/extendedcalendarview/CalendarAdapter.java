@@ -135,7 +135,6 @@ public class CalendarAdapter extends BaseAdapter{
 				purple.setVisibility(View.INVISIBLE);
 				green.setVisibility(View.INVISIBLE);
 				purple.setVisibility(View.INVISIBLE);
-				orange.setVisibility(View.INVISIBLE);
 				red.setVisibility(View.INVISIBLE);
 				
 				if(colors.contains(0)){
