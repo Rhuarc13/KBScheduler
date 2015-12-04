@@ -6,4 +6,4 @@
     <item android:state_selected="true" android:drawable="@drawable/day_selected"/>
 	<item android:drawable="@drawable/normal_day"/>
 </selector>
-<!-- From: file:/home/rhuarc/Documents/Programming/Java/assign1/TestApp/KBScheduler/KnockerBallScheduler/TestApp/mysqlTestApp/extendedCalendarView/src/main/res/drawable/date_number_background.xml -->
+<!-- From: file:/C:/Users/Jared/StudioProjects/KBScheduler/KnockerBallScheduler/TestApp/mysqlTestApp/extendedCalendarView/src/main/res/drawable/date_number_background.xml -->

@@ -31,7 +31,7 @@ public class Calendar extends Activity {
 
         java.util.Calendar cal = java.util.Calendar.getInstance();
         CalendarAdapter ca = new CalendarAdapter(getApplicationContext(), cal);
-        ca.getView()
+        ca.getView();
 
         calendarView.setOnDayClickListener(new ExtendedCalendarView.OnDayClickListener() {
             @Override
