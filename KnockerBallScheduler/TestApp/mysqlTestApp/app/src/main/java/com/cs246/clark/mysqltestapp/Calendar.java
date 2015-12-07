@@ -1,6 +1,7 @@
 package com.cs246.clark.mysqltestapp;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -9,6 +10,9 @@ import java.util.Date;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.HashSet;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
+
 import android.widget.Toast;
 
 
@@ -21,13 +25,34 @@ public class Calendar extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.calendar_activity);
 
-        HashSet<Date> events = new HashSet<>();
-        events.add(new Date());
-        java.util.Calendar cal = java.util.Calendar.getInstance();
-        cal.set(2015, 11, 4);
-        events.add(new Date(cal.getTimeInMillis()));
-
         CalendarView cv = ((CalendarView)findViewById(R.id.calendar_view));
+        Response r = new Response();
+
+        HashSet<Date> events = cv.getEvents();
+        CalendarEvents ce = new CalendarEvents(events, r);
+
+        ce.execute();
+        Log.i(TAG, "Getting the events from the server");
+
+        Lock lock = new ReentrantLock();
+        int waitTime = 0;
+        synchronized (lock) {
+            while (r.getCode() == 0 && waitTime < 26) {
+                try {
+                    lock.wait(100);
+                    waitTime++;
+                } catch (InterruptedException e) {
+                    Log.e(TAG, "Ran into an InterruptedException");
+                }
+            }
+        }
+
+        if (r.getCode() == 200) {
+
+        } else {
+            Toast.makeText(this, "Error occurred connecting to the database", Toast.LENGTH_LONG).show();
+        }
+
         cv.updateCalendar(events);
 
         // assign event handler

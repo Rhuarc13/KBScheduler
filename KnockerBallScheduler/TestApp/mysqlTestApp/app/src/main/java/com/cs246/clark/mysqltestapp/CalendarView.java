@@ -44,6 +44,8 @@ public class CalendarView extends LinearLayout
     //event handling
     private EventHandler eventHandler = null;
 
+    private HashSet<Date> events = new HashSet<>();
+
     // internal components
     private LinearLayout header;
     private ImageView btnPrev;
@@ -293,5 +295,13 @@ public class CalendarView extends LinearLayout
     public interface EventHandler
     {
         void onDayLongPress(Date date);
+    }
+
+    public HashSet<Date> getEvents() {
+        return events;
+    }
+
+    public void setEvents(HashSet<Date> _events) {
+        events = _events;
     }
 }
