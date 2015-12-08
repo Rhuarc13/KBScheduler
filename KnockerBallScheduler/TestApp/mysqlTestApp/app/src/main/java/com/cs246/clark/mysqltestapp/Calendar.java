@@ -62,6 +62,9 @@ public class Calendar extends Activity {
                 // show returned day
                 DateFormat df = SimpleDateFormat.getDateInstance();
                 Toast.makeText(Calendar.this, df.format(date), Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getApplicationContext(), DayView.class);
+                intent.putExtra("date", date.toString());
+                startActivity(intent);
             }
         });
 
