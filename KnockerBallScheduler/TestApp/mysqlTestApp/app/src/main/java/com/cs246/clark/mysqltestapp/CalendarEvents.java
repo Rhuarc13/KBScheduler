@@ -21,10 +21,10 @@ import org.json.JSONObject;
  */
 public class CalendarEvents extends AsyncTask<String, String, String> {
     Response responseClass;
-    HashSet<Date> dates;
+    HashSet<Day> dates;
     private static final String TAG = "Pull Calendar Events";
 
-    CalendarEvents(HashSet<Date> _events, Response _response){
+    CalendarEvents(HashSet<Day> _events, Response _response){
         dates = _events;
         responseClass = _response;
     }
@@ -67,9 +67,11 @@ public class CalendarEvents extends AsyncTask<String, String, String> {
             try {
                 String jsontext = readAll(reader);
                 Log.i(TAG, jsontext);
+
                 JSONObject jsonObject = new JSONObject(jsontext);
                 JSONArray array = jsonObject.getJSONArray("events");
                 Log.i(TAG, "Array length: " + array.length());
+
                 for (int i = 0; i < array.length(); i++) {
                     JSONObject event = array.getJSONObject(i);
                     String date = event.getString("reservation_date");
@@ -79,13 +81,17 @@ public class CalendarEvents extends AsyncTask<String, String, String> {
                     java.util.Calendar cal = java.util.Calendar.getInstance();
                     String[] specifics = date.split(Pattern.quote("-"));
                     cal.set(Integer.parseInt(specifics[0]), Integer.parseInt(specifics[1]) - 1, Integer.parseInt(specifics[2]));
-                    dates.add(new Date(cal.getTimeInMillis()));
+                    Day day = new Day(new Date(cal.getTimeInMillis()));
+
 
                     if (flag == 'T') {
                         //Set background color to available
+                        day.setAvailable(true);
                     } else {
                         //Set background color to black
+                        day.setAvailable(false);
                     }
+                    dates.add(day);
                 }
             } catch (org.json.JSONException e) {
                 Log.e(TAG, "JSON error: " + e.toString());
