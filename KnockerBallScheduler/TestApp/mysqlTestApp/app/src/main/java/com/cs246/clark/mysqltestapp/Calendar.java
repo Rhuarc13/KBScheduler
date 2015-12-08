@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
-import java.sql.Time;
 import java.util.Date;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -54,6 +53,7 @@ public class Calendar extends Activity {
         }
 
         cv.updateCalendar(events);
+        cv.refreshDrawableState();
 
         // assign event handler
         cv.setEventHandler(new CalendarView.EventHandler() {
