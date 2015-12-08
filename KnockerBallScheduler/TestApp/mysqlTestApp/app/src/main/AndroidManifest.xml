@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.cs246.clark.mysqltestapp">
+    package="com.cs246.clark.mysqltestapp" >
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -14,20 +14,22 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        android:theme="@style/AppTheme" >
+        <activity android:name=".MainActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".RegisterNewUser"></activity>
+        <activity android:name=".RegisterNewUser" />
         <activity
             android:name=".SignIn"
-            android:label="@string/title_activity_sign_in"></activity>
-        <activity android:name=".Calendar"></activity>
-        <activity android:name=".DayView"></activity>
+            android:label="@string/title_activity_sign_in" />
+        <activity android:name=".Calendar" />
+        <activity android:name=".DayView" />
+        <activity android:name=".Confermation" >
+        </activity>
     </application>
 
 </manifest>
