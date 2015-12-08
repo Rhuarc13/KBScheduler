@@ -19,4 +19,8 @@
     <string name="signInButton">Sign In</string>
     completions."
 
+    <!-- Strings for displaying legend for calendar -->
+    <string name="blacked_out">Unavailable Days</string>
+    <string name="red_out">Partially Unavailable Days</string>
+
 </resources>
