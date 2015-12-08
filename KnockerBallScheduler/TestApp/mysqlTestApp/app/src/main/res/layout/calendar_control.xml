@@ -59,9 +59,49 @@
             android:layout_weight="1"
             android:gravity="center_horizontal"
             android:textColor="#222222"
-            android:text="SUN"/>
-
-        ... Repeat for MON - SAT.
+            android:text="Sun"/>
+=       <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center_horizontal"
+        android:textColor="#222222"
+        android:text="Mon"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:textColor="#222222"
+            android:text="Tue"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:textColor="#222222"
+            android:text="Wed"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:textColor="#222222"
+            android:text="Thu"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:textColor="#222222"
+            android:text="Fri"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:textColor="#222222"
+            android:text="Sat"/>
     </LinearLayout>
 
     <!-- days view -->

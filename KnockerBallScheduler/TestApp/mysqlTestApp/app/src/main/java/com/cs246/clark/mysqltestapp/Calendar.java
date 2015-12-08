@@ -5,10 +5,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
-import java.sql.Time;
-import java.util.Date;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
@@ -28,7 +27,7 @@ public class Calendar extends Activity {
         CalendarView cv = ((CalendarView)findViewById(R.id.calendar_view));
         Response r = new Response();
 
-        HashSet<Date> events = cv.getEvents();
+        HashSet<Day> events = cv.getEvents();
         CalendarEvents ce = new CalendarEvents(events, r);
 
         ce.execute();
@@ -54,11 +53,12 @@ public class Calendar extends Activity {
         }
 
         cv.updateCalendar(events);
+        cv.refreshDrawableState();
 
         // assign event handler
         cv.setEventHandler(new CalendarView.EventHandler() {
             @Override
-            public void onDayLongPress(Date date) {
+            public void onDayPress(Date date) {
                 // show returned day
                 DateFormat df = SimpleDateFormat.getDateInstance();
                 Toast.makeText(Calendar.this, df.format(date), Toast.LENGTH_SHORT).show();

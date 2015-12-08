@@ -15,7 +15,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import java.text.SimpleDateFormat;
+import java.text.DateFormatSymbols;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -23,6 +23,7 @@ import java.util.HashSet;
 
 /**
  * Created by a7med on 28/06/2015.
+ * Updated by Rhuarc13.
  */
 public class CalendarView extends LinearLayout
 {
@@ -44,7 +45,7 @@ public class CalendarView extends LinearLayout
     //event handling
     private EventHandler eventHandler = null;
 
-    private HashSet<Date> events = new HashSet<>();
+    private HashSet<Day> events = new HashSet<>();
 
     // internal components
     private LinearLayout header;
@@ -131,7 +132,7 @@ public class CalendarView extends LinearLayout
             public void onClick(View v)
             {
                 currentDate.add(Calendar.MONTH, 1);
-                updateCalendar();
+                updateCalendar(events);
             }
         });
 
@@ -142,23 +143,18 @@ public class CalendarView extends LinearLayout
             public void onClick(View v)
             {
                 currentDate.add(Calendar.MONTH, -1);
-                updateCalendar();
+                updateCalendar(events);
             }
         });
 
         // long-pressing a day
-        grid.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener()
+        grid.setOnItemClickListener(new AdapterView.OnItemClickListener()
         {
 
             @Override
-            public boolean onItemLongClick(AdapterView<?> view, View cell, int position, long id)
+            public void onItemClick(AdapterView<?> view, View cell, int position, long id)
             {
-                // handle long-press
-                if (eventHandler == null)
-                    return false;
-
-                eventHandler.onDayLongPress((Date)view.getItemAtPosition(position));
-                return true;
+                eventHandler.onDayPress((Date)view.getItemAtPosition(position));
             }
         });
     }
@@ -174,7 +170,7 @@ public class CalendarView extends LinearLayout
     /**
      * Display dates correctly in grid
      */
-    public void updateCalendar(HashSet<Date> events)
+    public void updateCalendar(HashSet<Day> events)
     {
         ArrayList<Date> cells = new ArrayList<>();
         Calendar calendar = (Calendar)currentDate.clone();
@@ -197,8 +193,7 @@ public class CalendarView extends LinearLayout
         grid.setAdapter(new CalendarAdapter(getContext(), cells, events));
 
         // update title
-        SimpleDateFormat sdf = new SimpleDateFormat(dateFormat);
-        txtDate.setText(sdf.format(currentDate.getTime()));
+        txtDate.setText(new DateFormatSymbols().getMonths()[currentDate.get(Calendar.MONTH)]);
 
         // set header color according to current season
         int month = currentDate.get(Calendar.MONTH);
@@ -212,12 +207,12 @@ public class CalendarView extends LinearLayout
     private class CalendarAdapter extends ArrayAdapter<Date>
     {
         // days with events
-        private HashSet<Date> eventDays;
+        private HashSet<Day> eventDays;
 
         // for view inflation
         private LayoutInflater inflater;
 
-        public CalendarAdapter(Context context, ArrayList<Date> days, HashSet<Date> eventDays)
+        public CalendarAdapter(Context context, ArrayList<Date> days, HashSet<Day> eventDays)
         {
             super(context, R.layout.control_calendar_day, days);
             this.eventDays = eventDays;
@@ -228,10 +223,10 @@ public class CalendarView extends LinearLayout
         public View getView(int position, View view, ViewGroup parent)
         {
             // day in question
-            Date date = getItem(position);
-            int day = date.getDate();
-            int month = date.getMonth();
-            int year = date.getYear();
+            Day date = new Day(getItem(position));
+            int day = date.getDate().getDate();
+            int month = date.getDate().getMonth();
+            int year = date.getDate().getYear();
 
             // today
             Date today = new Date();
@@ -244,14 +239,18 @@ public class CalendarView extends LinearLayout
             view.setBackgroundResource(0);
             if (eventDays != null)
             {
-                for (Date eventDate : eventDays)
+                for (Day eventDate : eventDays)
                 {
-                    if (eventDate.getDate() == day &&
-                            eventDate.getMonth() == month &&
-                            eventDate.getYear() == year)
+                    if (eventDate.getDate().getDate() == day &&
+                            eventDate.getDate().getMonth() == month &&
+                            eventDate.getDate().getYear() == year)
                     {
                         // mark this day for event
-                        view.setBackgroundResource(R.drawable.reminder);
+                        if (eventDate.isAvailable()) {
+                            view.setBackgroundResource(R.drawable.yellow_background);
+                        } else {
+                            view.setBackgroundResource(R.drawable.red_background);
+                        }
                         break;
                     }
                 }
@@ -272,9 +271,12 @@ public class CalendarView extends LinearLayout
                 ((TextView)view).setTypeface(null, Typeface.BOLD);
                 ((TextView)view).setTextColor(getResources().getColor(R.color.today));
             }
+            else {
+                ((TextView)view).setTextColor(getResources().getColor(R.color.main_text));
+            }
 
             // set text
-            ((TextView)view).setText(String.valueOf(date.getDate()));
+            ((TextView)view).setText(String.valueOf(date.getDate().getDate()));
 
             return view;
         }
@@ -294,14 +296,14 @@ public class CalendarView extends LinearLayout
      */
     public interface EventHandler
     {
-        void onDayLongPress(Date date);
+        void onDayPress(Date date);
     }
 
-    public HashSet<Date> getEvents() {
+    public HashSet<Day> getEvents() {
         return events;
     }
 
-    public void setEvents(HashSet<Date> _events) {
+    public void setEvents(HashSet<Day> _events) {
         events = _events;
     }
 }
