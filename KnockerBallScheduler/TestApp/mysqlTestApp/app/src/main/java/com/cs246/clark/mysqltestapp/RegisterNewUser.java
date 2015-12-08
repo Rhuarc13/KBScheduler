@@ -82,22 +82,29 @@ public class RegisterNewUser extends AppCompatActivity {
                         Log.e(TAG, "Ran into an InterruptedException");
                     }
                 }
-            }
 
-            if (response.getCode() == 200) {
-                if (response.getText().equals(SUCCESS)) {
-                    Intent intent = new Intent(this, Calendar.class);
-                    startActivity(intent);
-                    finish();
-                } else {
-                    Log.e(TAG, "Incorrect response string: " + response.getText());
-                    emailView.setText("");
-                    passwordView.setText("");
-                    passwordConfirmView.setText("");
-                    Toast.makeText(this, "Account exists with this email", Toast.LENGTH_LONG).show();
+                try {
+                    lock.wait(1500);
+
+                    if (response.getCode() == 200) {
+
+                        if (response.getText().equals(SUCCESS)) {
+                            Intent intent = new Intent(this, Calendar.class);
+                            startActivity(intent);
+                            finish();
+                        } else {
+                            Log.e(TAG, "Incorrect response string: " + response.getText());
+                            emailView.setText("");
+                            passwordView.setText("");
+                            passwordConfirmView.setText("");
+                            Toast.makeText(this, "Account exists with this email", Toast.LENGTH_LONG).show();
+                        }
+                    } else {
+                        Toast.makeText(this, "Error occurred connecting to the database", Toast.LENGTH_LONG).show();
+                    }
+                } catch (InterruptedException e) {
+                    Log.e(TAG, "Experienced Interruption: " + e.toString());
                 }
-            } else {
-                Toast.makeText(this, "Error occurred connecting to the database", Toast.LENGTH_LONG).show();
             }
         }
      }

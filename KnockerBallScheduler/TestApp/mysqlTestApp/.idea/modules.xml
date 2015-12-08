@@ -3,7 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/extendedcalendarview/extendedcalendarview.iml" filepath="$PROJECT_DIR$/extendedcalendarview/extendedcalendarview.iml" />
       <module fileurl="file://$PROJECT_DIR$/mysqlTestApp.iml" filepath="$PROJECT_DIR$/mysqlTestApp.iml" />
     </modules>
   </component>
