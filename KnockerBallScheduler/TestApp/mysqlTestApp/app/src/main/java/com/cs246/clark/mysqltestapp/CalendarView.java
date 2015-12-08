@@ -15,7 +15,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import java.text.SimpleDateFormat;
+import java.text.DateFormatSymbols;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -197,8 +197,7 @@ public class CalendarView extends LinearLayout
         grid.setAdapter(new CalendarAdapter(getContext(), cells, events));
 
         // update title
-        SimpleDateFormat sdf = new SimpleDateFormat(dateFormat);
-        txtDate.setText(sdf.format(currentDate.getTime()));
+        txtDate.setText(new DateFormatSymbols().getMonths()[currentDate.get(Calendar.MONTH)]);
 
         // set header color according to current season
         int month = currentDate.get(Calendar.MONTH);
