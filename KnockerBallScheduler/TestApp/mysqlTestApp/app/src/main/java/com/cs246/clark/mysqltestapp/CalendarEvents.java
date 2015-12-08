@@ -43,12 +43,7 @@ public class CalendarEvents extends AsyncTask<String, String, String> {
 
     protected String doInBackground(String... params) {
         String login = "http://96.18.168.42:80/pull_dates_times.php";
-<<<<<<< HEAD
-        String data = "";
-        String response = "";
-=======
 
->>>>>>> 5994aa0d3839d19f3b3510aeaac3b9789ea77e48
         try {
             //set up the connection
             URL url = new URL(login);
