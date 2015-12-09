@@ -13,6 +13,9 @@ public class DayView extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.day_view);
         ListView list = (ListView) findViewById(R.id.listView);
+        
+
+
         String date = getIntent().getStringExtra("date");
 
         String dateList[] = date.split("\\s");
@@ -52,6 +55,8 @@ public class DayView extends Activity {
 
         BackgroundTask backgroundTask = new BackgroundTask(date, method);
         backgroundTask.execute();
+
+
 
     }
 }

@@ -2,6 +2,10 @@ package com.cs246.clark.mysqltestapp;
 
 import android.os.AsyncTask;
 import android.util.Log;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.InputStream;
@@ -11,8 +15,10 @@ import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.util.Date;
 import java.util.Observable;
 import java.util.Observer;
+import java.util.regex.Pattern;
 
 /***********************************************************************
  *
@@ -53,6 +59,8 @@ public class BackgroundTask extends AsyncTask<String, String, String> implements
 
     @Override
     protected String doInBackground(String...params) {
+
+
 
         //directs to the register php file
         String login = "";
