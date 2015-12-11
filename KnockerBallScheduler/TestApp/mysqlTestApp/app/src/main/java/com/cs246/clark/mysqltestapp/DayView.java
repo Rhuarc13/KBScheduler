@@ -3,12 +3,17 @@ package com.cs246.clark.mysqltestapp;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+<<<<<<< HEAD
 import android.net.Uri;
+=======
+import android.content.res.Resources;
+>>>>>>> c5921b8d6414a320b3bdc7b9c74b96b3bd86a1c7
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+<<<<<<< HEAD
 import android.widget.Toast;
 
 import com.google.android.gms.appindexing.Action;
@@ -18,6 +23,9 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+=======
+import android.widget.TextView;
+>>>>>>> c5921b8d6414a320b3bdc7b9c74b96b3bd86a1c7
 
 import java.util.ArrayList;
 import java.util.concurrent.locks.Lock;
@@ -79,6 +87,7 @@ public class DayView extends Activity {
         BackgroundTask backgroundTask = new BackgroundTask(date, method, r);
         backgroundTask.execute();
 
+<<<<<<< HEAD
         Lock lock = new ReentrantLock();
         int waitTime = 0;
         synchronized (lock) {
@@ -97,6 +106,17 @@ public class DayView extends Activity {
                 Log.e(TAG, "Ran into an InterruptedException");
             }*/
         }
+=======
+        String timeView = "sevenT";
+
+        Resources res = getResources();
+        int id = res.getIdentifier(timeView, "id", this.getPackageName());
+
+
+        TextView tempTextView = (TextView) findViewById(id);
+        tempTextView.setText("LALALALA SUCCESS!");
+
+>>>>>>> c5921b8d6414a320b3bdc7b9c74b96b3bd86a1c7
 
         if (r.getCode() == 200) {
             Log.i(TAG, "Response is: " + r.getText());
