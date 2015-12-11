@@ -16,9 +16,10 @@ public class Confermation extends Activity {
 
     private void setText() {
         TextView custEmail, custDate, custName, custTime, custAddress;
-        String email, date, name = "", address = "", time = "";
+        String email, date, name, address = "", time = "";
 
         email = getIntent().getStringExtra("email");
+        name = getIntent().getStringExtra("name");
         date = getIntent().getStringExtra("date");
 
         custName = (TextView) findViewById(R.id.customerName);

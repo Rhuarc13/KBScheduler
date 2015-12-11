@@ -31,11 +31,6 @@
 
         <View
             android:layout_width="match_parent"
-<<<<<<< HEAD
-            android:layout_height="wrap_content"
-            android:id="@+id/listView"
-            android:clickable="false" />
-=======
             android:layout_height="3dp"
             android:background="@android:color/darker_gray"
             android:paddingTop="5dp"
@@ -47,199 +42,198 @@
             android:layout_height="match_parent"
             android:fadeScrollbars="false">
 
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true">
-
-
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="6:00 PM"
-                android:id="@+id/six"
-                android:layout_gravity="center_horizontal"
-                android:paddingTop="10dp"
-                android:clickable="true"
-                android:contextClickable="false"
-                android:linksClickable="false" />
-
-            <View
+            <LinearLayout
+                android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@android:color/darker_gray"/>
-
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="6:30 PM"
-                android:id="@+id/sixT"
-                android:layout_gravity="center_horizontal"
-                android:paddingTop="10dp"/>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@android:color/darker_gray"/>
-
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="7:00 PM"
-                android:id="@+id/seven"
-                android:layout_gravity="center_horizontal"
-                android:paddingTop="10dp"/>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@android:color/darker_gray"/>
-
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="7:30 PM"
-                android:id="@+id/sevenT"
-                android:layout_gravity="center_horizontal"
-                android:paddingTop="10dp"/>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@android:color/darker_gray"/>
-
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="8:00 PM"
-                android:id="@+id/eight"
-                android:layout_gravity="center_horizontal"
-                android:paddingTop="10dp"/>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@android:color/darker_gray"/>
-
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="8:30 PM"
-                android:id="@+id/eightT"
-                android:layout_gravity="center_horizontal"
-                android:paddingTop="10dp"/>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@android:color/darker_gray"/>
-
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="9:00 PM"
-                android:id="@+id/nine"
-                android:layout_gravity="center_horizontal"
-                android:paddingTop="10dp"/>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@android:color/darker_gray"/>
-
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="9:30 PM"
-                android:id="@+id/nineT"
-                android:layout_gravity="center_horizontal"
-                android:paddingTop="10dp"/>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@android:color/darker_gray"/>
-
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="10:00 PM"
-                android:id="@+id/ten"
-                android:layout_gravity="center_horizontal"
-                android:paddingTop="10dp"/>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@android:color/darker_gray"/>
-
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="10:30 PM"
-                android:id="@+id/tenT"
-                android:layout_gravity="center_horizontal"
-                android:paddingTop="10dp"/>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@android:color/darker_gray"/>
-
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="11:00 PM"
-                android:id="@+id/eleven"
-                android:layout_gravity="center_horizontal"
-                android:paddingTop="10dp"/>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@android:color/darker_gray"/>
-
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="11:30 PM"
-                android:id="@+id/elevenT"
-                android:layout_gravity="center_horizontal"
-                android:paddingTop="10dp"/>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@android:color/darker_gray"/>
-
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="12:00 AM"
-                android:id="@+id/twelve"
-                android:layout_gravity="center_horizontal"
-                android:paddingTop="10dp"/>
+                android:layout_height="match_parent"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true">
 
 
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="6:00 PM"
+                    android:id="@+id/six"
+                    android:layout_gravity="center_horizontal"
+                    android:paddingTop="10dp"
+                    android:clickable="true"
+                    android:contextClickable="false"
+                    android:linksClickable="false" />
 
-        </LinearLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@android:color/darker_gray"/>
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="6:30 PM"
+                    android:id="@+id/sixT"
+                    android:layout_gravity="center_horizontal"
+                    android:paddingTop="10dp"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@android:color/darker_gray"/>
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="7:00 PM"
+                    android:id="@+id/seven"
+                    android:layout_gravity="center_horizontal"
+                    android:paddingTop="10dp"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@android:color/darker_gray"/>
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="7:30 PM"
+                    android:id="@+id/sevenT"
+                    android:layout_gravity="center_horizontal"
+                    android:paddingTop="10dp"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@android:color/darker_gray"/>
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="8:00 PM"
+                    android:id="@+id/eight"
+                    android:layout_gravity="center_horizontal"
+                    android:paddingTop="10dp"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@android:color/darker_gray"/>
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="8:30 PM"
+                    android:id="@+id/eightT"
+                    android:layout_gravity="center_horizontal"
+                    android:paddingTop="10dp"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@android:color/darker_gray"/>
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="9:00 PM"
+                    android:id="@+id/nine"
+                    android:layout_gravity="center_horizontal"
+                    android:paddingTop="10dp"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@android:color/darker_gray"/>
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="9:30 PM"
+                    android:id="@+id/nineT"
+                    android:layout_gravity="center_horizontal"
+                    android:paddingTop="10dp"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@android:color/darker_gray"/>
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="10:00 PM"
+                    android:id="@+id/ten"
+                    android:layout_gravity="center_horizontal"
+                    android:paddingTop="10dp"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@android:color/darker_gray"/>
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="10:30 PM"
+                    android:id="@+id/tenT"
+                    android:layout_gravity="center_horizontal"
+                    android:paddingTop="10dp"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@android:color/darker_gray"/>
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="11:00 PM"
+                    android:id="@+id/eleven"
+                    android:layout_gravity="center_horizontal"
+                    android:paddingTop="10dp"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@android:color/darker_gray"/>
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="11:30 PM"
+                    android:id="@+id/elevenT"
+                    android:layout_gravity="center_horizontal"
+                    android:paddingTop="10dp"/>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@android:color/darker_gray"/>
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="12:00 AM"
+                    android:id="@+id/twelve"
+                    android:layout_gravity="center_horizontal"
+                    android:paddingTop="10dp"/>
+
+
+
+            </LinearLayout>
         </ScrollView>
->>>>>>> 2f90c66e6c1f241d452b44b3fcb50dd54a9b12ec
 
     </LinearLayout>
 

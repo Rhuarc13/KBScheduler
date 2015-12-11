@@ -69,6 +69,7 @@ public class SignIn extends Activity {
         if (response.getCode() == 200) {
             if (response.getText().equals(SUCCESS)) {
                 Intent intent = new Intent(this, Calendar.class);
+                intent.putExtra("name", getName());
                 intent.putExtra("email", emailLogin.getText().toString());
                 startActivity(intent);
                 finish();
@@ -85,6 +86,12 @@ public class SignIn extends Activity {
             Toast.makeText(this, "Error occurred connecting to the database: code " + response.getCode(), Toast.LENGTH_LONG).show();
         }
 
+    }
+
+    private String getName () {
+        String name = "";
+
+        return name;
     }
 }
 
