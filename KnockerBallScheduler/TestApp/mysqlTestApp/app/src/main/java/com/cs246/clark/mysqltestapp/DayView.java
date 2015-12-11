@@ -2,18 +2,11 @@ package com.cs246.clark.mysqltestapp;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.content.SharedPreferences;
-<<<<<<< HEAD
 import android.net.Uri;
-=======
 import android.content.res.Resources;
->>>>>>> c5921b8d6414a320b3bdc7b9c74b96b3bd86a1c7
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
-<<<<<<< HEAD
 import android.widget.Toast;
 
 import com.google.android.gms.appindexing.Action;
@@ -23,11 +16,7 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-=======
 import android.widget.TextView;
->>>>>>> c5921b8d6414a320b3bdc7b9c74b96b3bd86a1c7
-
-import java.util.ArrayList;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
@@ -87,7 +76,6 @@ public class DayView extends Activity {
         BackgroundTask backgroundTask = new BackgroundTask(date, method, r);
         backgroundTask.execute();
 
-<<<<<<< HEAD
         Lock lock = new ReentrantLock();
         int waitTime = 0;
         synchronized (lock) {
@@ -106,18 +94,9 @@ public class DayView extends Activity {
                 Log.e(TAG, "Ran into an InterruptedException");
             }*/
         }
-=======
-        String timeView = "sevenT";
-
-        Resources res = getResources();
-        int id = res.getIdentifier(timeView, "id", this.getPackageName());
 
 
-        TextView tempTextView = (TextView) findViewById(id);
-        tempTextView.setText("LALALALA SUCCESS!");
-
->>>>>>> c5921b8d6414a320b3bdc7b9c74b96b3bd86a1c7
-
+        String startTime;
         if (r.getCode() == 200) {
             Log.i(TAG, "Response is: " + r.getText());
             try {
@@ -126,7 +105,10 @@ public class DayView extends Activity {
                 for (int i = 0; i < array.length(); i++) {
                     JSONObject times = array.getJSONObject(i);
                     Log.i(TAG, times.toString());
-                    String startTime = times.getString("start_time");
+                    startTime = times.getString("start_time");
+                    int start_hr = Integer.parseInt(startTime.split(":")[0]);
+                    int start_min = Integer.parseInt(startTime.split(":")[1]);
+                    startTime = start_hr + ":" + start_min;
                     String endTime   = times.getString("end_time");
                 }
             } catch (JSONException je) {
@@ -136,13 +118,17 @@ public class DayView extends Activity {
             Toast.makeText(this, "Error occurred connecting to the database", Toast.LENGTH_LONG).show();
         }
 
+        String timeView = "sevenT";
 
+        Resources res = getResources();
+        int id = res.getIdentifier(timeView, "id", this.getPackageName());
+
+
+        TextView tempTextView = (TextView) findViewById(id);
+        tempTextView.setText("LALALALA SUCCESS!");
         //here is where we need to set the color/click-ability of the time slots
 
 
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
     }
 
     public void onClick(View view) {
@@ -151,43 +137,4 @@ public class DayView extends Activity {
         finish();
     }
 
-    @Override
-    public void onStart() {
-        super.onStart();
-
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        client.connect();
-        Action viewAction = Action.newAction(
-                Action.TYPE_VIEW, // TODO: choose an action type.
-                "DayView Page", // TODO: Define a title for the content shown.
-                // TODO: If you have web page content that matches this app activity's content,
-                // make sure this auto-generated web page URL is correct.
-                // Otherwise, set the URL to null.
-                Uri.parse("http://host/path"),
-                // TODO: Make sure this auto-generated app deep link URI is correct.
-                Uri.parse("android-app://com.cs246.clark.mysqltestapp/http/host/path")
-        );
-        AppIndex.AppIndexApi.start(client, viewAction);
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        Action viewAction = Action.newAction(
-                Action.TYPE_VIEW, // TODO: choose an action type.
-                "DayView Page", // TODO: Define a title for the content shown.
-                // TODO: If you have web page content that matches this app activity's content,
-                // make sure this auto-generated web page URL is correct.
-                // Otherwise, set the URL to null.
-                Uri.parse("http://host/path"),
-                // TODO: Make sure this auto-generated app deep link URI is correct.
-                Uri.parse("android-app://com.cs246.clark.mysqltestapp/http/host/path")
-        );
-        AppIndex.AppIndexApi.end(client, viewAction);
-        client.disconnect();
-    }
 }
