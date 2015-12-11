@@ -3,10 +3,12 @@ package com.cs246.clark.mysqltestapp;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -60,6 +62,15 @@ public class DayView extends Activity {
 
         BackgroundTask backgroundTask = new BackgroundTask(date, method);
         backgroundTask.execute();
+
+        String timeView = "sevenT";
+
+        Resources res = getResources();
+        int id = res.getIdentifier(timeView, "id", this.getPackageName());
+
+
+        TextView tempTextView = (TextView) findViewById(id);
+        tempTextView.setText("LALALALA SUCCESS!");
 
 
 
