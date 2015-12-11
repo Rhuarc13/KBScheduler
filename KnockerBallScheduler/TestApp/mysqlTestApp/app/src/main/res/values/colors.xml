@@ -14,4 +14,6 @@
     <color name="fall">#d8d27e</color>
     <color name="winter">#a1c1da</color>
     <color name="spring">#8da64b</color>
+
+    <color name="timeSlotReserved">#ff0000</color>
 </resources>
