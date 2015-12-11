@@ -29,8 +29,6 @@ public class SignIn extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.signin_activity);
-        String temp = getPreferences(0).getString("email", "");
-        System.out.println("The email is :" + temp);
 
         response = new Response();
     }
@@ -71,9 +69,7 @@ public class SignIn extends Activity {
         if (response.getCode() == 200) {
             if (response.getText().equals(SUCCESS)) {
                 Intent intent = new Intent(this, Calendar.class);
-                SharedPreferences editor = getPreferences(0);
-                editor.edit().putString("email", emailLogin.getText().toString());
-                System.out.println("The email is " + getPreferences(0).getString("email", "empty"));
+                intent.putExtra("email", emailLogin.getText().toString());
                 startActivity(intent);
                 finish();
             } else {

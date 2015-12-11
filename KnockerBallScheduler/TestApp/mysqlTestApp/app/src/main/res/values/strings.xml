@@ -18,7 +18,7 @@
     <string name="signInEmail">Enter your email address and password</string>
     <string name="signInButton">Sign In</string>
 
-    <!-- Strings related to confermation -->
+    <!-- Strings related to confirmation -->
     <string name="nameTitle">Name:</string>
     <string name="ConfirmTitle">Confirm your Request</string>
     <string name="confirmButton">Confirm</string>
