@@ -15,19 +15,6 @@ public class DayView extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.day_view);
-        ListView listview = (ListView) findViewById(R.id.listView);
-
-        String[] values = new String[] {"6:00", "6:30", "7:00", "7:30", "8:00", "8:30", "9:00", "9:00",
-                "9:30", "10:00", "10:30", "11:00", "11:30", "12:00"};
-
-        ArrayList<String> list = new ArrayList<String>();
-        for (int i = 0; i < values.length; ++i) {
-            list.add(values[i]);
-        }
-
-        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, list);
-        listview.setAdapter(adapter);
-
 
 
 
@@ -71,6 +58,10 @@ public class DayView extends Activity {
         BackgroundTask backgroundTask = new BackgroundTask(date, method);
         backgroundTask.execute();
 
+
+
+
+        //here is where we need to set the color/click-ability of the time slots
 
 
     }
