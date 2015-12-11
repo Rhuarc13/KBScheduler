@@ -2,14 +2,20 @@ package com.cs246.clark.mysqltestapp;
 
 import android.app.Activity;
 import android.content.Intent;
+<<<<<<< HEAD
 import android.content.SharedPreferences;
+=======
+>>>>>>> 2f90c66e6c1f241d452b44b3fcb50dd54a9b12ec
 import android.net.Uri;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+<<<<<<< HEAD
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+=======
+>>>>>>> 2f90c66e6c1f241d452b44b3fcb50dd54a9b12ec
 import android.widget.Toast;
 
 
@@ -17,8 +23,11 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import android.widget.TextView;
+<<<<<<< HEAD
 
 import java.util.ArrayList;
+=======
+>>>>>>> 2f90c66e6c1f241d452b44b3fcb50dd54a9b12ec
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
@@ -78,7 +87,10 @@ public class DayView extends Activity {
         BackgroundTask backgroundTask = new BackgroundTask(date, method, r);
         backgroundTask.execute();
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 2f90c66e6c1f241d452b44b3fcb50dd54a9b12ec
         Lock lock = new ReentrantLock();
         int waitTime = 0;
         synchronized (lock) {
@@ -98,12 +110,17 @@ public class DayView extends Activity {
             }*/
         }
 
+<<<<<<< HEAD
         String timeView = "sevenT";
 
         Resources res = getResources();
         int id = res.getIdentifier(timeView, "id", this.getPackageName());
         TextView tempTextView = (TextView) findViewById(id);
 
+=======
+
+        String startTime;
+>>>>>>> 2f90c66e6c1f241d452b44b3fcb50dd54a9b12ec
         if (r.getCode() == 200) {
             Log.i(TAG, "Response is: " + r.getText());
             try {
@@ -112,7 +129,10 @@ public class DayView extends Activity {
                 for (int i = 0; i < array.length(); i++) {
                     JSONObject times = array.getJSONObject(i);
                     Log.i(TAG, times.toString());
-                    String startTime = times.getString("start_time");
+                    startTime = times.getString("start_time");
+                    int start_hr = Integer.parseInt(startTime.split(":")[0]);
+                    int start_min = Integer.parseInt(startTime.split(":")[1]);
+                    startTime = start_hr + ":" + start_min;
                     String endTime   = times.getString("end_time");
                 }
             } catch (JSONException je) {
@@ -122,10 +142,22 @@ public class DayView extends Activity {
             Toast.makeText(this, "Error occurred connecting to the database", Toast.LENGTH_LONG).show();
         }
 
+        String timeView = "sevenT";
 
+        Resources res = getResources();
+        int id = res.getIdentifier(timeView, "id", this.getPackageName());
+
+
+        TextView tempTextView = (TextView) findViewById(id);
+        tempTextView.setText("LALALALA SUCCESS!");
         //here is where we need to set the color/click-ability of the time slots
 
+<<<<<<< HEAD
 }
+=======
+
+    }
+>>>>>>> 2f90c66e6c1f241d452b44b3fcb50dd54a9b12ec
 
     public void onClick(View view) {
         Intent intent = new Intent(this, Confermation.class);
