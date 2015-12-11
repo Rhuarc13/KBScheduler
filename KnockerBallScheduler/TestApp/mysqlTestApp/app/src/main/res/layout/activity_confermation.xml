@@ -11,32 +11,213 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Confirm your Request"
+        android:text="@string/ConfirmTitle"
         android:id="@+id/confirmOrder"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:textSize="30dp"
+        android:paddingTop="50dp"
+        android:clickable="false" />
 
-    <ListView
-        android:layout_width="match_parent"
-        android:layout_height="400dp"
-        android:id="@+id/listView2"
+    <Space
+        android:layout_width="80px"
+        android:layout_height="100px"
         android:layout_below="@+id/confirmOrder"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:id="@+id/space2" />
 
     <Button
         android:layout_width="125dp"
         android:layout_height="wrap_content"
-        android:text="New Button"
-        android:id="@+id/button"
+        android:text="@string/confirmButton"
+        android:id="@+id/confirmButon"
         android:layout_gravity="center"
-        android:layout_below="@+id/listView2"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="46dp" />
 
     <Button
         android:layout_width="125dp"
         android:layout_height="wrap_content"
-        android:text="New Button"
-        android:id="@+id/button2"
-        android:layout_below="@+id/listView2"
-        android:layout_alignEnd="@+id/listView2" />
+        android:text="@string/cancelButton"
+        android:id="@+id/cancelButton"
+        android:layout_alignTop="@+id/confirmButon"
+        android:layout_alignParentEnd="true" />
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/tableLayout"
+        android:layout_alignEnd="@+id/cancelButton"
+        android:layout_above="@+id/cancelButton"
+        android:layout_below="@+id/space2">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/nameTitle"
+                android:id="@+id/textView2"
+                android:layout_column="0" />
+
+            <Space
+                android:layout_width="40px"
+                android:layout_height="40px"
+                android:layout_column="2" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/customerName"
+                android:id="@+id/customerName"
+                android:layout_column="3" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Space
+                android:layout_width="20px"
+                android:layout_height="20px"
+                android:layout_column="0" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/emailTitle"
+                android:id="@+id/emailTitle"
+                android:layout_below="@+id/nameText"
+                android:layout_alignParentStart="true"
+                android:layout_column="0" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/customerEmail"
+                android:id="@+id/customerEmail"
+                android:layout_below="@+id/customerName"
+                android:layout_toEndOf="@+id/emailTitle"
+                android:layout_column="3" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Space
+                android:layout_width="20px"
+                android:layout_height="20px"
+                android:layout_column="0" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/addressTitle"
+                android:id="@+id/addressTitle"
+                android:layout_below="@+id/emailTitle"
+                android:layout_alignParentStart="true"
+                android:layout_column="0" />
+
+            <Space
+                android:layout_width="40px"
+                android:layout_height="40px"
+                android:layout_column="2" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/customerAddress"
+                android:id="@+id/customerAddress"
+                android:layout_column="3" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Space
+                android:layout_width="20px"
+                android:layout_height="20px"
+                android:layout_column="0" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/dateTitle"
+                android:id="@+id/dateTitle"
+                android:layout_column="0" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/customerDate"
+                android:id="@+id/customerDate"
+                android:layout_column="3" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Space
+                android:layout_width="20px"
+                android:layout_height="20px"
+                android:layout_column="0" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/timeTitle"
+                android:id="@+id/timeTitle"
+                android:layout_column="0" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/customerTime"
+                android:id="@+id/customerTime"
+                android:layout_column="3" />
+        </TableRow>
+    </TableLayout>
+
 </RelativeLayout>

@@ -17,6 +17,21 @@
     <!-- Strings related to login -->
     <string name="signInEmail">Enter your email address and password</string>
     <string name="signInButton">Sign In</string>
+
+    <!-- Strings related to confermation -->
+    <string name="nameTitle">Name:</string>
+    <string name="ConfirmTitle">Confirm your Request</string>
+    <string name="confirmButton">Confirm</string>
+    <string name="cancelButton">Cancel</string>
+    <string name="customerName">customerName</string>
+    <string name="emailTitle">Email:</string>
+    <string name="addressTitle">Address:</string>
+    <string name="customerEmail">customerEmail</string>
+    <string name="customerAddress">customerAddress</string>
+    <string name="dateTitle">Date:</string>
+    <string name="customerDate">customerDate</string>
+    <string name="timeTitle">Time:</string>
+    <string name="customerTime">customerTime</string>
     completions."
 
 </resources>
