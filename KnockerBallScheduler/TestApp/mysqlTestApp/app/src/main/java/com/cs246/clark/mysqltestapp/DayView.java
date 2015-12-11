@@ -54,6 +54,8 @@ public class DayView extends Activity {
         String year = dateList[5];
         String month = dateList[1];
         String day = dateList[2];
+        TextView largeText = (TextView)findViewById(R.id.textView);
+        largeText.setText(month + " " + day + ", " + year);
 
         if (month.equals("Jan")) {
             month = "01";
