@@ -4,10 +4,25 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
+<<<<<<< HEAD
+import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+
+
+import java.util.ArrayList;
+=======
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+<<<<<<< HEAD
+=======
+import com.google.android.gms.appindexing.Action;
+import com.google.android.gms.appindexing.AppIndex;
+import com.google.android.gms.common.api.GoogleApiClient;
+>>>>>>> 2f90c66e6c1f241d452b44b3fcb50dd54a9b12ec
+>>>>>>> 87699aed5a5bc5d209ade3f5f4196e31d9f6a440
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -281,9 +296,23 @@ public class DayView extends Activity {
 
     }
 
+<<<<<<< HEAD
 
     public void onClick(View view) {
+=======
+    public void onClickDay(View view) {
+        String date = getIntent().getStringExtra("date");
+        String dateList[] = date.split("\\s");
+
+        String year   = dateList[5];
+        String month  = dateList[1];
+        String day    = dateList[2];
+        date = month + ' ' + day + ", " + year;
+
+>>>>>>> 87699aed5a5bc5d209ade3f5f4196e31d9f6a440
         Intent intent = new Intent(this, Confermation.class);
+        intent.putExtra("email", getIntent().getStringExtra("email"));
+        intent.putExtra("date", date);
         startActivity(intent);
         finish();
     }
