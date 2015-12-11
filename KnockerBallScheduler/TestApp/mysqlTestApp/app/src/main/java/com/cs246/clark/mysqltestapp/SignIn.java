@@ -2,6 +2,7 @@ package com.cs246.clark.mysqltestapp;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -28,6 +29,8 @@ public class SignIn extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.signin_activity);
+        String temp = getPreferences(0).getString("email", "");
+        System.out.println("The email is :" + temp);
 
         response = new Response();
     }
@@ -68,6 +71,9 @@ public class SignIn extends Activity {
         if (response.getCode() == 200) {
             if (response.getText().equals(SUCCESS)) {
                 Intent intent = new Intent(this, Calendar.class);
+                SharedPreferences editor = getPreferences(0);
+                editor.edit().putString("email", emailLogin.getText().toString());
+                System.out.println("The email is " + getPreferences(0).getString("email", "empty"));
                 startActivity(intent);
                 finish();
             } else {

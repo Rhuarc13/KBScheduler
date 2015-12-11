@@ -14,7 +14,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true">
+        android:layout_centerHorizontal="true"
+        android:id="@+id/linearLayout3">
 
         <TextView
             android:layout_width="fill_parent"
@@ -26,6 +27,7 @@
 
         <View
             android:layout_width="match_parent"
+<<<<<<< HEAD
             android:layout_height="3dp"
             android:background="@android:color/darker_gray"
             android:paddingBottom="5dp"/>
@@ -226,6 +228,11 @@
 
         </LinearLayout>
         </ScrollView>
+=======
+            android:layout_height="wrap_content"
+            android:id="@+id/listView" />
+
+>>>>>>> dcde498f3dfa997e2a7e1dc0b0b7cac7ee78dd7a
     </LinearLayout>
 
 </RelativeLayout>

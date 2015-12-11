@@ -5,7 +5,11 @@
       <GradleProjectSettings>
         <option name="distributionType" value="DEFAULT_WRAPPED" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
+<<<<<<< HEAD
+        <option name="gradleJvm" value="1.7" />
+=======
         <option name="gradleJvm" value="1.8" />
+>>>>>>> ba11ac5387f0466ae62f55da8b9a1b648264238b
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
