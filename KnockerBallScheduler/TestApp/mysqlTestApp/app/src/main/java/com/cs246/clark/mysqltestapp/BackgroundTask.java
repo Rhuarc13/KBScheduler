@@ -2,6 +2,10 @@ package com.cs246.clark.mysqltestapp;
 
 import android.os.AsyncTask;
 import android.util.Log;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.InputStream;
@@ -11,8 +15,10 @@ import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.util.Date;
 import java.util.Observable;
 import java.util.Observer;
+import java.util.regex.Pattern;
 
 /***********************************************************************
  *
@@ -23,15 +29,21 @@ import java.util.Observer;
  **********************************************************************/
 public class BackgroundTask extends AsyncTask<String, String, String> implements Observer {
 
-    User user;
-    String method;
+    User     user;
+    String   method;
     Response responseClass;
+    String   date;
     private static final String TAG = "Background Task";
 
     BackgroundTask(User _user, String _method, Response _response){
-        user   = _user;
-        method = _method;
+        user          = _user;
+        method        = _method;
         responseClass = _response;
+    }
+
+    BackgroundTask(String _date, String _method){
+        date   = _date;
+        method = _method;
     }
 
     @Override
@@ -48,6 +60,8 @@ public class BackgroundTask extends AsyncTask<String, String, String> implements
     @Override
     protected String doInBackground(String...params) {
 
+
+
         //directs to the register php file
         String login = "";
         String data  = "";
@@ -57,6 +71,8 @@ public class BackgroundTask extends AsyncTask<String, String, String> implements
             Log.i(TAG, "Trying to register a new user");
         } else if(method.equals("login")){
             login = "http://96.18.168.42:80/verify_login.php";
+        } else if(method.equals("pull_time")){
+            login = "http://96.18.168.42:80/pull_time.php";
         }
 
         //try opening the connection to the server
@@ -80,6 +96,9 @@ public class BackgroundTask extends AsyncTask<String, String, String> implements
             } else if(method.equals("login")){
                  data = URLEncoder.encode("email","UTF-8")      + "=" + URLEncoder.encode(user.getEmail(), "UTF-8")    + "&" +
                         URLEncoder.encode("password", "UTF-8")  + "=" + URLEncoder.encode(user.getPassword(), "UTF-8");
+            } else if(method.equals("pull_time")){
+                data = URLEncoder.encode("date","UTF-8")       + "=" + URLEncoder.encode(date, "UTF-8");
+                System.out.println("The date pass was successful: " + date);
             }
 
             //write the data to the stream and close up shop

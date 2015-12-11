@@ -247,9 +247,10 @@ public class CalendarView extends LinearLayout
                     {
                         // mark this day for event
                         if (eventDate.isAvailable()) {
-                            view.setBackgroundResource(R.drawable.yellow_background);
-                        } else {
                             view.setBackgroundResource(R.drawable.red_background);
+                        } else {
+                            view.setBackgroundResource(R.drawable.black_background);
+                            ((TextView)view).setTextColor(Color.WHITE);
                         }
                         break;
                     }

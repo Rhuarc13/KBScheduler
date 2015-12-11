@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
+import java.lang.Override;
+import java.lang.reflect.Array;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -24,7 +26,7 @@ public class Calendar extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.calendar_activity);
 
-        CalendarView cv = ((CalendarView)findViewById(R.id.calendar_view));
+        final CalendarView cv = ((CalendarView)findViewById(R.id.calendar_view));
         Response r = new Response();
 
         HashSet<Day> events = cv.getEvents();
@@ -62,14 +64,36 @@ public class Calendar extends Activity {
                 // show returned day
                 DateFormat df = SimpleDateFormat.getDateInstance();
                 Toast.makeText(Calendar.this, df.format(date), Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(getApplicationContext(), DayView.class);
-                intent.putExtra("date", date.toString());
-                startActivity(intent);
+
+                Object[] events = cv.getEvents().toArray();
+
+                boolean flag = true;
+                Day suspect;
+                for (int i = 0; i < events.length; i++) {
+                    suspect = (Day) events[i];
+
+                    if (suspect.getDate().getDay()       == date.getDay() &&
+                            suspect.getDate().getMonth() == date.getMonth() &&
+                            suspect.getDate().getYear()  == date.getYear()) {
+                        flag = suspect.isAvailable();
+                        break;
+                    }
+                }
+
+
+
+                if (flag) {
+                    Intent intent = new Intent(getApplicationContext(), DayView.class);
+                    intent.putExtra("date", date.toString());
+                    startActivity(intent);
+                }
             }
         });
 
-
-
     }
 
+    @Override
+    public void onBackPressed() {
+        return;
+    }
 }
