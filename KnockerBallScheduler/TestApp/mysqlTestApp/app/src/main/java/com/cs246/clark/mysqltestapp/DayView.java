@@ -2,7 +2,10 @@ package com.cs246.clark.mysqltestapp;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
+
+import java.util.ArrayList;
 
 public class DayView extends Activity {
 
@@ -12,8 +15,20 @@ public class DayView extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.day_view);
-        ListView list = (ListView) findViewById(R.id.listView);
-        
+        ListView listview = (ListView) findViewById(R.id.listView);
+
+        String[] values = new String[] {"6:00", "6:30", "7:00", "7:30", "8:00", "8:30", "9:00", "9:00",
+                "9:30", "10:00", "10:30", "11:00", "11:30", "12:00"};
+
+        ArrayList<String> list = new ArrayList<String>();
+        for (int i = 0; i < values.length; ++i) {
+            list.add(values[i]);
+        }
+
+        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, list);
+        listview.setAdapter(adapter);
+
+
 
 
         String date = getIntent().getStringExtra("date");
