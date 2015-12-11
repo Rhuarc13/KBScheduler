@@ -41,9 +41,10 @@ public class BackgroundTask extends AsyncTask<String, String, String> implements
         responseClass = _response;
     }
 
-    BackgroundTask(String _date, String _method){
+    BackgroundTask(String _date, String _method, Response _response){
         date   = _date;
         method = _method;
+        responseClass = _response;
     }
 
     @Override
@@ -72,7 +73,7 @@ public class BackgroundTask extends AsyncTask<String, String, String> implements
         } else if(method.equals("login")){
             login = "http://96.18.168.42:80/verify_login.php";
         } else if(method.equals("pull_time")){
-            login = "http://96.18.168.42:80/pull_time.php";
+            login = "http://96.18.168.42:80/pull_times.php";
         }
 
         //try opening the connection to the server
