@@ -26,8 +26,7 @@
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="Large Text"
             android:id="@+id/textView"
-            android:layout_gravity="center_horizontal"
-            android:clickable="false" />
+            android:layout_gravity="center_horizontal" />
 
         <View
             android:layout_width="match_parent"

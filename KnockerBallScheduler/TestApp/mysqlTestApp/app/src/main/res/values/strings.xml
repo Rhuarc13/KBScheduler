@@ -38,4 +38,6 @@
     <string name="blacked_out">Unavailable Days</string>
     <string name="red_out">Partially Unavailable Days</string>
 
+    <string name="no_click">Sorry, that time is already reserved</string>
+
 </resources>

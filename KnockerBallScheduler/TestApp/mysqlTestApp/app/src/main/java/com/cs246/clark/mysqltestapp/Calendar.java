@@ -61,9 +61,6 @@ public class Calendar extends Activity {
         cv.setEventHandler(new CalendarView.EventHandler() {
             @Override
             public void onDayPress(Date date) {
-                // show returned day
-                DateFormat df = SimpleDateFormat.getDateInstance();
-                Toast.makeText(Calendar.this, df.format(date), Toast.LENGTH_SHORT).show();
 
                 Object[] events = cv.getEvents().toArray();
 
