@@ -4,11 +4,8 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-<<<<<<< HEAD
 import android.view.View;
-=======
 import android.widget.ArrayAdapter;
->>>>>>> ba11ac5387f0466ae62f55da8b9a1b648264238b
 import android.widget.ListView;
 
 import java.util.ArrayList;
