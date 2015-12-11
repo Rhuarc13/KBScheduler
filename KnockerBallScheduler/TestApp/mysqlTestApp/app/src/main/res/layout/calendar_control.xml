@@ -126,25 +126,28 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@id/black_image_view"
-            android:text="@string/blacked_out"/>
+            android:text="@string/blacked_out"
+            android:paddingLeft="5dp"/>
 
     </LinearLayout>
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal">
+        android:layout_gravity="center_horizontal"
+        android:paddingTop="5dp">
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="left"
             android:id="@+id/red_image_view"
-            android:background="@drawable/red_background"/>
+            android:background="@drawable/red_background" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@id/red_image_view"
-            android:text="@string/red_out"/>
+            android:text="@string/red_out"
+            android:paddingLeft="5dp"/>
     </LinearLayout>
 
 
