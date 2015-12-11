@@ -9,6 +9,10 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
@@ -67,9 +71,11 @@ public class SignIn extends Activity {
         }
 
         if (response.getCode() == 200) {
-            if (response.getText().equals(SUCCESS)) {
+            if (!response.getText().equals("password") || !response.getText().equals("email")) {
                 Intent intent = new Intent(this, Calendar.class);
-                intent.putExtra("name", getName());
+                String[] info = getName(response).split(":");
+                intent.putExtra("name", info[0]);
+                intent.putExtra("phone", info[1]);
                 intent.putExtra("email", emailLogin.getText().toString());
                 startActivity(intent);
                 finish();
@@ -88,9 +94,16 @@ public class SignIn extends Activity {
 
     }
 
-    private String getName () {
+    private String getName (Response response) {
         String name = "";
+        try {
+            JSONObject obj = new JSONObject(response.getText());
+            JSONArray array = obj.getJSONArray("info");
+            name = array.get(0) + " " + array.get(1) + ":" + array.get(2);
 
+        } catch (JSONException je) {
+            Log.e(TAG, "Could not get JSON object from string");
+        }
         return name;
     }
 }
