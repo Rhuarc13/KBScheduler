@@ -26,16 +26,10 @@
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="Large Text"
             android:id="@+id/textView"
-            android:layout_gravity="center_horizontal"
-            android:clickable="false" />
+            android:layout_gravity="center_horizontal" />
 
         <View
             android:layout_width="match_parent"
-<<<<<<< HEAD
-            android:layout_height="wrap_content"
-            android:id="@+id/listView"
-            android:clickable="false" />
-=======
             android:layout_height="3dp"
             android:background="@android:color/darker_gray"
             android:paddingTop="5dp"
@@ -239,7 +233,6 @@
 
         </LinearLayout>
         </ScrollView>
->>>>>>> 2f90c66e6c1f241d452b44b3fcb50dd54a9b12ec
 
     </LinearLayout>
 
