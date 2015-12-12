@@ -281,12 +281,13 @@ public class DayView extends Activity {
 
     }
 
+
+
     public void onClickDay(View view) {
         String date = getIntent().getStringExtra("date");
         String dateList[] = date.split("\\s");
-        TextView textView = new TextView(this);
+        TextView textView = (TextView) view;
         String startTime = textView.getText().toString();
-        System.out.println("The time you selected is - " + startTime);
 
         String year   = dateList[5];
         String month  = dateList[1];
@@ -297,6 +298,7 @@ public class DayView extends Activity {
         intent.putExtra("email", getIntent().getStringExtra("email"));
         intent.putExtra("phone", getIntent().getStringExtra("phone"));
         intent.putExtra("name", getIntent().getStringExtra("name"));
+        intent.putExtra("startTime", startTime);
         intent.putExtra("date", date);
         startActivity(intent);
         finish();

@@ -5,7 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
 
-public class Confermation extends Activity {
+public class Confirmation extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,7 +22,7 @@ public class Confermation extends Activity {
         String email = getIntent().getStringExtra("email");
         String address = getIntent().getStringExtra("address");
         String date = getIntent().getStringExtra("date");
-        String time = "";
+        String time = getIntent().getStringExtra("time");
 
         custName = (TextView) findViewById(R.id.customerName);
         custPhone = (TextView) findViewById(R.id.customerPhone);

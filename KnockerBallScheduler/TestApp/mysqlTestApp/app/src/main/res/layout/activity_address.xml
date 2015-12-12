@@ -23,7 +23,8 @@
         android:id="@+id/addressTimeTitle"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:clickable="false" />
+        android:clickable="false"
+        android:textSize="30dp"/>
 
     <Space
         android:layout_width="20px"
@@ -173,29 +174,19 @@
         android:layout_centerHorizontal="true"
         android:id="@+id/space9" />
 
-    <Space
-        android:layout_width="60px"
-        android:layout_height="50px"
-        android:id="@+id/space10"
-        android:layout_above="@+id/space9"
-        android:layout_alignStart="@+id/customerAddress" />
-
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/addressButton"
         android:id="@+id/addressButton"
+        android:onClick="onClickAddress"
         android:layout_above="@+id/space9"
-        android:layout_toStartOf="@+id/space10"
-        android:onClick="onClickAddress" />
+        android:layout_centerHorizontal="true" />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/backCalendar"
-        android:id="@+id/button2"
-        android:layout_alignBottom="@+id/space10"
-        android:layout_alignStart="@+id/space5"
-        android:onClick="returnToCal" />
+    <Space
+        android:layout_width="20px"
+        android:layout_height="20px"
+        android:layout_above="@+id/addressTitle"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>
