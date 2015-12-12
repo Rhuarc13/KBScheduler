@@ -56,9 +56,11 @@ public class Confirmation extends Activity {
         //now convert to military time for the server
         String[] sTimeSplit = sTime.split(":");
         String sTimeHour = sTimeSplit[0];
+        String sTimeMin = sTime.split(":")[1];
 
         String[] eTimeSplit = eTime.split(":");
         String eTimeHour = eTimeSplit[0];
+        String eTimeMin = eTime.split(":")[1];
 
         int sTimeHourInt;
         sTimeHourInt = Integer.parseInt(sTimeHour);
@@ -68,8 +70,8 @@ public class Confirmation extends Activity {
         eTimeHourInt = Integer.parseInt(eTimeHour);
         eTimeHourInt += 12;
 
-        sTime = "" + sTimeHourInt + ":" + sTimeSplit[1] + ":00";
-        eTime = "" + eTimeHourInt + ":" + eTimeSplit[1] + ":00";
+        sTime = "" + sTimeHourInt + ":" + sTimeMin + ":00";
+        eTime = "" + eTimeHourInt + ":" + eTimeMin + ":00";
         System.out.println(sTime + " and " + eTime);
 
         String[] splitName = name.split("\\s");
