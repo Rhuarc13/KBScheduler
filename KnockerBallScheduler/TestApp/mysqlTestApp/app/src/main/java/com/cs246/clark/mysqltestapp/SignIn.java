@@ -2,12 +2,15 @@ package com.cs246.clark.mysqltestapp;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
@@ -23,8 +26,8 @@ public class SignIn extends Activity {
 
 
     /*********************************************************************
-    * On Create - sets the xml main layout
-    **********************************************************************/
+     * On Create - sets the xml main layout
+     **********************************************************************/
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,8 +37,8 @@ public class SignIn extends Activity {
     }
 
     /*********************************************************************
-    * Sign In 'button' takes you to the sign in activity
-    **********************************************************************/
+     * Sign In 'button' takes you to the sign in activity
+     **********************************************************************/
     public void signInButton(View view){
 
         //needs to verify if the username/pass are valid
@@ -67,9 +70,10 @@ public class SignIn extends Activity {
         }
 
         if (response.getCode() == 200) {
-            if (response.getText().equals(SUCCESS)) {
+            if (!response.getText().equals("password") || !response.getText().equals("email")) {
                 Intent intent = new Intent(this, Calendar.class);
-                intent.putExtra("name", getName());
+                intent.putExtra("name", getData("name", response));
+                intent.putExtra("phone", getData("phone", response));
                 intent.putExtra("email", emailLogin.getText().toString());
                 startActivity(intent);
                 finish();
@@ -88,11 +92,23 @@ public class SignIn extends Activity {
 
     }
 
-    private String getName () {
-        String name = "";
+    private String getData (String temp, Response response) {
 
-        return name;
+        try {
+            JSONObject obj = new JSONObject(response.getText());
+            JSONArray array = obj.getJSONArray("info");
+
+            if (temp == "name") {
+                temp = array.get(0) + " " + array.get(1);
+            }
+            else if (temp == "phone") {
+                temp = array.get(2).toString();
+            }
+
+        } catch (JSONException je) {
+            Log.e(TAG, "Could not get JSON object from string");
+        }
+
+        return temp;
     }
 }
-
-

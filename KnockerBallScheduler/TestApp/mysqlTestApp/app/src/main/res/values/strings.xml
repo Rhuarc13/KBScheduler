@@ -32,6 +32,8 @@
     <string name="customerDate">customerDate</string>
     <string name="timeTitle">Time:</string>
     <string name="customerTime">customerTime</string>
+    <string name="phoneTitle">Phone:</string>
+    <string name="customerPhone">customerPhone</string>
     completions."
 
     <!-- Strings for displaying legend for calendar -->
@@ -39,5 +41,11 @@
     <string name="red_out">Partially Unavailable Days</string>
 
     <string name="no_click">Sorry, that time is already reserved</string>
+    <string name="timeSlotTitle">Choose an End Time</string>
+    <string name="startTime">startTime</string>
+    <string name="address">Enter Address Here</string>
+    <string name="endTime">endTime</string>
+    <string name="addressButton">Continue to Confirmation</string>
+    <string name="backCalendar">Back to the Time Selection</string>
 
 </resources>
