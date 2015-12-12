@@ -30,7 +30,8 @@
         android:layout_width="125dp"
         android:layout_height="wrap_content"
         android:text="@string/confirmButton"
-        android:id="@+id/confirmButon"
+        android:id="@+id/confirmationButton"
+        android:onClick="confirmation"
         android:layout_gravity="center"
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
@@ -41,7 +42,8 @@
         android:layout_height="wrap_content"
         android:text="@string/cancelButton"
         android:id="@+id/cancelButton"
-        android:layout_alignTop="@+id/confirmButon"
+        android:onClick="cancel"
+        android:layout_alignTop="@+id/confirmationButton"
         android:layout_alignParentEnd="true" />
 
     <TableLayout
@@ -187,6 +189,54 @@
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:text="@string/customerAddress"
                 android:id="@+id/customerAddress"
+                android:layout_column="3" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="City:"
+                android:id="@+id/cityTitle"
+                android:layout_below="@+id/emailTitle"
+                android:layout_alignParentStart="true"
+                android:layout_column="0" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="customerCity"
+                android:id="@+id/cityAddress"
+                android:layout_column="3" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="State:"
+                android:id="@+id/stateTitle"
+                android:layout_below="@+id/emailTitle"
+                android:layout_alignParentStart="true"
+                android:layout_column="0" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="customerState"
+                android:id="@+id/stateAddress"
                 android:layout_column="3" />
 
         </TableRow>

@@ -44,6 +44,8 @@
     <string name="timeSlotTitle">Choose an End Time</string>
     <string name="startTime">startTime</string>
     <string name="address">Enter Address Here</string>
+    <string name="city">Enter City Here</string>
+    <string name="state">Enter State Here</string>
     <string name="endTime">endTime</string>
     <string name="addressButton">Continue to Confirmation</string>
     <string name="backCalendar">Back to the Time Selection</string>

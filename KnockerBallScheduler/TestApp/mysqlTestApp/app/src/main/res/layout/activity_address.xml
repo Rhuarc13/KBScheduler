@@ -8,185 +8,184 @@
     tools:context="com.cs246.clark.mysqltestapp.Address"
     android:gravity="center_horizontal">
 
-    <Space
-        android:layout_width="20px"
-        android:layout_height="20px"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/space3" />
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Enter Time and Address"
-        android:id="@+id/addressTimeTitle"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:clickable="false"
-        android:textSize="30dp"/>
-
-    <Space
-        android:layout_width="20px"
-        android:layout_height="20px"
-        android:layout_below="@+id/addressTimeTitle"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/space7" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:textAlignment="center"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="@string/timeSlotTitle"
+        android:textSize="25dp"
         android:id="@+id/timeTitle"
         android:gravity="center_horizontal"
-        android:layout_below="@+id/space7"
         android:layout_centerHorizontal="true" />
 
-    <Space
-        android:layout_width="20px"
-        android:layout_height="40px"
-        android:layout_below="@+id/timeTitle"
-        android:layout_toEndOf="@+id/space7"
-        android:id="@+id/space8" />
-
-    <TableLayout
+    <LinearLayout
+        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/tableLayout2"
-        android:layout_below="@+id/space8"
-        android:layout_alignParentStart="true">
+        android:paddingTop="50px">
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="400px"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:text="Start Time: "
                 android:id="@+id/textView3"
-                android:layout_below="@+id/space4"
-                android:layout_alignParentStart="true"
                 android:layout_column="0" />
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:text="@string/startTime"
                 android:id="@+id/startTime"
-                android:layout_column="2" />
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <Space
-                android:layout_width="20px"
-                android:layout_height="20px"
-                android:layout_column="0" />
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="End Time: "
-                android:id="@+id/endTimeTitle"
-                android:layout_column="0" />
-
-            <EditText
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:inputType="time"
-                android:ems="10"
-                android:id="@+id/endTime"
                 android:layout_column="2"
-                android:hint="@string/endTime" />
+                android:textAlignment="center" />
 
-        </TableRow>
-    </TableLayout>
+    </LinearLayout>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Please enter the address where the activity will be held"
-        android:id="@+id/addressTitle"
-        android:gravity="center_horizontal"
-        android:layout_centerVertical="true"
-        android:layout_alignParentStart="true" />
-
-    <Space
-        android:layout_width="20px"
-        android:layout_height="40px"
-        android:id="@+id/space5"
-        android:layout_alignTop="@+id/space6"
-        android:layout_alignStart="@+id/space6" />
-
-    <Space
-        android:layout_width="20px"
-        android:layout_height="40px"
-        android:layout_below="@+id/addressTitle"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/space6" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Activity Address: "
-        android:textSize="20dp"
-        android:id="@+id/activityAddress"
-        android:layout_column="0"
-        android:layout_alignWithParentIfMissing="false"
-        android:paddingTop="8dp"
-        android:layout_alignTop="@+id/customerAddress"
-        android:layout_alignParentStart="true" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textMultiLine"
-        android:ems="10"
-        android:id="@+id/customerAddress"
-        android:layout_below="@+id/space5"
-        android:layout_toEndOf="@+id/activityAddress"
-        android:hint="@string/address" />
-
-    <Space
+    <LinearLayout
+        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="80px"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/space9" />
+        android:layout_height="wrap_content"
+        android:paddingTop="50px">
+
+        <TextView
+            android:layout_width="400px"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="End Time:"
+            android:id="@+id/textView4"
+            android:layout_column="0" />
+
+        <Spinner
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/spinner"
+            android:layout_column="2"
+            android:scrollIndicators="bottom"
+            android:textAlignment="center" />
+
+        </LinearLayout>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_gravity="center_horizontal" />
+
+        <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Please enter the activity address"
+        android:textAlignment="center"
+        android:id="@+id/addressTitle"
+        android:paddingTop="50px"/>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="50px">
+
+
+        <TextView
+            android:layout_width="300px"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Address:"
+            android:textSize="20dp"
+            android:id="@+id/activityAddress"
+            android:layout_column="0"
+            android:layout_alignWithParentIfMissing="false"
+            android:paddingTop="8dp"
+            android:layout_above="@+id/city"
+            android:layout_alignParentStart="true" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="textMultiLine"
+            android:ems="10"
+            android:id="@+id/customerAddress"
+            android:hint="@string/address"
+            android:layout_alignStart="@+id/city" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingTop="15px">
+
+        <TextView
+            android:layout_width="300px"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="City:"
+            android:id="@+id/textView4"
+            android:layout_above="@+id/state"
+            android:layout_alignParentStart="true" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="textMultiLine"
+            android:ems="10"
+            android:id="@+id/city"
+            android:hint="@string/city"
+            android:layout_below="@+id/customerAddress"
+            android:layout_alignParentEnd="true" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingTop="15px"
+        android:paddingBottom="60px">
+
+        <TextView
+            android:layout_width="300px"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="State:"
+            android:id="@+id/textView5" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="textMultiLine"
+            android:ems="10"
+            android:id="@+id/state"
+            android:hint="@string/state"
+            android:layout_below="@+id/city"
+            android:layout_alignStart="@+id/city" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:textAlignment="center">
+
 
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="@string/addressButton"
         android:id="@+id/addressButton"
         android:onClick="onClickAddress"
-        android:layout_above="@+id/space9"
-        android:layout_centerHorizontal="true" />
+        />
+    </LinearLayout>
 
-    <Space
-        android:layout_width="20px"
-        android:layout_height="20px"
-        android:layout_above="@+id/addressTitle"
-        android:layout_centerHorizontal="true" />
+
+    </LinearLayout>
 
 </RelativeLayout>
