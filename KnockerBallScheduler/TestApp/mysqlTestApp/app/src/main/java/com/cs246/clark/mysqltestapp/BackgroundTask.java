@@ -135,6 +135,10 @@ public class BackgroundTask extends AsyncTask<String, String, String> implements
                         URLEncoder.encode("date", "UTF-8")     + "=" + URLEncoder.encode(finalDate, "UTF-8")+ "&" +
                         URLEncoder.encode("start_time", "UTF-8")     + "=" + URLEncoder.encode(sTime, "UTF-8")+ "&" +
                         URLEncoder.encode("end_time", "UTF-8")     + "=" + URLEncoder.encode(eTime, "UTF-8");
+                System.out.println("Rignt before they get sent to the DB");
+                System.out.println(sTime);
+                System.out.println(eTime);
+                System.out.println(finalDate);
             }
 
             //write the data to the stream and close up shop

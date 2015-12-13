@@ -82,8 +82,7 @@ public class Confirmation extends Activity {
         eTime = "" + eTimeHourInt + ":" + eTimeMin + ":00";
         System.out.println(sTime + " and " + eTime);
 
-        String[] splitName = name.split(" ");
-        firstName = splitName[0];
+        firstName = name.split(" ")[0];
         lastName = name.split(" ")[1];
 
         String[] splitDate = date.split(" ");
