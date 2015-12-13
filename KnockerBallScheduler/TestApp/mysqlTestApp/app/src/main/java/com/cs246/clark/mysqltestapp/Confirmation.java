@@ -15,6 +15,8 @@ import java.util.concurrent.locks.ReentrantLock;
 public class Confirmation extends Activity {
     private final static String TAG = "CONFIRMATION";
     private final static String SUCCESS = "SUCCESS: Reservation inserted";
+
+    double duration = 0.0;
     String method, name, firstName, lastName, address, city, state, finalDate, sTime, eTime, response;
 
     @Override
@@ -78,6 +80,13 @@ public class Confirmation extends Activity {
         eTimeHourInt = Integer.parseInt(eTimeHour);
         eTimeHourInt += 12;
 
+        duration = eTimeHourInt - sTimeHourInt;
+        if (Integer.parseInt(sTimeMin) < 30 && Integer.parseInt(eTimeMin) >= 30) {
+            duration += 0.5;
+        } else if (Integer.parseInt(sTimeMin) >= 30 && Integer.parseInt(eTimeMin) < 30) {
+            duration -= 0.5;
+        }
+
         sTime = "" + sTimeHourInt + ":" + sTimeMin + ":00";
         eTime = "" + eTimeHourInt + ":" + eTimeMin + ":00";
         System.out.println(sTime + " and " + eTime);
@@ -122,8 +131,18 @@ public class Confirmation extends Activity {
                     lock.wait(500);
                     if (response.getText().equals(SUCCESS)) {
                         //TODO Find out where this is going
+                        Intent old = getIntent();
                         Intent intent = new Intent(this, Done.class);
-                        intent.putExtra("name", name);
+                        intent.putExtra("email", old.getStringExtra("email"));
+                        intent.putExtra("first_name", firstName);
+                        intent.putExtra("last_name", lastName);
+                        intent.putExtra("date", old.getStringExtra("date"));
+                        intent.putExtra("street", address);
+                        intent.putExtra("city", city);
+                        intent.putExtra("state", state);
+                        intent.putExtra("start", sTime);
+                        intent.putExtra("end", eTime);
+                        intent.putExtra("duration", "" + duration);
                         startActivity(intent);
                         finish();
                     } else {
