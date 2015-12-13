@@ -57,7 +57,7 @@ public class Confirmation extends Activity {
         custTime.setText(time);
 
         //split the time into start and end time to send to the server
-        String[] combTime = time.split("\\s");
+        String[] combTime = time.split(" ");
         sTime = combTime[0];
         eTime = combTime[3];
 
@@ -84,7 +84,7 @@ public class Confirmation extends Activity {
 
         String[] splitName = name.split(" ");
         firstName = splitName[0];
-        lastName = splitName[1];
+        lastName = name.split(" ")[1];
 
         String[] splitDate = date.split(" ");
         String year = splitDate[2];
