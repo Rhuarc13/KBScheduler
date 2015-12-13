@@ -81,16 +81,13 @@ public class Confirmation extends Activity {
         String[] splitDate = date.split("\\s");
         String year = splitDate[2];
         String day  = splitDate[1];
-        String startDateAndTime = year+"-"+month+"-"+day+ " " + sTime;
-        String endDateAndTime   = year+"-"+month+"-"+day+ " " + eTime;
-
-
+        String finalDate = year+"-"+month+"-"+day;
 
         String method = "confirm";
 
 
-        //BackgroundTask backgroundTask = new BackgroundTask(method, );
-        //backgroundTask.execute();
+        BackgroundTask backgroundTask = new BackgroundTask(method, firstName, lastName, address, city, state, finalDate, sTime, eTime);
+        backgroundTask.execute();
 
 
 
@@ -99,7 +96,7 @@ public class Confirmation extends Activity {
 
     }
 
-    public void confirmation(){
+    //public void confirmation(){
 
-    }
+    //}
 }
