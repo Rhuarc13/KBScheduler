@@ -11,6 +11,22 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
+/***********************************************************************
+ *
+ *                  ~~ KnockerBall Schedule App ~~
+ *
+ * This application is intended to serve as an interface to communicate
+ * with a MySQL Database to create and store scheduling information for
+ * the KnockerBall rental service. The app will provide users with a means
+ * of scheduling a reserved time to rent the KnockerBalls and will express
+ * those reservations on a master calendar for the renter to manage.
+ *
+ * 10/26/2015
+ *
+ * @author Weston Clark, Shem Sedrick, Jared Mefford
+ * @version 1.0
+ **********************************************************************/
+
 public class Address extends Activity {
     TextView custAddress, custCity, custState, custStartTime;
     Spinner custEndTime;
@@ -35,6 +51,12 @@ public class Address extends Activity {
         calcTime();
     }
 
+    /***************************************************
+     * onClickAddress
+     *
+     * This is our on click listener for moving on to the
+     * confirmation page
+     ***************************************************/
     public void onClickAddress(View view) {
         String time = custStartTime.getText().toString() + " - " + custEndTime.getSelectedItem().toString();
 
@@ -52,6 +74,14 @@ public class Address extends Activity {
         finish();
     }
 
+    /*************************************************
+     * Calculate Time
+     *
+     * @return Filled out dropdown menu
+     *
+     * This function fills out our time selection
+     * for picking the end time
+     *************************************************/
     private void calcTime () {
         String startTime, endTime;
         startTime = getIntent().getStringExtra("startTime");

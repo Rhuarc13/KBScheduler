@@ -16,9 +16,17 @@ import java.util.regex.Pattern;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-/**
- * Created by rhuarc on 12/7/15.
- */
+/***********************************************************************
+ *
+ *                  ~~ KnockerBall Schedule App ~~
+ *                   ~ Calendar Events class ~
+ * This class is a helper class for the CalendarView. This code was
+ * originally provided by the GitHub user a7med, but we modified
+ * the code to fit our needs.
+ *
+ * @author Weston Clark, Shem Sedrick, Jared Mefford, a7med
+ * @version 1.0
+ **********************************************************************/
 public class CalendarEvents extends AsyncTask<String, String, String> {
     Response responseClass;
     HashSet<Day> dates;
@@ -29,6 +37,15 @@ public class CalendarEvents extends AsyncTask<String, String, String> {
         responseClass = _response;
     }
 
+    /*****************************************
+     * readAll
+     * This function takes an input reader and takes the output
+     * from the server and returns that as a JSON string
+     *
+     * @param reader Our input reader for getting our response from the server
+     * @return String This returns the full JSON string from the server
+     * @throws IOException
+     *****************************************/
     private String readAll(BufferedReader reader) throws IOException {
         StringBuilder sb = new StringBuilder();
         int cp;
@@ -38,6 +55,17 @@ public class CalendarEvents extends AsyncTask<String, String, String> {
         return sb.toString();
     }
 
+    /*****************************************
+     * doInBackground
+     *
+     * This is our background method for getting
+     * all the reservations and adds them to the calendar
+     * view
+     *
+     * @param params We don't do anything with these parameters :(
+     * @return We don't return an actual string. The response is stored
+     *          in the response class that was passd into the constructor
+     *****************************************/
     protected String doInBackground(String... params) {
         String login = "http://96.18.168.42:80/pull_dates_times.php";
 
@@ -68,9 +96,11 @@ public class CalendarEvents extends AsyncTask<String, String, String> {
                 String jsontext = readAll(reader);
                 Log.i(TAG, jsontext);
 
+                //Parsing out the JSON Object
                 JSONObject jsonObject = new JSONObject(jsontext);
                 JSONArray array = jsonObject.getJSONArray("events");
                 Log.i(TAG, "Array length: " + array.length());
+
 
                 for (int i = 0; i < array.length(); i++) {
                     JSONObject event = array.getJSONObject(i);

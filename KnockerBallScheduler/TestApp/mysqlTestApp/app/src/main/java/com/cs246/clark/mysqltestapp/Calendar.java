@@ -16,9 +16,24 @@ import java.util.concurrent.locks.ReentrantLock;
 
 import android.widget.Toast;
 
-
+/***********************************************************************
+ *
+ *                  ~~ KnockerBall Schedule App ~~
+ *
+ * This application is intended to serve as an interface to communicate
+ * with a MySQL Database to create and store scheduling information for
+ * the KnockerBall rental service. The app will provide users with a means
+ * of scheduling a reserved time to rent the KnockerBalls and will express
+ * those reservations on a master calendar for the renter to manage.
+ *
+ * 10/26/2015
+ *
+ * @author Weston Clark, Shem Sedrick, Jared Mefford
+ * @version 1.0
+ **********************************************************************/
 public class Calendar extends Activity {
 
+    /*TAG for logging information*/
     private static final String TAG = "CALENDAR";
 
     @Override
@@ -35,10 +50,11 @@ public class Calendar extends Activity {
         ce.execute();
         Log.i(TAG, "Getting the events from the server");
 
+        /*Our observer loop for making sure the server responded*/
         Lock lock = new ReentrantLock();
         int waitTime = 0;
         synchronized (lock) {
-            while (r.getCode() == 0 && waitTime < 26) {
+            while (r.getCode() == 0 && waitTime < 26) { //waitTime variable is to prevent total hanging of the GUI
                 try {
                     lock.wait(100);
                     waitTime++;
@@ -78,8 +94,11 @@ public class Calendar extends Activity {
                 }
 
 
-
+                /*
+                Passing of the information to the next activity
+                 */
                 if (flag) {
+
                     Intent intent = new Intent(getApplicationContext(), DayView.class);
                     intent.putExtra("name", getIntent().getStringExtra("name"));
                     intent.putExtra("phone", getIntent().getStringExtra("phone"));

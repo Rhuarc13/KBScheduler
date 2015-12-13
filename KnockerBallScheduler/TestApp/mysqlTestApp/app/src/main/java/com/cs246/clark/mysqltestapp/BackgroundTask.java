@@ -22,6 +22,14 @@ import java.util.regex.Pattern;
 
 /***********************************************************************
  *
+ *                  ~~ KnockerBall Schedule App ~~
+ *
+ * This application is intended to serve as an interface to communicate
+ * with a MySQL Database to create and store scheduling information for
+ * the KnockerBall rental service. The app will provide users with a means
+ * of scheduling a reserved time to rent the KnockerBalls and will express
+ * those reservations on a master calendar for the renter to manage.
+ *
  * 10/26/2015
  *
  * @author Weston Clark, Shem Sedrick, Jared Mefford
@@ -29,6 +37,7 @@ import java.util.regex.Pattern;
  **********************************************************************/
 public class BackgroundTask extends AsyncTask<String, String, String> implements Observer {
 
+    /*Variables for passing into the php programs*/
     User     user;
     String   method;
     Response responseClass;
@@ -44,20 +53,48 @@ public class BackgroundTask extends AsyncTask<String, String, String> implements
     String duration;
     String email;
 
+    /*Tag for logging*/
     private static final String TAG = "Background Task";
 
+    /***************************************************
+     * Constructor for Sign In and Register new User
+     *
+     * @param _user  Structure containing email, password, and other information
+     * @param _method Switch for knowing which PHP function to call
+     * @param _response Class for observing progress and storing responses
+     ***************************************************/
     BackgroundTask(User _user, String _method, Response _response){
         user          = _user;
         method        = _method;
         responseClass = _response;
     }
 
+    /*****************************************************
+     * Constructor for DayView Interaction
+     * @param _date Class that contains the date data
+     * @param _method Switch for knowing which PHP function to call
+     * @param _response Class for observing progress and storing responses
+     *****************************************************/
     BackgroundTask(String _date, String _method, Response _response){
         date   = _date;
         method = _method;
         responseClass = _response;
     }
 
+    /*******************************************************
+     * Constructor for Registering the User
+     *
+     * @param _method Switch for knowing which PHP function to call
+     * @param _firstName First name of the user
+     * @param _lastName Last name of the user
+     * @param _address  Street address that was inputted by the user
+     * @param _city  City inputted by the user
+     * @param _state State inputted by the user
+     * @param _finalDate Date chosen by the user
+     * @param _sTime     Start time to be reserved
+     * @param _eTime     End time to be reserved
+     * @param _response Class for observing progress and storing responses
+     *******************************************************/
     BackgroundTask(String _method, String _firstName, String _lastName, String _address, String _city,
                    String _state, String _finalDate, String _sTime, String _eTime, Response _response){
         method    = _method;
@@ -73,6 +110,20 @@ public class BackgroundTask extends AsyncTask<String, String, String> implements
 
     }
 
+    /****************************************************
+     * Constructor for sending the PHP Email
+     *
+     * @param _method Switch for knowing which PHP function to call
+     * @param _firstName First name of the user
+     * @param _lastName Last name of the user
+     * @param _address  Street address that was inputted by the user
+     * @param _city  City inputted by the user
+     * @param _state State inputted by the user
+     * @param _sTime     Start time to be reserved
+     * @param _eTime     End time to be reserved
+     * @param _email    Users email
+     * @param _duration Float as a string for how long the reservation will last
+     *****************************************************/
     BackgroundTask(String _method, String _firstName, String _lastName, String _email, String _date,
                    String _sTime, String _eTime, String _address, String _city, String _state, String _duration){
         method    = _method;
@@ -110,6 +161,7 @@ public class BackgroundTask extends AsyncTask<String, String, String> implements
         String login = "";
         String data  = "";
 
+        /*Sets the login to the correct URL*/
         if(method.equals("register")) {
             login = "http://96.18.168.42:80/register_user.php";
             Log.i(TAG, "Trying to register a new user");
@@ -134,6 +186,7 @@ public class BackgroundTask extends AsyncTask<String, String, String> implements
             connection.setDoInput (true);
             connection.setDoOutput(true);
 
+            /*Sets up the POST variables depending on the method*/
             if(method.equals("register")) {
                 //write & encode the data to be sent via the "POST" method
                  data = URLEncoder.encode("first_name", "UTF-8")+ "=" + URLEncoder.encode(user.getFirstName(), "UTF-8")+ "&" +

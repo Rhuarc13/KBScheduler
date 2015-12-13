@@ -21,10 +21,18 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.HashSet;
 
-/**
- * Created by a7med on 28/06/2015.
- * Updated by Rhuarc13.
- */
+/***********************************************************************
+ *
+ *                  ~~ KnockerBall Schedule App ~~
+ *
+ * This Class controls the calendar view. Most of this code was supplied
+ * by GitHub member a7med. We modified it to fit our needs
+ *
+ *
+ * @author Weston Clark, Shem Sedrick, Jared Mefford, a7med
+ * @version 1.0
+ *
+ ************************************************************************/
 public class CalendarView extends LinearLayout
 {
     // for logging
@@ -304,7 +312,5 @@ public class CalendarView extends LinearLayout
         return events;
     }
 
-    public void setEvents(HashSet<Day> _events) {
-        events = _events;
-    }
+
 }

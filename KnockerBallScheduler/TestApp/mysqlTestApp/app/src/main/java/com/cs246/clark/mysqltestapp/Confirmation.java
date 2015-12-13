@@ -12,7 +12,20 @@ import android.widget.Toast;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
+/***********************************************************************
+ *
+ *                  ~~ KnockerBall Schedule App ~~
+ *
+ * This class provides an opportunity for the user to review their
+ * full reservation and submit or cancel.
+ *
+ *
+ * @author Weston Clark, Shem Sedrick, Jared Mefford
+ * @version 1.0
+ **********************************************************************/
+
 public class Confirmation extends Activity {
+    /**/
     private final static String TAG = "CONFIRMATION";
     private final static String SUCCESS = "SUCCESS: Reservation inserted";
 
