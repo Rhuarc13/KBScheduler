@@ -93,8 +93,4 @@ public class Calendar extends Activity {
 
     }
 
-    @Override
-    public void onBackPressed() {
-        return;
-    }
 }
