@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -14,6 +15,7 @@ import java.util.concurrent.locks.ReentrantLock;
 public class Confirmation extends Activity {
     private final static String TAG = "CONFIRMATION";
     private final static String SUCCESS = "SUCCESS: Reservation inserted";
+    String method, name, firstName, lastName, address, city, state, finalDate, sTime, eTime, response;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,12 +28,12 @@ public class Confirmation extends Activity {
         TextView custEmail, custDate, custName, custTime, custAddress, custCity, custState, custPhone;
 
 
-        String name = getIntent().getStringExtra("name");
+        name = getIntent().getStringExtra("name");
         String phone = getIntent().getStringExtra("phone");
         String email = getIntent().getStringExtra("email");
-        String address = getIntent().getStringExtra("address");
-        String city = getIntent().getStringExtra("city");
-        String state = getIntent().getStringExtra("state");
+        address = getIntent().getStringExtra("address");
+        city = getIntent().getStringExtra("city");
+        state = getIntent().getStringExtra("state");
         String date = getIntent().getStringExtra("date");
         String time = getIntent().getStringExtra("time");
         String month = getIntent().getStringExtra("numberMonth");
@@ -57,8 +59,8 @@ public class Confirmation extends Activity {
 
         //split the time into start and end time to send to the server
         String[] combTime = time.split("\\s");
-        String sTime = combTime[0];
-        String eTime = combTime[3];
+        sTime = combTime[0];
+        eTime = combTime[3];
 
         //now convert to military time for the server
         String[] sTimeSplit = sTime.split(":");
@@ -81,18 +83,27 @@ public class Confirmation extends Activity {
         eTime = "" + eTimeHourInt + ":" + eTimeMin + ":00";
         System.out.println(sTime + " and " + eTime);
 
-        String[] splitName = name.split("\\s");
-        String firstName = splitName[0];
-        String lastName = splitName[1];
+        String[] splitName = name.split(" ");
+        firstName = splitName[0];
+        lastName = splitName[1];
 
-        String[] splitDate = date.split("\\s");
+        String[] splitDate = date.split(" ");
         String year = splitDate[2];
         String day = splitDate[1];
-        String finalDate = year + "-" + month + "-" + day;
+        finalDate = year + "-" + month + "-" + day;
 
-        String method = "confirm";
+
+
+    }
+
+
+    public void confirmation(View view){
+
+        method = "confirm";
 
         Response response = new Response();
+        Log.i(TAG, "Start time: " + sTime);
+        Log.i(TAG, "End time: " + eTime);
         BackgroundTask backgroundTask = new BackgroundTask(method, firstName, lastName, address, city, state, finalDate, sTime, eTime, response);
 
         backgroundTask.execute();
@@ -119,7 +130,7 @@ public class Confirmation extends Activity {
                         startActivity(intent);
                         finish();
                     } else {
-                        Log.e(TAG, "Error on the PHP side");
+                        Log.e(TAG, "Error on the PHP side: " + response.getText());
                     }
                 } catch (InterruptedException ie) {
                     Log.e(TAG, "Process interrupted");
@@ -128,11 +139,7 @@ public class Confirmation extends Activity {
                 Toast.makeText(this, "Error occurred connecting to the database", Toast.LENGTH_LONG).show();
             }
         }
+
     }
-
-
-    //public void confirmation(){
-
-    //}
 }
 
