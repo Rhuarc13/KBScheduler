@@ -94,6 +94,7 @@ public class Confirmation extends Activity {
 
         Response response = new Response();
         BackgroundTask backgroundTask = new BackgroundTask(method, firstName, lastName, address, city, state, finalDate, sTime, eTime, response);
+
         backgroundTask.execute();
 
         Lock lock = new ReentrantLock();

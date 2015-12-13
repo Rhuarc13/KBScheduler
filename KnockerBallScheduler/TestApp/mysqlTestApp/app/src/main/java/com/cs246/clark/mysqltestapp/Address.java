@@ -36,7 +36,7 @@ public class Address extends Activity {
     }
 
     public void onClickAddress(View view) {
-        String time = custStartTime.getText().toString() + " - " + custEndTime.getSelectedItem().toString() + " PM";
+        String time = custStartTime.getText().toString() + " - " + custEndTime.getSelectedItem().toString();
 
         Intent intent = new Intent(this, Confirmation.class);
         intent.putExtra("email", getIntent().getStringExtra("email"));
@@ -44,8 +44,8 @@ public class Address extends Activity {
         intent.putExtra("name", getIntent().getStringExtra("name"));
         intent.putExtra("date", getIntent().getStringExtra("date"));
         intent.putExtra("address", custAddress.getText().toString());
-        //intent.putExtra("city",    custCity.getText().toString());
-        //intent.putExtra("state",   custState.getText().toString());
+        intent.putExtra("city",    custCity.getText().toString());
+        intent.putExtra("state",   custState.getText().toString());
         intent.putExtra("time", time);
         intent.putExtra("numberMonth", month);
         startActivity(intent);
