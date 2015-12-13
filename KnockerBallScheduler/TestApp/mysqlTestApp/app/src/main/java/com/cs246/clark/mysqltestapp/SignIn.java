@@ -68,28 +68,37 @@ public class SignIn extends Activity {
                     Log.e(TAG, "Ran into an InterruptedException");
                 }
             }
-        }
 
-        if (response.getCode() == 200) {
-            if (!response.getText().equals("password") || !response.getText().equals("email")) {
-                Intent intent = new Intent(this, Calendar.class);
-                String[] info = getName(response).split(":");
-                intent.putExtra("name", info[0]);
-                intent.putExtra("phone", info[1]);
-                intent.putExtra("email", emailLogin.getText().toString());
-                startActivity(intent);
-                finish();
-            } else {
-                Log.e(TAG, "Incorrect response string: " + response.getText());
-                if (response.getText().equals("email") || response.getText().equals("password")) {
-                    Toast.makeText(this, "Invalid Credentials", Toast.LENGTH_LONG).show();
-                    emailLogin.setText("");
-                    passLogin.setText("");
-                    emailLogin.requestFocus();
+            if (response.getCode() == 200) {
+                try {
+                    lock.wait(500);
+                    if (response.getText().equals("password") || response.getText().equals("email")) {
+                        Log.e(TAG, "Incorrect response string: " + response.getText());
+                        if (response.getText().equals("email") || response.getText().equals("password")) {
+                            Toast.makeText(this, "Invalid Credentials", Toast.LENGTH_LONG).show();
+                            emailLogin.setText("");
+                            passLogin.setText("");
+                            emailLogin.requestFocus();
+                        }
+                    } else {
+                        Intent intent = new Intent(this, Calendar.class);
+                        String[] info = getName(response).split(":");
+                        if (info.length > 1) {
+                            intent.putExtra("name", info[0]);
+                            intent.putExtra("phone", info[1]);
+                            intent.putExtra("email", emailLogin.getText().toString());
+                            startActivity(intent);
+                            finish();
+                        } else {
+                            Log.e(TAG, "Response Array to small...");
+                        }
+                    }
+                } catch (InterruptedException ie) {
+                    Log.e(TAG, "Wait was interrupted...");
                 }
+            } else {
+                Toast.makeText(this, "Error occurred connecting to the database: code " + response.getCode(), Toast.LENGTH_LONG).show();
             }
-        } else {
-            Toast.makeText(this, "Error occurred connecting to the database: code " + response.getCode(), Toast.LENGTH_LONG).show();
         }
 
     }

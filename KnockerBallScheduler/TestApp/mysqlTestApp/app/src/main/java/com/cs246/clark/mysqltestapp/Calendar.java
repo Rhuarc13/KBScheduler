@@ -83,6 +83,7 @@ public class Calendar extends Activity {
                     Intent intent = new Intent(getApplicationContext(), DayView.class);
                     intent.putExtra("name", getIntent().getStringExtra("name"));
                     intent.putExtra("email", getIntent().getStringExtra("email"));
+                    intent.putExtra("phone", getIntent().getStringExtra("phone"));
                     intent.putExtra("date", date.toString());
                     startActivity(intent);
                 }

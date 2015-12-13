@@ -293,6 +293,7 @@ public class DayView extends Activity {
         Intent intent = new Intent(this, Confermation.class);
         intent.putExtra("email", getIntent().getStringExtra("email"));
         intent.putExtra("name", getIntent().getStringExtra("name"));
+        intent.putExtra("phone", getIntent().getStringExtra("phone"));
         intent.putExtra("date", date);
         startActivity(intent);
         finish();
