@@ -3,10 +3,17 @@ package com.cs246.clark.mysqltestapp;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
 public class Confirmation extends Activity {
+    private final static String TAG = "CONFIRMATION";
+    private final static String SUCCESS = "SUCCESS: Reservation inserted";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,15 +92,37 @@ public class Confirmation extends Activity {
 
         String method = "confirm";
 
-
-        BackgroundTask backgroundTask = new BackgroundTask(method, firstName, lastName, address, city, state, finalDate, sTime, eTime);
+        Response response = new Response();
+        BackgroundTask backgroundTask = new BackgroundTask(method, firstName, lastName, address, city, state, finalDate, sTime, eTime, response);
         backgroundTask.execute();
 
+        Lock lock = new ReentrantLock();
+        int waitTime = 0;
+        synchronized (lock) {
+            while (response.getCode() == 0 && waitTime < 26) {
+                try {
+                    lock.wait(100);
+                    waitTime++;
+                } catch (InterruptedException e) {
+                    Log.e(TAG, "Ran into an InterruptedException");
+                }
+            }
 
+            if (response.getCode() == 200) {
 
-
-
-
+                if (response.getText().equals(SUCCESS)) {
+                    //TODO Find out where this is going
+                    Intent intent = new Intent();
+                    intent.putExtra("name", name);
+                    startActivity(intent);
+                    finish();
+                } else {
+                    Log.e(TAG, "Error on the PHP side");
+                }
+            } else {
+                Toast.makeText(this, "Error occurred connecting to the database", Toast.LENGTH_LONG).show();
+            }
+        }
     }
 
     //public void confirmation(){
