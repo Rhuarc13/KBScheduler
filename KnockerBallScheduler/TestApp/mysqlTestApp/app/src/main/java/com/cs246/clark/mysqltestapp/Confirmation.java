@@ -114,7 +114,7 @@ public class Confirmation extends Activity {
                     lock.wait(500);
                     if (response.getText().equals(SUCCESS)) {
                         //TODO Find out where this is going
-                        Intent intent = new Intent();
+                        Intent intent = new Intent(this, Done.class);
                         intent.putExtra("name", name);
                         startActivity(intent);
                         finish();

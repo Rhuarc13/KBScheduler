@@ -40,6 +40,12 @@
 
         <activity android:name=".Address" >
         </activity>
+        <activity android:name=".Done" >
+        </activity>
+        <activity android:name=".Menu" >
+        </activity>
+        <activity android:name=".viewReservation" >
+        </activity>
     </application>
 
 </manifest>
