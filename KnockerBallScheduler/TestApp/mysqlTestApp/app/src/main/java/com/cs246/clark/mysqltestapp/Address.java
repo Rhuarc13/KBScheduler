@@ -44,8 +44,8 @@ public class Address extends Activity {
         intent.putExtra("name", getIntent().getStringExtra("name"));
         intent.putExtra("date", getIntent().getStringExtra("date"));
         intent.putExtra("address", custAddress.getText().toString());
-        //intent.putExtra("city",    custCity.getText().toString());
-        //intent.putExtra("state",   custState.getText().toString());
+        intent.putExtra("city",    custCity.getText().toString());
+        intent.putExtra("state",   custState.getText().toString());
         intent.putExtra("time", time);
         intent.putExtra("numberMonth", month);
         startActivity(intent);
