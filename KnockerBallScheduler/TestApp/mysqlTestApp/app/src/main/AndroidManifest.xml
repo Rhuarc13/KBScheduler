@@ -28,7 +28,7 @@
             android:label="@string/title_activity_sign_in" />
         <activity android:name=".Calendar" />
         <activity android:name=".DayView" />
-        <activity android:name=".Confermation" >
+        <activity android:name=".Confirmation" >
         </activity>
         <!--
              ATTENTION: This was auto-generated to add Google Play services to your project for

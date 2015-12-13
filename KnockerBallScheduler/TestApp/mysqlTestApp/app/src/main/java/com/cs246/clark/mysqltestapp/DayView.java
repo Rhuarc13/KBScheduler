@@ -19,6 +19,7 @@ import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
 public class DayView extends Activity {
+    public String month;
 
     private final static String TAG = "DAY_VIEW";
     private final static HashMap<Integer, String> TIMELORD = new HashMap<Integer, String>(){
@@ -52,7 +53,7 @@ public class DayView extends Activity {
 
         String method = "pull_time";
         String year = dateList[5];
-        String month = dateList[1];
+        month = dateList[1];
         String day = dateList[2];
         TextView largeText = (TextView)findViewById(R.id.textView);
         largeText.setText(month + " " + day + ", " + year);
@@ -281,19 +282,31 @@ public class DayView extends Activity {
 
     }
 
+
+
     public void onClickDay(View view) {
         String date = getIntent().getStringExtra("date");
         String dateList[] = date.split("\\s");
+        TextView textView = (TextView) view;
+        String startTime = textView.getText().toString();
 
         String year   = dateList[5];
-        String month  = dateList[1];
+        String monthName  = dateList[1];
         String day    = dateList[2];
-        date = month + ' ' + day + ", " + year;
+        date = monthName + ' ' + day + ", " + year;
 
-        Intent intent = new Intent(this, Confermation.class);
+        Intent intent = new Intent(this, Address.class);
         intent.putExtra("email", getIntent().getStringExtra("email"));
-        intent.putExtra("name", getIntent().getStringExtra("name"));
         intent.putExtra("phone", getIntent().getStringExtra("phone"));
+        intent.putExtra("name", getIntent().getStringExtra("name"));
+<<<<<<< HEAD
+        intent.putExtra("phone", getIntent().getStringExtra("phone"));
+=======
+        intent.putExtra("startTime", startTime);
+        intent.putExtra("month", month);
+        intent.putExtra("day", day);
+        intent.putExtra("year", year);
+>>>>>>> c51d354dc772a6cbb26b8776e081c629d48268fe
         intent.putExtra("date", date);
         startActivity(intent);
         finish();

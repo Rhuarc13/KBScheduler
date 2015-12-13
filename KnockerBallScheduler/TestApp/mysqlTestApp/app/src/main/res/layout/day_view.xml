@@ -26,7 +26,8 @@
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="Large Text"
             android:id="@+id/textView"
-            android:layout_gravity="center_horizontal" />
+            android:layout_gravity="center_horizontal"
+            android:clickable="false" />
 
         <View
             android:layout_width="match_parent"
@@ -59,7 +60,8 @@
                     android:paddingTop="10dp"
                     android:clickable="true"
                     android:contextClickable="false"
-                    android:linksClickable="false" />
+                    android:linksClickable="false"
+                    android:onClick="onClickDay" />
 
                 <View
                     android:layout_width="match_parent"
@@ -73,7 +75,8 @@
                     android:text="6:30 PM"
                     android:id="@+id/sixT"
                     android:layout_gravity="center_horizontal"
-                    android:paddingTop="10dp"/>
+                    android:paddingTop="10dp"
+                    android:onClick="onClickDay" />
 
                 <View
                     android:layout_width="match_parent"
@@ -87,7 +90,8 @@
                     android:text="7:00 PM"
                     android:id="@+id/seven"
                     android:layout_gravity="center_horizontal"
-                    android:paddingTop="10dp"/>
+                    android:paddingTop="10dp"
+                    android:onClick="onClickDay"/>
 
                 <View
                     android:layout_width="match_parent"
@@ -101,7 +105,8 @@
                     android:text="7:30 PM"
                     android:id="@+id/sevenT"
                     android:layout_gravity="center_horizontal"
-                    android:paddingTop="10dp"/>
+                    android:paddingTop="10dp"
+                    android:onClick="onClickDay"/>
 
                 <View
                     android:layout_width="match_parent"
@@ -115,7 +120,8 @@
                     android:text="8:00 PM"
                     android:id="@+id/eight"
                     android:layout_gravity="center_horizontal"
-                    android:paddingTop="10dp"/>
+                    android:paddingTop="10dp"
+                    android:onClick="onClickDay"/>
 
                 <View
                     android:layout_width="match_parent"
@@ -129,7 +135,8 @@
                     android:text="8:30 PM"
                     android:id="@+id/eightT"
                     android:layout_gravity="center_horizontal"
-                    android:paddingTop="10dp"/>
+                    android:paddingTop="10dp"
+                    android:onClick="onClickDay"/>
 
                 <View
                     android:layout_width="match_parent"
@@ -143,7 +150,8 @@
                     android:text="9:00 PM"
                     android:id="@+id/nine"
                     android:layout_gravity="center_horizontal"
-                    android:paddingTop="10dp"/>
+                    android:paddingTop="10dp"
+                    android:onClick="onClickDay"/>
 
                 <View
                     android:layout_width="match_parent"
@@ -157,7 +165,8 @@
                     android:text="9:30 PM"
                     android:id="@+id/nineT"
                     android:layout_gravity="center_horizontal"
-                    android:paddingTop="10dp"/>
+                    android:paddingTop="10dp"
+                    android:onClick="onClickDay"/>
 
                 <View
                     android:layout_width="match_parent"
@@ -171,7 +180,8 @@
                     android:text="10:00 PM"
                     android:id="@+id/ten"
                     android:layout_gravity="center_horizontal"
-                    android:paddingTop="10dp"/>
+                    android:paddingTop="10dp"
+                    android:onClick="onClickDay"/>
 
                 <View
                     android:layout_width="match_parent"
@@ -185,7 +195,8 @@
                     android:text="10:30 PM"
                     android:id="@+id/tenT"
                     android:layout_gravity="center_horizontal"
-                    android:paddingTop="10dp"/>
+                    android:paddingTop="10dp"
+                    android:onClick="onClickDay"/>
 
                 <View
                     android:layout_width="match_parent"
@@ -199,7 +210,8 @@
                     android:text="11:00 PM"
                     android:id="@+id/eleven"
                     android:layout_gravity="center_horizontal"
-                    android:paddingTop="10dp"/>
+                    android:paddingTop="10dp"
+                    android:onClick="onClickDay"/>
 
                 <View
                     android:layout_width="match_parent"
@@ -213,7 +225,8 @@
                     android:text="11:30 PM"
                     android:id="@+id/elevenT"
                     android:layout_gravity="center_horizontal"
-                    android:paddingTop="10dp"/>
+                    android:paddingTop="10dp"
+                    android:onClick="onClickDay"/>
 
                 <View
                     android:layout_width="match_parent"
@@ -227,7 +240,8 @@
                     android:text="12:00 AM"
                     android:id="@+id/twelve"
                     android:layout_gravity="center_horizontal"
-                    android:paddingTop="10dp"/>
+                    android:paddingTop="10dp"
+                    android:onClick="onClickDay"/>
 
 
 

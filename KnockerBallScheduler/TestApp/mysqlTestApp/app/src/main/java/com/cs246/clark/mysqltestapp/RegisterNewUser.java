@@ -90,6 +90,10 @@ public class RegisterNewUser extends AppCompatActivity {
 
                         if (response.getText().equals(SUCCESS)) {
                             Intent intent = new Intent(this, Calendar.class);
+                            String name = firstNameView.getText().toString() + ' ' + lastNameView.getText().toString();
+                            intent.putExtra("name", name);
+                            intent.putExtra("phone", phoneView.getText().toString());
+                            intent.putExtra("email", emailView.getText().toString());
                             startActivity(intent);
                             finish();
                         } else {
