@@ -22,6 +22,14 @@ import java.util.regex.Pattern;
 
 /***********************************************************************
  *
+ *                  ~~ KnockerBall Schedule App ~~
+ *
+ * This application is intended to serve as an interface to communicate
+ * with a MySQL Database to create and store scheduling information for
+ * the KnockerBall rental service. The app will provide users with a means
+ * of scheduling a reserved time to rent the KnockerBalls and will express
+ * those reservations on a master calendar for the renter to manage.
+ *
  * 10/26/2015
  *
  * @author Weston Clark, Shem Sedrick, Jared Mefford
@@ -157,7 +165,7 @@ public class BackgroundTask extends AsyncTask<String, String, String> implements
                         URLEncoder.encode("start_time", "UTF-8") + "=" + URLEncoder.encode(sTime, "UTF-8") + "&" +
                         URLEncoder.encode("end_time", "UTF-8") + "=" + URLEncoder.encode(eTime, "UTF-8");
             } else if(method.equals("email")) {
-                data = URLEncoder.encode("first_name", "UTF-8") + "=" + URLEncoder.encode(firstName, "UTF-8") + "&" +
+                 data = URLEncoder.encode("first_name", "UTF-8") + "=" + URLEncoder.encode(firstName, "UTF-8") + "&" +
                         URLEncoder.encode("last_name", "UTF-8") + "=" + URLEncoder.encode(lastName, "UTF-8") + "&" +
                         URLEncoder.encode("street", "UTF-8") + "=" + URLEncoder.encode(address, "UTF-8") + "&" +
                         URLEncoder.encode("city", "UTF-8") + "=" + URLEncoder.encode(city, "UTF-8") + "&" +

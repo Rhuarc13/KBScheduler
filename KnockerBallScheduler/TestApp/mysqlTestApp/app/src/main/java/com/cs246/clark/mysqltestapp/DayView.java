@@ -18,9 +18,33 @@ import java.util.HashMap;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
+/***********************************************************************
+ *
+ *                  ~~ KnockerBall Schedule App ~~
+ *
+ * This application is intended to serve as an interface to communicate
+ * with a MySQL Database to create and store scheduling information for
+ * the KnockerBall rental service. The app will provide users with a means
+ * of scheduling a reserved time to rent the KnockerBalls and will express
+ * those reservations on a master calendar for the renter to manage.
+ *
+ * 10/26/2015
+ *
+ * @author Weston Clark, Shem Sedrick, Jared Mefford
+ * @version 1.0
+ **********************************************************************/
+
+/***********************************************************************
+ *DayView
+ *
+ *This class holds the time slots for a given day. The reserved times
+ * are highlighted in red, and the available times are blank.
+ **********************************************************************/
+
 public class DayView extends Activity {
     public String month;
 
+    //set up local vars. The TIMELORD map is to link the time Strings from the server w/ actual ints
     private final static String TAG = "DAY_VIEW";
     private final static HashMap<Integer, String> TIMELORD = new HashMap<Integer, String>(){
         {
@@ -51,13 +75,16 @@ public class DayView extends Activity {
 
         String dateList[] = date.split(" ");
 
+        //method lets the server know what php page to access
         String method = "pull_time";
+        //pull the vars from the extras passed in
         String year = dateList[5];
         month = dateList[1];
         String day = dateList[2];
         TextView largeText = (TextView)findViewById(R.id.textView);
         largeText.setText(month + " " + day + ", " + year);
 
+        //set the month to a number format rather than the name
         if (month.equals("Jan")) {
             month = "01";
         } else if (month.equals("Feb")) {
@@ -84,12 +111,14 @@ public class DayView extends Activity {
             month = "12";
         }
 
+        //contat the month to a server-friendly format
         date = year + "-" + month + "-" + day;
 
         Response r = new Response();
         BackgroundTask backgroundTask = new BackgroundTask(date, method, r);
         backgroundTask.execute();
 
+        //lock the activity till we hear back from the server
         Lock lock = new ReentrantLock();
         int waitTime = 0;
         synchronized (lock) {
@@ -101,16 +130,12 @@ public class DayView extends Activity {
                     Log.e(TAG, "Ran into an InterruptedException");
                 }
             }
-
-            /*try {
-                lock.wait(500);
-            } catch (InterruptedException e) {
-                Log.e(TAG, "Ran into an InterruptedException");
-            }*/
         }
 
         int start_hr, start_min, end_hr, end_min = 0;
 
+        //this sets up the json array to pull some arrays from the server
+        //DON'T TOUCH IT...IT WILL BREAK!
         if (r.getCode() == 200) {
             Log.i(TAG, "Response is: " + r.getText());
             try {
@@ -258,6 +283,7 @@ public class DayView extends Activity {
 
                         TextView tempTextView = (TextView) findViewById(id);
                         if (tempTextView != null) {
+                            //yeah, getcolor is depracated....so what?
                             tempTextView.setBackgroundColor(getResources().getColor(R.color.timeSlotReserved));
                             tempTextView.setOnClickListener(new View.OnClickListener() {
                                 @Override
@@ -283,7 +309,7 @@ public class DayView extends Activity {
     }
 
 
-
+    //this will grab the date you pushed and send you to the dayView activity
     public void onClickDay(View view) {
         String date = getIntent().getStringExtra("date");
         String dateList[] = date.split("\\s");
