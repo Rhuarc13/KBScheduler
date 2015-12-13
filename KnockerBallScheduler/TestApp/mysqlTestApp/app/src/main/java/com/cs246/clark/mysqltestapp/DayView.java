@@ -34,9 +34,9 @@ public class DayView extends Activity {
             put(7, "nine");
             put(8, "nineT");
             put(9, "ten");
-            put(10, "eight");
-            put(11, "eight");
-            put(12, "eight");
+            put(10, "tenT");
+            put(11, "eleven");
+            put(12, "elevenT");
         }
     };
 
@@ -49,7 +49,7 @@ public class DayView extends Activity {
 
         String date = getIntent().getStringExtra("date");
 
-        String dateList[] = date.split("\\s");
+        String dateList[] = date.split(" ");
 
         String method = "pull_time";
         String year = dateList[5];
