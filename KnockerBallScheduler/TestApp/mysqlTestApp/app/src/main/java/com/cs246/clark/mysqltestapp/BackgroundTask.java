@@ -57,7 +57,7 @@ public class BackgroundTask extends AsyncTask<String, String, String> implements
     }
 
     BackgroundTask(String _method, String _firstName, String _lastName, String _address, String _city,
-                   String _state, String _finalDate, String _sTime, String _eTime){
+                   String _state, String _finalDate, String _sTime, String _eTime, Response _response){
         method    = _method;
         firstName = _firstName;
         lastName  = _lastName;
@@ -67,6 +67,7 @@ public class BackgroundTask extends AsyncTask<String, String, String> implements
         finalDate = _finalDate;
         sTime     = _sTime;
         eTime     = _eTime;
+        responseClass = _response;
 
     }
 

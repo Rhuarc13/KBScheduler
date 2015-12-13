@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Address extends Activity {
-    TextView custAddress,custCity, custState, custStartTime;
+    TextView custAddress, custCity, custState, custStartTime;
     Spinner custEndTime;
     String endTime, startTime;
     String month;
@@ -28,34 +28,11 @@ public class Address extends Activity {
         custAddress   = (TextView) findViewById(R.id.customerAddress);
         custCity      = (TextView) findViewById(R.id.city);
         custState     = (TextView) findViewById(R.id.state);
-        endTime       = calcTime();
         startTime     = getIntent().getStringExtra("startTime");
         month         = getIntent().getStringExtra("month");
 
         custStartTime.setText(startTime);
-
-
-        // Spinner Drop down elements
-        List<String> categories = new ArrayList<String>();
-        categories.add("6:00");
-        categories.add("6:30");
-        categories.add("7:00");
-        categories.add("7:30");
-        categories.add("8:00");
-        categories.add("8:30");
-        categories.add("9:00");
-        categories.add("9:30");
-        categories.add("10:00");
-        categories.add("10:30");
-        categories.add("11:00");
-        categories.add("11:30");
-        categories.add("12:00");
-
-        // Creating adapter for spinner
-        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, categories);
-        // attaching data adapter to spinner
-        custEndTime.setAdapter(dataAdapter);
-
+        calcTime();
     }
 
     public void onClickAddress(View view) {
@@ -67,22 +44,46 @@ public class Address extends Activity {
         intent.putExtra("name", getIntent().getStringExtra("name"));
         intent.putExtra("date", getIntent().getStringExtra("date"));
         intent.putExtra("address", custAddress.getText().toString());
-        intent.putExtra("city",    custCity.getText().toString());
-        intent.putExtra("state",   custState.getText().toString());
+        //intent.putExtra("city",    custCity.getText().toString());
+        //intent.putExtra("state",   custState.getText().toString());
         intent.putExtra("time", time);
         intent.putExtra("numberMonth", month);
         startActivity(intent);
         finish();
     }
 
-    private String calcTime () {
+    private void calcTime () {
         String startTime, endTime;
         startTime = getIntent().getStringExtra("startTime");
 
         String temp[] = startTime.split(":");
-        int time = (Integer.parseInt(temp[0])) + 1;
-        endTime = time + ":" + temp[1];
+        int timeHour = (Integer.parseInt(temp[0]));
 
-        return endTime;
+        // Spinner Drop down elements
+        List<String> categories = new ArrayList<String>();
+        while (timeHour < 12){
+            ++timeHour;
+            if (timeHour == 12) {
+                if (!temp[1].equals("30 PM")) {
+                    categories.add((timeHour) + ":" + temp[1]);
+                }
+            } else {
+                categories.add((timeHour) + ":" + temp[1]);
+            }
+
+            if (timeHour < 12) {
+                if (temp[1].equals("30 PM"))
+                    categories.add((timeHour + 1) + ":00 PM");
+                else
+                    categories.add((timeHour) + ":30 PM" );
+            }
+        }
+
+
+        // Creating adapter for spinner
+        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, categories);
+        // attaching data adapter to spinner
+        custEndTime.setAdapter(dataAdapter);
+
     }
 }
