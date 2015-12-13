@@ -26,24 +26,24 @@ public class Confirmation extends Activity {
         TextView custEmail, custDate, custName, custTime, custAddress, custCity, custState, custPhone;
 
 
-        String name    = getIntent().getStringExtra("name");
-        String phone   = getIntent().getStringExtra("phone");
-        String email   = getIntent().getStringExtra("email");
+        String name = getIntent().getStringExtra("name");
+        String phone = getIntent().getStringExtra("phone");
+        String email = getIntent().getStringExtra("email");
         String address = getIntent().getStringExtra("address");
-        String city    = getIntent().getStringExtra("city");
-        String state   = getIntent().getStringExtra("state");
-        String date    = getIntent().getStringExtra("date");
-        String time    = getIntent().getStringExtra("time");
+        String city = getIntent().getStringExtra("city");
+        String state = getIntent().getStringExtra("state");
+        String date = getIntent().getStringExtra("date");
+        String time = getIntent().getStringExtra("time");
         String month = getIntent().getStringExtra("numberMonth");
 
-        custName    = (TextView) findViewById(R.id.customerName);
-        custPhone   = (TextView) findViewById(R.id.customerPhone);
-        custEmail   = (TextView) findViewById(R.id.customerEmail);
+        custName = (TextView) findViewById(R.id.customerName);
+        custPhone = (TextView) findViewById(R.id.customerPhone);
+        custEmail = (TextView) findViewById(R.id.customerEmail);
         custAddress = (TextView) findViewById(R.id.customerAddress);
-        custCity    = (TextView) findViewById(R.id.cityAddress);
-        custState   = (TextView) findViewById(R.id.stateAddress);
-        custDate    = (TextView) findViewById(R.id.customerDate);
-        custTime    = (TextView) findViewById(R.id.customerTime);
+        custCity = (TextView) findViewById(R.id.cityAddress);
+        custState = (TextView) findViewById(R.id.stateAddress);
+        custDate = (TextView) findViewById(R.id.customerDate);
+        custTime = (TextView) findViewById(R.id.customerTime);
 
         custName.setText(name);
         custPhone.setText(phone);
@@ -83,12 +83,12 @@ public class Confirmation extends Activity {
 
         String[] splitName = name.split("\\s");
         String firstName = splitName[0];
-        String lastName  = splitName[1];
+        String lastName = splitName[1];
 
         String[] splitDate = date.split("\\s");
         String year = splitDate[2];
-        String day  = splitDate[1];
-        String finalDate = year+"-"+month+"-"+day;
+        String day = splitDate[1];
+        String finalDate = year + "-" + month + "-" + day;
 
         String method = "confirm";
 
@@ -109,15 +109,19 @@ public class Confirmation extends Activity {
             }
 
             if (response.getCode() == 200) {
-
-                if (response.getText().equals(SUCCESS)) {
-                    //TODO Find out where this is going
-                    Intent intent = new Intent();
-                    intent.putExtra("name", name);
-                    startActivity(intent);
-                    finish();
-                } else {
-                    Log.e(TAG, "Error on the PHP side");
+                try {
+                    lock.wait(500);
+                    if (response.getText().equals(SUCCESS)) {
+                        //TODO Find out where this is going
+                        Intent intent = new Intent();
+                        intent.putExtra("name", name);
+                        startActivity(intent);
+                        finish();
+                    } else {
+                        Log.e(TAG, "Error on the PHP side");
+                    }
+                } catch (InterruptedException ie) {
+                    Log.e(TAG, "Process interrupted");
                 }
             } else {
                 Toast.makeText(this, "Error occurred connecting to the database", Toast.LENGTH_LONG).show();
@@ -125,7 +129,9 @@ public class Confirmation extends Activity {
         }
     }
 
+
     //public void confirmation(){
 
     //}
 }
+
