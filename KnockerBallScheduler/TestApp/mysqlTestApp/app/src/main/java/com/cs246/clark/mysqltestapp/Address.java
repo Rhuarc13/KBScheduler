@@ -36,7 +36,7 @@ public class Address extends Activity {
     }
 
     public void onClickAddress(View view) {
-        String time = custStartTime.getText().toString() + " - " + custEndTime.getSelectedItem().toString() + " PM";
+        String time = custStartTime.getText().toString() + " - " + custEndTime.getSelectedItem().toString();
 
         Intent intent = new Intent(this, Confirmation.class);
         intent.putExtra("email", getIntent().getStringExtra("email"));
