@@ -84,8 +84,6 @@ public class Confirmation extends Activity {
         String finalDate = year+"-"+month+"-"+day;
 
         String method = "confirm";
-
-
         BackgroundTask backgroundTask = new BackgroundTask(method, firstName, lastName, address, city, state, finalDate, sTime, eTime);
         backgroundTask.execute();
 
