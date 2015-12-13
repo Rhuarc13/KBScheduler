@@ -116,7 +116,8 @@
             android:ems="10"
             android:id="@+id/customerAddress"
             android:hint="@string/address"
-            android:layout_alignStart="@+id/city" />
+            android:layout_alignStart="@+id/city"
+            android:singleLine="true"/>
 
     </LinearLayout>
 
@@ -142,7 +143,8 @@
             android:id="@+id/city"
             android:hint="@string/city"
             android:layout_below="@+id/customerAddress"
-            android:layout_alignParentEnd="true" />
+            android:layout_alignParentEnd="true"
+            android:singleLine="true"/>
 
     </LinearLayout>
 
@@ -167,7 +169,8 @@
             android:id="@+id/state"
             android:hint="@string/state"
             android:layout_below="@+id/city"
-            android:layout_alignStart="@+id/city" />
+            android:layout_alignStart="@+id/city"
+            android:singleLine="true"/>
 
     </LinearLayout>
 
