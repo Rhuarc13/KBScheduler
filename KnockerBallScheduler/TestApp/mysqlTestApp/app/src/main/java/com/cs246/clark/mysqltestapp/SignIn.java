@@ -68,26 +68,30 @@ public class SignIn extends Activity {
                 }
             }
 
-
-            if (response.getCode() == 200) {
-                if (!response.getText().equals("password") || !response.getText().equals("email")) {
-                    Intent intent = new Intent(this, Calendar.class);
-                    intent.putExtra("name", getData("name", response));
-                    intent.putExtra("phone", getData("phone", response));
-                    intent.putExtra("email", emailLogin.getText().toString());
-                    startActivity(intent);
-                    finish();
-                } else {
-                    Log.e(TAG, "Incorrect response string: " + response.getText());
-                    if (response.getText().equals("email") || response.getText().equals("password")) {
-                        Toast.makeText(this, "Invalid Credentials", Toast.LENGTH_LONG).show();
-                        emailLogin.setText("");
-                        passLogin.setText("");
-                        emailLogin.requestFocus();
+            try {
+                lock.wait(300);
+                if (response.getCode() == 200) {
+                    if (!response.getText().equals("password") || !response.getText().equals("email")) {
+                        Intent intent = new Intent(this, Menu.class);
+                        intent.putExtra("name", getData("name", response));
+                        intent.putExtra("phone", getData("phone", response));
+                        intent.putExtra("email", emailLogin.getText().toString());
+                        startActivity(intent);
+                        finish();
                     } else {
-                        Toast.makeText(this, "Error occurred connecting to the database: code " + response.getCode(), Toast.LENGTH_LONG).show();
+                        Log.e(TAG, "Incorrect response string: " + response.getText());
+                        if (response.getText().equals("email") || response.getText().equals("password")) {
+                            Toast.makeText(this, "Invalid Credentials", Toast.LENGTH_LONG).show();
+                            emailLogin.setText("");
+                            passLogin.setText("");
+                            emailLogin.requestFocus();
+                        } else {
+                            Toast.makeText(this, "Error occurred connecting to the database: code " + response.getCode(), Toast.LENGTH_LONG).show();
+                        }
                     }
                 }
+            } catch (InterruptedException ie) {
+                Log.e(TAG, "Interrupted exception thrown");
             }
         }
     }

@@ -15,7 +15,10 @@ public class Menu extends Activity {
 
     public void goToCal(View view) {
         Intent intent = new Intent(this, Calendar.class);
-        intent.putExtra("hope", "just testing");
+        intent.putExtra("name", getIntent().getStringExtra("name"));
+        intent.putExtra("phone", getIntent().getStringExtra("phone"));
+        intent.putExtra("email", getIntent().getStringExtra("email"));
+        startActivity(intent);
         startActivity(intent);
         finish();
     }
@@ -25,5 +28,10 @@ public class Menu extends Activity {
         intent.putExtra("hope", "Tesing again");
         startActivity(intent);
         finish();
+    }
+
+    @Override
+    public void onBackPressed() {
+        return;
     }
 }
