@@ -67,13 +67,12 @@ public class SignIn extends Activity {
                     Log.e(TAG, "Ran into an InterruptedException");
                 }
             }
-
-
             try {
                 lock.wait(300);
                 if (response.getCode() == 200) {
                     if (!response.getText().equals("password") || !response.getText().equals("email")) {
-                        Intent intent = new Intent(this, Calendar.class);
+
+                        Intent intent = new Intent(this, Menu.class);
                         intent.putExtra("name", getData("name", response));
                         intent.putExtra("phone", getData("phone", response));
                         intent.putExtra("email", emailLogin.getText().toString());

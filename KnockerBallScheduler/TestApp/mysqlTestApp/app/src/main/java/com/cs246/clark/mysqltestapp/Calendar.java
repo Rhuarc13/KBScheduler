@@ -84,7 +84,6 @@ public class Calendar extends Activity {
                     intent.putExtra("name", getIntent().getStringExtra("name"));
                     intent.putExtra("phone", getIntent().getStringExtra("phone"));
                     intent.putExtra("email", getIntent().getStringExtra("email"));
-                    intent.putExtra("phone", getIntent().getStringExtra("phone"));
                     intent.putExtra("date", date.toString());
                     startActivity(intent);
                 }
@@ -93,8 +92,4 @@ public class Calendar extends Activity {
 
     }
 
-    @Override
-    public void onBackPressed() {
-        return;
-    }
 }
