@@ -55,45 +55,7 @@ public class Confirmation extends Activity {
         custState.setText(state);
         custDate.setText(date);
         custTime.setText(time);
-
-
-        //split the time into start and end time to send to the server
-        String[] combTime = time.split("\\s");
-        sTime = combTime[0];
-        eTime = combTime[3];
-
-        //now convert to military time for the server
-        String[] sTimeSplit = sTime.split(":");
-        String sTimeHour = sTimeSplit[0];
-        String sTimeMin = sTime.split(":")[1];
-
-        String[] eTimeSplit = eTime.split(":");
-        String eTimeHour = eTimeSplit[0];
-        String eTimeMin = eTime.split(":")[1];
-
-        int sTimeHourInt;
-        sTimeHourInt = Integer.parseInt(sTimeHour);
-        sTimeHourInt += 12;
-
-        int eTimeHourInt;
-        eTimeHourInt = Integer.parseInt(eTimeHour);
-        eTimeHourInt += 12;
-
-        sTime = "" + sTimeHourInt + ":" + sTimeMin + ":00";
-        eTime = "" + eTimeHourInt + ":" + eTimeMin + ":00";
-        System.out.println(sTime + " and " + eTime);
-
-        String[] splitName = name.split(" ");
-        firstName = splitName[0];
-        lastName = splitName[1];
-
-        String[] splitDate = date.split(" ");
-        String year = splitDate[2];
-        String day = splitDate[1];
-        finalDate = year + "-" + month + "-" + day;
-
-
-
+        
     }
 
 
