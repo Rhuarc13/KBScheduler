@@ -141,5 +141,11 @@ public class Confirmation extends Activity {
         }
 
     }
+
+    public void cancleReservation(View view) {
+        Intent intent = new Intent(this, Menu.class);
+        startActivity(intent);
+        finish();
+    }
 }
 
