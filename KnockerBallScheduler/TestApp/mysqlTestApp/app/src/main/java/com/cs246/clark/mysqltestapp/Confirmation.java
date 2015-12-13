@@ -81,11 +81,11 @@ public class Confirmation extends Activity {
         eTime = "" + eTimeHourInt + ":" + eTimeMin + ":00";
         System.out.println(sTime + " and " + eTime);
 
-        String[] splitName = name.split("\\s");
+        String[] splitName = name.split(" ");
         String firstName = splitName[0];
         String lastName = splitName[1];
 
-        String[] splitDate = date.split("\\s");
+        String[] splitDate = date.split(" ");
         String year = splitDate[2];
         String day = splitDate[1];
         String finalDate = year + "-" + month + "-" + day;
@@ -93,6 +93,8 @@ public class Confirmation extends Activity {
         String method = "confirm";
 
         Response response = new Response();
+        Log.i(TAG, "Start time: " + sTime);
+        Log.i(TAG, "End time: " + eTime);
         BackgroundTask backgroundTask = new BackgroundTask(method, firstName, lastName, address, city, state, finalDate, sTime, eTime, response);
 
         backgroundTask.execute();
@@ -119,7 +121,7 @@ public class Confirmation extends Activity {
                         startActivity(intent);
                         finish();
                     } else {
-                        Log.e(TAG, "Error on the PHP side");
+                        Log.e(TAG, "Error on the PHP side: " + response.getText());
                     }
                 } catch (InterruptedException ie) {
                     Log.e(TAG, "Process interrupted");
