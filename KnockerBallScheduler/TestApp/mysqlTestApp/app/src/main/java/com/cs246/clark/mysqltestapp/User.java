@@ -1,8 +1,25 @@
 package com.cs246.clark.mysqltestapp;
 
-/*********************************************************************
- * User - stores and sets the user information
+/***********************************************************************
  *
+ *                  ~~ KnockerBall Schedule App ~~
+ *
+ * This application is intended to serve as an interface to communicate
+ * with a MySQL Database to create and store scheduling information for
+ * the KnockerBall rental service. The app will provide users with a means
+ * of scheduling a reserved time to rent the KnockerBalls and will express
+ * those reservations on a master calendar for the renter to manage.
+ *
+ * 10/26/2015
+ *
+ * @author Weston Clark, Shem Sedrick, Jared Mefford
+ * @version 1.0
+ **********************************************************************/
+
+/***********************************************************************
+ *User
+ *
+ * This class is a User class that stores all the data related to a user
  **********************************************************************/
 public class User{
     //user data

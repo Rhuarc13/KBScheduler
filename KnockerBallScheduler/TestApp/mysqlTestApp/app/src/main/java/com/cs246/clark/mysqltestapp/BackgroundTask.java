@@ -210,7 +210,7 @@ public class BackgroundTask extends AsyncTask<String, String, String> implements
                         URLEncoder.encode("start_time", "UTF-8") + "=" + URLEncoder.encode(sTime, "UTF-8") + "&" +
                         URLEncoder.encode("end_time", "UTF-8") + "=" + URLEncoder.encode(eTime, "UTF-8");
             } else if(method.equals("email")) {
-                data = URLEncoder.encode("first_name", "UTF-8") + "=" + URLEncoder.encode(firstName, "UTF-8") + "&" +
+                 data = URLEncoder.encode("first_name", "UTF-8") + "=" + URLEncoder.encode(firstName, "UTF-8") + "&" +
                         URLEncoder.encode("last_name", "UTF-8") + "=" + URLEncoder.encode(lastName, "UTF-8") + "&" +
                         URLEncoder.encode("street", "UTF-8") + "=" + URLEncoder.encode(address, "UTF-8") + "&" +
                         URLEncoder.encode("city", "UTF-8") + "=" + URLEncoder.encode(city, "UTF-8") + "&" +

@@ -5,6 +5,28 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+/***********************************************************************
+ *
+ *                  ~~ KnockerBall Schedule App ~~
+ *
+ * This application is intended to serve as an interface to communicate
+ * with a MySQL Database to create and store scheduling information for
+ * the KnockerBall rental service. The app will provide users with a means
+ * of scheduling a reserved time to rent the KnockerBalls and will express
+ * those reservations on a master calendar for the renter to manage.
+ *
+ * 10/26/2015
+ *
+ * @author Weston Clark, Shem Sedrick, Jared Mefford
+ * @version 1.0
+ **********************************************************************/
+
+/***********************************************************************
+ *Done
+ *
+ * This is a simple confirmation page that tells the user that the
+ * date reservation succeeded or failed
+ **********************************************************************/
 public class Done extends Activity {
 
     @Override

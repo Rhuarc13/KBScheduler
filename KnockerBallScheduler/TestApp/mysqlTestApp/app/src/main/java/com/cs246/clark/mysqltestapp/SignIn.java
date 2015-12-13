@@ -16,6 +16,28 @@ import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
 
+/***********************************************************************
+ *
+ *                  ~~ KnockerBall Schedule App ~~
+ *
+ * This application is intended to serve as an interface to communicate
+ * with a MySQL Database to create and store scheduling information for
+ * the KnockerBall rental service. The app will provide users with a means
+ * of scheduling a reserved time to rent the KnockerBalls and will express
+ * those reservations on a master calendar for the renter to manage.
+ *
+ * 10/26/2015
+ *
+ * @author Weston Clark, Shem Sedrick, Jared Mefford
+ * @version 1.0
+ **********************************************************************/
+
+/***********************************************************************
+ * SignIn
+ *
+ * This class allows you to enter your account email and password
+ * to be able to log in. This is verified in the database
+ **********************************************************************/
 public class SignIn extends Activity {
 
     TextView emailLogin;
@@ -47,15 +69,19 @@ public class SignIn extends Activity {
 
         User user = new User();
 
+        //sets the local vars
         user.setEmail(emailLogin.getText().toString());
         user.setPassword(passLogin.getText().toString());
 
+        //our method to tell backgroundTask what php page to access
         String method = "login";
 
+        //sends the info to backgroundTask to speak with the server
         BackgroundTask backgroundTask = new BackgroundTask(user, method, response);
         backgroundTask.execute();
         Log.i(TAG, "Once your a jet your a jet all the way");
 
+        //this locks the app till we get confirmation back from the server, thus preventing errors
         Lock lock = new ReentrantLock();
         int waitTime = 0;
         synchronized (lock) {
@@ -69,7 +95,9 @@ public class SignIn extends Activity {
             }
             try {
                 lock.wait(300);
+                //check to see if we connected to the server or not (200 is good!)
                 if (response.getCode() == 200) {
+                    //iff we did get in, we need to then check and set some vars
                     if (!response.getText().equals("password") || !response.getText().equals("email")) {
 
                         Intent intent = new Intent(this, Menu.class);
@@ -79,6 +107,7 @@ public class SignIn extends Activity {
                         startActivity(intent);
                         finish();
                     } else {
+                        //what happens if we didn't get in - check why if the if/else
                         Log.e(TAG, "Incorrect response string: " + response.getText());
                         if (response.getText().equals("email") || response.getText().equals("password")) {
                             Toast.makeText(this, "Invalid Credentials", Toast.LENGTH_LONG).show();
@@ -96,6 +125,7 @@ public class SignIn extends Activity {
         }
     }
 
+    //this handles the response from the server, telling us what was wrong, if anything
     private String getData (String temp, Response response) {
 
         try {

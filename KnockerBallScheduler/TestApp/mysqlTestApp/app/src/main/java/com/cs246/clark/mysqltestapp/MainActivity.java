@@ -20,6 +20,13 @@ import android.view.View;
  * @author Weston Clark, Shem Sedrick, Jared Mefford
  * @version 1.0
  **********************************************************************/
+
+/***********************************************************************
+ *MainActivity
+ *
+ *This is the hub for the code and contains the main activity with
+ * the initial signin/register buttons
+ **********************************************************************/
 public class MainActivity extends AppCompatActivity {
 
     /*********************************************************************
