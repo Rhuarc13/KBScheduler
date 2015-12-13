@@ -62,7 +62,7 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="End Time:"
-            android:id="@+id/textView4"
+            android:id="@+id/endTimeView"
             android:layout_column="0" />
 
         <Spinner
@@ -112,11 +112,9 @@
         <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:inputType="textMultiLine"
             android:ems="10"
             android:id="@+id/customerAddress"
             android:hint="@string/address"
-            android:layout_alignStart="@+id/city"
             android:singleLine="true"/>
 
     </LinearLayout>
@@ -138,12 +136,9 @@
         <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:inputType="textMultiLine"
             android:ems="10"
             android:id="@+id/city"
             android:hint="@string/city"
-            android:layout_below="@+id/customerAddress"
-            android:layout_alignParentEnd="true"
             android:singleLine="true"/>
 
     </LinearLayout>
@@ -164,12 +159,9 @@
         <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:inputType="textMultiLine"
             android:ems="10"
             android:id="@+id/state"
             android:hint="@string/state"
-            android:layout_below="@+id/city"
-            android:layout_alignStart="@+id/city"
             android:singleLine="true"/>
 
     </LinearLayout>
