@@ -225,8 +225,7 @@
                     android:text="11:30 PM"
                     android:id="@+id/elevenT"
                     android:layout_gravity="center_horizontal"
-                    android:paddingTop="10dp"
-                    android:onClick="onClickDay"/>
+                    android:paddingTop="10dp" />
 
                 <View
                     android:layout_width="match_parent"
@@ -240,8 +239,7 @@
                     android:text="12:00 AM"
                     android:id="@+id/twelve"
                     android:layout_gravity="center_horizontal"
-                    android:paddingTop="10dp"
-                    android:onClick="onClickDay"/>
+                    android:paddingTop="10dp" />
 
 
 
