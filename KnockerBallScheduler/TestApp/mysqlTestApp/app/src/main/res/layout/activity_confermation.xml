@@ -42,7 +42,7 @@
         android:layout_height="wrap_content"
         android:text="@string/cancelButton"
         android:id="@+id/cancelButton"
-        android:onClick="cancel"
+        android:onClick="cancleReservation"
         android:layout_alignTop="@+id/confirmationButton"
         android:layout_alignParentEnd="true" />
 
