@@ -41,6 +41,8 @@ public class BackgroundTask extends AsyncTask<String, String, String> implements
     String finalDate;
     String sTime;
     String eTime;
+    String duration;
+    String email;
 
     private static final String TAG = "Background Task";
 
@@ -68,6 +70,23 @@ public class BackgroundTask extends AsyncTask<String, String, String> implements
         sTime     = _sTime;
         eTime     = _eTime;
         responseClass = _response;
+
+    }
+
+    BackgroundTask(String _method, String _firstName, String _lastName, String _email, String _date,
+                   String _sTime, String _eTime, String _address, String _city, String _state, String _duration){
+        method    = _method;
+        firstName = _firstName;
+        lastName  = _lastName;
+        email     = _email;
+        date      = _date;
+        address   = _address;
+        city      = _city;
+        state     = _state;
+        sTime     = _sTime;
+        eTime     = _eTime;
+        duration  = _duration;
+        ;
 
     }
 
@@ -100,6 +119,8 @@ public class BackgroundTask extends AsyncTask<String, String, String> implements
             login = "http://96.18.168.42:80/pull_times.php";
         } else if(method.equals("confirm")) {
             login = "http://96.18.168.42:80/reserve.php";
+        } else if (method.equals("email")) {
+            login = "http://96.18.168.42:80/email.php";
         }
 
         //try opening the connection to the server
@@ -127,18 +148,26 @@ public class BackgroundTask extends AsyncTask<String, String, String> implements
                 data = URLEncoder.encode("date","UTF-8")       + "=" + URLEncoder.encode(date, "UTF-8");
                 System.out.println("The date pass was successful: " + date);
             } else if(method.equals("confirm")) {
-                 data = URLEncoder.encode("first_name", "UTF-8")+ "=" + URLEncoder.encode(firstName, "UTF-8")+ "&" +
+                 data = URLEncoder.encode("first_name", "UTF-8") + "=" + URLEncoder.encode(firstName, "UTF-8") + "&" +
                         URLEncoder.encode("last_name", "UTF-8") + "=" + URLEncoder.encode(lastName, "UTF-8") + "&" +
-                        URLEncoder.encode("street", "UTF-8")  + "=" + URLEncoder.encode(address, "UTF-8") + "&" +
-                        URLEncoder.encode("city", "UTF-8")     + "=" + URLEncoder.encode(city, "UTF-8")    + "&" +
-                        URLEncoder.encode("state", "UTF-8")     + "=" + URLEncoder.encode(state, "UTF-8")+ "&" +
-                        URLEncoder.encode("date", "UTF-8")     + "=" + URLEncoder.encode(finalDate, "UTF-8")+ "&" +
-                        URLEncoder.encode("start_time", "UTF-8")     + "=" + URLEncoder.encode(sTime, "UTF-8")+ "&" +
-                        URLEncoder.encode("end_time", "UTF-8")     + "=" + URLEncoder.encode(eTime, "UTF-8");
-                System.out.println("Rignt before they get sent to the DB");
-                System.out.println(sTime);
-                System.out.println(eTime);
-                System.out.println(finalDate);
+                        URLEncoder.encode("street", "UTF-8") + "=" + URLEncoder.encode(address, "UTF-8") + "&" +
+                        URLEncoder.encode("city", "UTF-8") + "=" + URLEncoder.encode(city, "UTF-8") + "&" +
+                        URLEncoder.encode("state", "UTF-8") + "=" + URLEncoder.encode(state, "UTF-8") + "&" +
+                        URLEncoder.encode("date", "UTF-8") + "=" + URLEncoder.encode(finalDate, "UTF-8") + "&" +
+                        URLEncoder.encode("start_time", "UTF-8") + "=" + URLEncoder.encode(sTime, "UTF-8") + "&" +
+                        URLEncoder.encode("end_time", "UTF-8") + "=" + URLEncoder.encode(eTime, "UTF-8");
+            } else if(method.equals("email")) {
+                data = URLEncoder.encode("first_name", "UTF-8") + "=" + URLEncoder.encode(firstName, "UTF-8") + "&" +
+                        URLEncoder.encode("last_name", "UTF-8") + "=" + URLEncoder.encode(lastName, "UTF-8") + "&" +
+                        URLEncoder.encode("street", "UTF-8") + "=" + URLEncoder.encode(address, "UTF-8") + "&" +
+                        URLEncoder.encode("city", "UTF-8") + "=" + URLEncoder.encode(city, "UTF-8") + "&" +
+                        URLEncoder.encode("state", "UTF-8") + "=" + URLEncoder.encode(state, "UTF-8") + "&" +
+                        URLEncoder.encode("date", "UTF-8") + "=" + URLEncoder.encode(date, "UTF-8") + "&" +
+                        URLEncoder.encode("start_time", "UTF-8") + "=" + URLEncoder.encode(sTime, "UTF-8") + "&" +
+                        URLEncoder.encode("end_time", "UTF-8") + "=" + URLEncoder.encode(eTime, "UTF-8")+ "&" +
+                        URLEncoder.encode("email", "UTF-8") + "=" + URLEncoder.encode(email, "UTF-8") + "&" +
+                        URLEncoder.encode("duration", "UTF-8") + "=" + URLEncoder.encode(duration, "UTF-8");
+
             }
 
             //write the data to the stream and close up shop
