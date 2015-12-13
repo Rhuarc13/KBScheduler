@@ -87,7 +87,7 @@ public class Confirmation extends Activity {
 
         String[] splitDate = date.split(" ");
         String year = splitDate[2];
-        String day = splitDate[1];
+        String day = splitDate[1].split(",")[0];
         finalDate = year + "-" + month + "-" + day;
         
     }
@@ -100,6 +100,7 @@ public class Confirmation extends Activity {
         Response response = new Response();
         Log.i(TAG, "Start time: " + sTime);
         Log.i(TAG, "End time: " + eTime);
+        Log.i(TAG, "Date: " + finalDate);
         BackgroundTask backgroundTask = new BackgroundTask(method, firstName, lastName, address, city, state, finalDate, sTime, eTime, response);
 
         backgroundTask.execute();
