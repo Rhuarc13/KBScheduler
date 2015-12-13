@@ -56,9 +56,11 @@ public class Confirmation extends Activity {
         //now convert to military time for the server
         String[] sTimeSplit = sTime.split(":");
         String sTimeHour = sTimeSplit[0];
+        String sTimeMin = sTime.split(":")[1];
 
         String[] eTimeSplit = eTime.split(":");
         String eTimeHour = eTimeSplit[0];
+        String eTimeMin = eTime.split(":")[1];
 
         int sTimeHourInt;
         sTimeHourInt = Integer.parseInt(sTimeHour);
@@ -68,8 +70,8 @@ public class Confirmation extends Activity {
         eTimeHourInt = Integer.parseInt(eTimeHour);
         eTimeHourInt += 12;
 
-        sTime = "" + sTimeHourInt + ":" + sTimeSplit[1] + ":00";
-        eTime = "" + eTimeHourInt + ":" + eTimeSplit[1] + ":00";
+        sTime = "" + sTimeHourInt + ":" + sTimeMin + ":00";
+        eTime = "" + eTimeHourInt + ":" + eTimeMin + ":00";
         System.out.println(sTime + " and " + eTime);
 
         String[] splitName = name.split("\\s");
@@ -79,16 +81,13 @@ public class Confirmation extends Activity {
         String[] splitDate = date.split("\\s");
         String year = splitDate[2];
         String day  = splitDate[1];
-        String startDateAndTime = year+"-"+month+"-"+day+ " " + sTime;
-        String endDateAndTime   = year+"-"+month+"-"+day+ " " + eTime;
-
-
+        String finalDate = year+"-"+month+"-"+day;
 
         String method = "confirm";
 
 
-        //BackgroundTask backgroundTask = new BackgroundTask(method, );
-        //backgroundTask.execute();
+        BackgroundTask backgroundTask = new BackgroundTask(method, firstName, lastName, address, city, state, finalDate, sTime, eTime);
+        backgroundTask.execute();
 
 
 
@@ -97,7 +96,7 @@ public class Confirmation extends Activity {
 
     }
 
-    public void confirmation(){
+    //public void confirmation(){
 
-    }
+    //}
 }

@@ -33,6 +33,15 @@ public class BackgroundTask extends AsyncTask<String, String, String> implements
     String   method;
     Response responseClass;
     String   date;
+    String firstName;
+    String lastName;
+    String address;
+    String city;
+    String state;
+    String finalDate;
+    String sTime;
+    String eTime;
+
     private static final String TAG = "Background Task";
 
     BackgroundTask(User _user, String _method, Response _response){
@@ -45,6 +54,21 @@ public class BackgroundTask extends AsyncTask<String, String, String> implements
         date   = _date;
         method = _method;
         responseClass = _response;
+    }
+
+    BackgroundTask(String _method, String _firstName, String _lastName, String _address, String _city,
+                   String _state, String _finalDate, String _sTime, String _eTime, Response _response){
+        method    = _method;
+        firstName = _firstName;
+        lastName  = _lastName;
+        address   = _address;
+        city      = _city;
+        state     = _state;
+        finalDate = _finalDate;
+        sTime     = _sTime;
+        eTime     = _eTime;
+        responseClass = _response;
+
     }
 
     @Override
@@ -74,6 +98,8 @@ public class BackgroundTask extends AsyncTask<String, String, String> implements
             login = "http://96.18.168.42:80/verify_login.php";
         } else if(method.equals("pull_time")){
             login = "http://96.18.168.42:80/pull_times.php";
+        } else if(method.equals("confirm")) {
+            login = "http://96.18.168.42:80/reserve.php";
         }
 
         //try opening the connection to the server
@@ -100,6 +126,15 @@ public class BackgroundTask extends AsyncTask<String, String, String> implements
             } else if(method.equals("pull_time")){
                 data = URLEncoder.encode("date","UTF-8")       + "=" + URLEncoder.encode(date, "UTF-8");
                 System.out.println("The date pass was successful: " + date);
+            } else if(method.equals("confirm")) {
+                 data = URLEncoder.encode("first_name", "UTF-8")+ "=" + URLEncoder.encode(firstName, "UTF-8")+ "&" +
+                        URLEncoder.encode("last_name", "UTF-8") + "=" + URLEncoder.encode(lastName, "UTF-8") + "&" +
+                        URLEncoder.encode("street", "UTF-8")  + "=" + URLEncoder.encode(address, "UTF-8") + "&" +
+                        URLEncoder.encode("city", "UTF-8")     + "=" + URLEncoder.encode(city, "UTF-8")    + "&" +
+                        URLEncoder.encode("state", "UTF-8")     + "=" + URLEncoder.encode(state, "UTF-8")+ "&" +
+                        URLEncoder.encode("date", "UTF-8")     + "=" + URLEncoder.encode(finalDate, "UTF-8")+ "&" +
+                        URLEncoder.encode("start_time", "UTF-8")     + "=" + URLEncoder.encode(sTime, "UTF-8")+ "&" +
+                        URLEncoder.encode("end_time", "UTF-8")     + "=" + URLEncoder.encode(eTime, "UTF-8");
             }
 
             //write the data to the stream and close up shop
