@@ -35,7 +35,9 @@ public class Menu extends Activity {
         setContentView(R.layout.activity_menu);
     }
 
-    //takes you to the calendar
+    /**
+     * takes you to the calendar
+     */
     public void goToCal(View view) {
         Intent intent = new Intent(this, Calendar.class);
         intent.putExtra("name", getIntent().getStringExtra("name"));
@@ -46,7 +48,9 @@ public class Menu extends Activity {
         finish();
     }
 
-    //takes you to your reservations
+    /**
+     * takes you to your reservations
+     */
     public void viewReservation(View view) {
         Intent intent = new Intent(this, viewReservation.class);
         intent.putExtra("hope", "Tesing again");

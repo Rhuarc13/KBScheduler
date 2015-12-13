@@ -29,15 +29,13 @@ import java.util.List;
 
 public class Address extends Activity {
     TextView custAddress, custCity, custState, custStartTime;
-    Spinner custEndTime;
-    String endTime, startTime;
-    String month;
+    Spinner  custEndTime;
+    String   endTime, startTime, month;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_address);
-
 
         custEndTime   = (Spinner)  findViewById(R.id.spinner);
         custStartTime = (TextView) findViewById(R.id.startTime);

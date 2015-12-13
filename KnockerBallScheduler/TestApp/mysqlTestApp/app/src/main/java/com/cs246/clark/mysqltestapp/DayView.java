@@ -40,7 +40,6 @@ import java.util.concurrent.locks.ReentrantLock;
  *This class holds the time slots for a given day. The reserved times
  * are highlighted in red, and the available times are blank.
  **********************************************************************/
-
 public class DayView extends Activity {
     public String month;
 
@@ -73,6 +72,7 @@ public class DayView extends Activity {
 
         String date = getIntent().getStringExtra("date");
 
+        //parse the date into an array of parts to work with
         String dateList[] = date.split(" ");
 
         //method lets the server know what php page to access
@@ -111,7 +111,7 @@ public class DayView extends Activity {
             month = "12";
         }
 
-        //contat the month to a server-friendly format
+        //contact the month to a server-friendly format
         date = year + "-" + month + "-" + day;
 
         Response r = new Response();
@@ -132,7 +132,7 @@ public class DayView extends Activity {
             }
         }
 
-        int start_hr, start_min, end_hr, end_min = 0;
+        int start_hr, start_min, end_hr, end_min;
 
         //this sets up the json array to pull some arrays from the server
         //DON'T TOUCH IT...IT WILL BREAK!
@@ -162,6 +162,7 @@ public class DayView extends Activity {
                     Log.i(TAG, "start time: " + start_hr + ":" + start_min);
                     Log.i(TAG, "end time: " + end_hr + ":" + end_min);
 
+                    //seriously...don't touch this. Don't even look at it. Just accept it and move on...
                     String timeView = "";
                     int index = 0;
                     int eindex = 0;
@@ -283,7 +284,7 @@ public class DayView extends Activity {
 
                         TextView tempTextView = (TextView) findViewById(id);
                         if (tempTextView != null) {
-                            //yeah, getcolor is depracated....so what?
+                            //yeah, getcolor is depracated....so what? (we're targeting lower target sdk (kitkat))
                             tempTextView.setBackgroundColor(getResources().getColor(R.color.timeSlotReserved));
                             tempTextView.setOnClickListener(new View.OnClickListener() {
                                 @Override
@@ -307,9 +308,9 @@ public class DayView extends Activity {
             }
 
     }
-
-
-    //this will grab the date you pushed and send you to the dayView activity
+    /**
+     * this will grab the date you pushed and send you to the dayView activity
+     */
     public void onClickDay(View view) {
         String date = getIntent().getStringExtra("date");
         String dateList[] = date.split("\\s");

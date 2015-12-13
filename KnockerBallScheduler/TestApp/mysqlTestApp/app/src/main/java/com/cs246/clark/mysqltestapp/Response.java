@@ -26,12 +26,14 @@ public class Response {
     int code;
     String responseText;
 
+    /**
+     *  these codes are set in place to tell us what, if anything, was wrong with the data sent
+     */
     public Response() {
         code = 0;
         responseText = "";
     }
 
-    //these codes are set in place to tell us what, if anything, was wrong with the data sent
     public void setCode(int i) {
         code = i;
     }

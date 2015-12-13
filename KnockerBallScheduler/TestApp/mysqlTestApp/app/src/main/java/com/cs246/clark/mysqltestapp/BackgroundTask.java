@@ -137,8 +137,6 @@ public class BackgroundTask extends AsyncTask<String, String, String> implements
         sTime     = _sTime;
         eTime     = _eTime;
         duration  = _duration;
-        ;
-
     }
 
     @Override
@@ -154,8 +152,6 @@ public class BackgroundTask extends AsyncTask<String, String, String> implements
 
     @Override
     protected String doInBackground(String...params) {
-
-
 
         //directs to the register php file
         String login = "";
@@ -220,7 +216,6 @@ public class BackgroundTask extends AsyncTask<String, String, String> implements
                         URLEncoder.encode("end_time", "UTF-8") + "=" + URLEncoder.encode(eTime, "UTF-8")+ "&" +
                         URLEncoder.encode("email", "UTF-8") + "=" + URLEncoder.encode(email, "UTF-8") + "&" +
                         URLEncoder.encode("duration", "UTF-8") + "=" + URLEncoder.encode(duration, "UTF-8");
-
             }
 
             //write the data to the stream and close up shop
