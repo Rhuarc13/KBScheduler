@@ -183,7 +183,7 @@
         android:text="@string/addressButton"
         android:id="@+id/addressButton"
         android:onClick="onClickAddress"
-        />
+        android:background="@color/accent" />
     </LinearLayout>
 
 
