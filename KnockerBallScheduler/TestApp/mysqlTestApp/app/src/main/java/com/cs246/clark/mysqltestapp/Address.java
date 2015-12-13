@@ -15,13 +15,8 @@ import java.util.List;
  *
  *                  ~~ KnockerBall Schedule App ~~
  *
- * This application is intended to serve as an interface to communicate
- * with a MySQL Database to create and store scheduling information for
- * the KnockerBall rental service. The app will provide users with a means
- * of scheduling a reserved time to rent the KnockerBalls and will express
- * those reservations on a master calendar for the renter to manage.
- *
- * 10/26/2015
+ * This class runs the GUI for the user to specify what address they
+ * wish to rent the KnockerBalls at.
  *
  * @author Weston Clark, Shem Sedrick, Jared Mefford
  * @version 1.0
@@ -30,7 +25,8 @@ import java.util.List;
 public class Address extends Activity {
     TextView custAddress, custCity, custState, custStartTime;
     Spinner  custEndTime;
-    String   endTime, startTime, month;
+    String   startTime, month;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

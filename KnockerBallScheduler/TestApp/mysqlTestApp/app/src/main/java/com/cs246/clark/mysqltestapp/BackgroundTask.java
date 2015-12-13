@@ -24,13 +24,10 @@ import java.util.regex.Pattern;
  *
  *                  ~~ KnockerBall Schedule App ~~
  *
- * This application is intended to serve as an interface to communicate
- * with a MySQL Database to create and store scheduling information for
- * the KnockerBall rental service. The app will provide users with a means
- * of scheduling a reserved time to rent the KnockerBalls and will express
- * those reservations on a master calendar for the renter to manage.
- *
- * 10/26/2015
+ * BackgroundTask... Where to start with this beast.
+ * This class is like a railroad switch yard. You tell it where
+ * you want it to go, and it will get you there. Just make sure you
+ * pass in all the right information, or it might just derail.
  *
  * @author Weston Clark, Shem Sedrick, Jared Mefford
  * @version 1.0
