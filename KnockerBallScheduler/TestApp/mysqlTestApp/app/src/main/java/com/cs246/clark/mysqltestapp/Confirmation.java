@@ -25,12 +25,13 @@ import java.util.concurrent.locks.ReentrantLock;
  **********************************************************************/
 
 public class Confirmation extends Activity {
-    /**/
+    /*TAG for logging*/
     private final static String TAG = "CONFIRMATION";
+    /*This is the string that the server passes back if everything runs smoothly*/
     private final static String SUCCESS = "SUCCESS: Reservation inserted";
 
     double duration = 0.0;
-    String method, name, firstName, lastName, address, city, state, finalDate, sTime, eTime, response;
+    String method, name, firstName, lastName, address, city, state, finalDate, sTime, eTime;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,10 +40,16 @@ public class Confirmation extends Activity {
         setText();
     }
 
+    /********************************************************
+     * setText
+     *
+     * This function gets the information passed through the
+     * intent and fills in the view
+     ********************************************************/
     private void setText() {
         TextView custEmail, custDate, custName, custTime, custAddress, custCity, custState, custPhone;
 
-
+        //Get variables from the intent
         name = getIntent().getStringExtra("name");
         String phone = getIntent().getStringExtra("phone");
         String email = getIntent().getStringExtra("email");
@@ -53,6 +60,7 @@ public class Confirmation extends Activity {
         String time = getIntent().getStringExtra("time");
         String month = getIntent().getStringExtra("numberMonth");
 
+        //Get the TextViews' controls
         custName = (TextView) findViewById(R.id.customerName);
         custPhone = (TextView) findViewById(R.id.customerPhone);
         custEmail = (TextView) findViewById(R.id.customerEmail);
@@ -62,6 +70,7 @@ public class Confirmation extends Activity {
         custDate = (TextView) findViewById(R.id.customerDate);
         custTime = (TextView) findViewById(R.id.customerTime);
 
+        //Update the TextViews
         custName.setText(name);
         custPhone.setText(phone);
         custEmail.setText(email);
@@ -114,12 +123,21 @@ public class Confirmation extends Activity {
         
     }
 
-
+    /**************************************************
+     * confirmation
+     *
+     * This onClick function starts off the reservation
+     * php process
+     *
+     * @param view This passes in the button that was
+     *             clicked
+     */
     public void confirmation(View view){
 
         method = "confirm";
 
         Response response = new Response();
+        /*Debugging logs*/
         Log.i(TAG, "Start time: " + sTime);
         Log.i(TAG, "End time: " + eTime);
         Log.i(TAG, "Date: " + finalDate);
@@ -171,7 +189,15 @@ public class Confirmation extends Activity {
 
     }
 
-    public void cancleReservation(View view) {
+    /*********************************************
+     * cancelReservation
+     *
+     * This function cancels the reservation process
+     * and send the user back to the main menu
+     *
+     * @param view The button that was clicked
+     */
+    public void cancelReservation(View view) {
         Intent intent = new Intent(this, Menu.class);
         startActivity(intent);
         finish();
