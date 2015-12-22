@@ -93,7 +93,7 @@ public class BackgroundTask extends AsyncTask<String, String, String> implements
      * @param _response Class for observing progress and storing responses
      *******************************************************/
     BackgroundTask(String _method, String _firstName, String _lastName, String _address, String _city,
-                   String _state, String _finalDate, String _sTime, String _eTime, Response _response){
+                   String _state, String _finalDate, String _sTime, String _eTime, String _email, Response _response){
         method    = _method;
         firstName = _firstName;
         lastName  = _lastName;
@@ -103,6 +103,7 @@ public class BackgroundTask extends AsyncTask<String, String, String> implements
         finalDate = _finalDate;
         sTime     = _sTime;
         eTime     = _eTime;
+        email     = _email;
         responseClass = _response;
 
     }
@@ -201,7 +202,8 @@ public class BackgroundTask extends AsyncTask<String, String, String> implements
                         URLEncoder.encode("state", "UTF-8") + "=" + URLEncoder.encode(state, "UTF-8") + "&" +
                         URLEncoder.encode("date", "UTF-8") + "=" + URLEncoder.encode(finalDate, "UTF-8") + "&" +
                         URLEncoder.encode("start_time", "UTF-8") + "=" + URLEncoder.encode(sTime, "UTF-8") + "&" +
-                        URLEncoder.encode("end_time", "UTF-8") + "=" + URLEncoder.encode(eTime, "UTF-8");
+                        URLEncoder.encode("end_time", "UTF-8") + "=" + URLEncoder.encode(eTime, "UTF-8") + "&" +
+                         URLEncoder.encode("email", "UTF-8") + "=" + URLEncoder.encode(email, "UTF-8");
             } else if(method.equals("email")) {
                  data = URLEncoder.encode("first_name", "UTF-8") + "=" + URLEncoder.encode(firstName, "UTF-8") + "&" +
                         URLEncoder.encode("last_name", "UTF-8") + "=" + URLEncoder.encode(lastName, "UTF-8") + "&" +

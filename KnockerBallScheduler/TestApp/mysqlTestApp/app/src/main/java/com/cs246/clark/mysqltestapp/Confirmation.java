@@ -31,7 +31,7 @@ public class Confirmation extends Activity {
     private final static String SUCCESS = "SUCCESS: Reservation inserted";
 
     double duration = 0.0;
-    String method, name, firstName, lastName, address, city, state, finalDate, sTime, eTime;
+    String method, name, firstName, lastName, address, city, state, finalDate, sTime, eTime, email;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +52,7 @@ public class Confirmation extends Activity {
         //Get variables from the intent
         name = getIntent().getStringExtra("name");
         String phone = getIntent().getStringExtra("phone");
-        String email = getIntent().getStringExtra("email");
+        email = getIntent().getStringExtra("email");
         address = getIntent().getStringExtra("address");
         city = getIntent().getStringExtra("city");
         state = getIntent().getStringExtra("state");
@@ -141,7 +141,7 @@ public class Confirmation extends Activity {
         Log.i(TAG, "Start time: " + sTime);
         Log.i(TAG, "End time: " + eTime);
         Log.i(TAG, "Date: " + finalDate);
-        BackgroundTask backgroundTask = new BackgroundTask(method, firstName, lastName, address, city, state, finalDate, sTime, eTime, response);
+        BackgroundTask backgroundTask = new BackgroundTask(method, firstName, lastName, address, city, state, finalDate, sTime, eTime, email, response);
 
         backgroundTask.execute();
 
