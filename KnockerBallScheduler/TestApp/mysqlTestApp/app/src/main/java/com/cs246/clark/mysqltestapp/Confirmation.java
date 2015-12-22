@@ -114,7 +114,7 @@ public class Confirmation extends Activity {
         System.out.println(sTime + " and " + eTime);
 
         firstName = name.split(" ")[0];
-        lastName = name.split(" ")[1];
+        //er        lastName = name.split(" ")[1];
 
         String[] splitDate = date.split(" ");
         String year = splitDate[2];

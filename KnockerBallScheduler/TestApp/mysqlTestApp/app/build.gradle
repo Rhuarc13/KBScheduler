@@ -1,15 +1,23 @@
 apply plugin: 'com.android.application'
 
 android {
+    signingConfigs {
+        release {
+            keyAlias 'releaseKey'
+            keyPassword 'H0l13n3sst0th3L0rd'
+            storeFile file('/home/rhuarc/Documents/Programming/Java/assign1/TestApp/KBScheduler/my-release-key.keystore')
+            storePassword 'H0l13n3sst0th3L0rd'
+        }
+    }
     compileSdkVersion 23
     buildToolsVersion "23.0.1"
-
     defaultConfig {
         applicationId "com.cs246.clark.mysqltestapp"
         minSdkVersion 21
         targetSdkVersion 23
         versionCode 1
         versionName "1.0"
+        signingConfig signingConfigs.release
     }
     buildTypes {
         release {
@@ -17,10 +25,16 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    productFlavors {
+        KitKat {
+            minSdkVersion 19
+            targetSdkVersion 19
+        }
+    }
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:23.0.1'
     compile 'com.google.android.gms:play-services-appindexing:8.1.0'
